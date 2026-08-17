@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+    /**
+     * COLORS
+     * We remove the built in colors from Tailwind.
+     * You need to define your own colors based on the design tokens from Figma.
+     */
+    --color-*: initial;
+    --color-black: rgba(0, 0, 0, 1);
+
+    /* Base palette (Figma: "Mode 1" collection, top-level color variables) */
+    --color-white: #FFFFFF;
+    --color-orange: #CE6745;
+    --color-dark-brown: #1F1F1F;
+    --color-dark-brown-50: rgba(51, 43, 36, 0.5); /* Figma "Dark Brown 50%" — a distinct flattened value, not Dark Brown at 50% opacity */
+    --color-light-grey: #F3F4F6;
+    --color-light-blue: #F8FAFC;
+
+    /* Text colors (Figma: "Text" group, aliases onto the base palette) */
+    --color-text-primary: var(--color-dark-brown);
+    --color-text-secondary: var(--color-white);
+    --color-text-tertiary: var(--color-orange);
+    --color-text-fourthiary: var(--color-dark-brown-50);
+
+    /* Icon colors (Figma: "Icon" group, aliases onto the base palette) */
+    --color-icon-primary: var(--color-dark-brown);
+    --color-icon-secondary: var(--color-white);
+    --color-icon-tertiary: var(--color-orange);
+
+    /* Background colors (Figma: "BG" group) */
+    --color-bg-light-grey: var(--color-light-grey);
+    --color-bg-light-blue: var(--color-light-blue);
+
+    /**
+     * TYPOGRAPHY
+     * We remove the built in typography from Tailwind.
+     * You need to define your own typography based on the design tokens from Figma.
+     */
+    --font-*: initial;
+
+    /* Font Weights (Figma: "Font weight" group) */
+    --font-weight-*: initial;
+    --font-weight-regular: 300;
+    --font-weight-hefty: 400;
+    --font-weight-semibold: 500;
+    --font-weight-bold: 600;
+
+    /* Line Heights (Figma: "Line height" group) */
+    --leading-*: initial;
+    --leading-2xs: 14px;
+    --leading-xs: 16px;
+    --leading-sm: 18px;
+    --leading-lg: 24px;
+    --leading-xl: 40px;
+    --leading-2xl: 56px;
+    --leading-3xl: 64px;
+    --leading-4xl: 72px;
+    --leading-5xl: 96px;
+
+    /* Font Sizes (Figma: "Font size" group) */
+    --text-*: initial;
+    --text-xs: 12px;
+    --text-sm: 14px;
+    --text-button: 16px;
+    --text-md: 20px;
+    --text-lg: 24px;
+    --text-xl: 32px;
+    --text-2xl: 56px;
+    --text-3xl: 64px;
+    --text-4xl: 72px;
+    --text-5xl: 96px;
+
+    /* Letter Spacing (Inspired by Tailwind CSS) */
+    /* No letter-spacing tokens defined in Figma yet. */
+    --tracking-*: initial;
+
+    /**
+     * SPACING
+     * We keep the default spacing from Tailwind.
+     * We almost always use the same 4px pixel grid in all our projects.
+     */
+    /* --spacing-*: initial; */
+
+    /* Padding (Figma: "Padding" group) — named additions on top of the default 4px scale */
+    --spacing-padding-xl-inline: 120px;
+    --spacing-padding-xl-block: 92px;
+    --spacing-padding-m-inline: 10px;
+    --spacing-padding-m-block: 10px;
+    --spacing-padding-inline-mobile: 20px;
+    --spacing-padding-block-mobile: 30px;
+
+    /* Gap (Figma: "Gap" group) */
+    --spacing-gap-m: 10px;
+    --spacing-gap-h2: 50px;
+    --spacing-gap-h2-mobile: 20px;
+
+    /**
+     * BREAKPOINTS & CONTAINERS
+     * We disable the default breakpoints from Tailwind.
+     * Tablet and Desktop should cover most cases.
+     */
+    --breakpoint-tablet: 1024px;
+    --breakpoint-desktop: 1440px;
+
+    /**
+     * RADIUS
+     * You can define custom named radii here.
+     * You can also use the 4px pixel grid, e.g. --radius-4 === 16px; (4 * 4px)
+     */
+    /* --radius-*: initial; */
+    --radius-lg: 8px; /* Figma: "Corner" / LG */
+
+    /**
+     * SHADOWS
+     * We exclude the default shadows from Tailwind.
+     */
+    --shadow-*: initial;
+
+    /**
+     * BLUR
+     * We exclude the default blurs from Tailwind.
+     */
+    --blur-*: initial;
+
+    /**
+     * PERSPECTIVE
+     * We exclude the default perspectives from Tailwind.
+     */
+    --perspective-*: initial;
+
+    /**
+     * ASPECT RATIOS
+     * We exclude the default aspect ratios from Tailwind.
+     * We recommend defining aspect ratios in the form of 16/9, 4/3, 1/1, etc.
+     * But you can use any ratio you want with dynamic values in the Tailwind class, e.g. aspect-ratio-[16/9] or aspect-ratio-[4/3].
+     */
+    --aspect-ratio-*: initial;
+
+    /**
+     * TRANSITIONS & ANIMATIONS
+     * We exclude the default transitions and animations from Tailwind.
+     */
+    --ease-*: initial;
+    --animate-*: initial;
+}

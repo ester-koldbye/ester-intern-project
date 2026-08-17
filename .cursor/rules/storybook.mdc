@@ -1,0 +1,302 @@
+---
+description: Storybook patterns and best practices (consolidated)
+globs: *.stories.tsx
+alwaysApply: false
+---
+
+# Storybook Patterns
+
+## Story File Structure
+
+### File Organization
+
+- Stories file: `component-name.stories.tsx`
+- Co-located with component: same directory as `component-name.tsx`
+- Import component using relative path
+
+### Import Pattern
+
+```typescript
+import type { Meta, StoryObj } from "@storybook/react";
+import { ComponentName } from "./component-name";
+// Additional imports for complex stories
+import { Icon } from "../icon/icon";
+import { Link } from "../link/link";
+```
+
+## Meta Configuration
+
+### Basic Meta Pattern
+
+```typescript
+const meta = {
+    title: "Category/Subcategory/ComponentName",
+    component: ComponentName,
+    parameters: {
+        layout: "centered", // or "fullscreen" for full-width components
+    },
+    tags: ["autodocs"],
+    argTypes: {
+        // Control definitions
+    },
+} satisfies Meta<typeof ComponentName>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+```
+
+### Title Conventions
+
+- **UI Components**: "Primitives/ComponentName"
+- **CMS Components**: "CMS/Modules/ComponentName"
+- **Complex Components**: "Category/Subcategory/ComponentName"
+
+### Layout Parameters
+
+- "centered" - For small components (buttons, icons, etc.)
+- "fullscreen" - For full-width components (hero, sections, etc.)
+
+## ArgTypes Configuration
+
+### Control Types
+
+```typescript
+argTypes: {
+    variant: {
+        control: "select",
+        options: ["primary", "secondary", "link"],
+        defaultValue: "primary",
+    },
+    size: {
+        control: "select",
+        options: ["s", "m", "iconS", "iconM"],
+        defaultValue: "m",
+    },
+    colorScheme: {
+        control: "select",
+        options: ["onLight", "onDark"],
+        defaultValue: "onLight",
+    },
+}
+```
+
+### Common Control Patterns
+
+- **Variants**: `control: "select"` with `options` array
+- **Booleans**: Automatic boolean control
+- **Text**: Automatic text control
+- **Numbers**: Automatic number control
+
+## Story Definitions
+
+### Basic Story Pattern
+
+```typescript
+export const StoryName: Story = {
+    args: {
+        prop1: "value",
+        prop2: "value",
+        colorScheme: "onLight",
+    },
+};
+```
+
+### Story Naming Conventions
+
+- **Descriptive names**: `PrimaryMediumOnLight`, `SecondarySmallOnDark`
+- **State variations**: `PrimaryMediumOnLightDisabled`
+- **Context variations**: `OnLight`, `OnDark`
+
+## Color Scheme & Background Handling
+
+### Light Theme Stories
+
+```typescript
+export const OnLight: Story = {
+    args: {
+        colorScheme: "onLight",
+        // other props
+    },
+};
+```
+
+### Dark Theme Stories
+
+```typescript
+export const OnDark: Story = {
+    args: {
+        colorScheme: "onDark",
+        // other props
+    },
+    globals: {
+        backgrounds: {
+            value: "darkGrey",
+        },
+    },
+};
+```
+
+### Background Override Pattern
+
+Always use `globals.backgrounds.value: "darkGrey"` for dark theme stories.
+
+## Story Variations
+
+### State Variations
+
+Create stories for all interactive states:
+
+```typescript
+// Normal state
+export const Primary: Story = {
+    args: { variant: "primary" },
+};
+
+// Disabled state
+export const PrimaryDisabled: Story = {
+    args: { variant: "primary", disabled: true },
+};
+```
+
+### Size Variations
+
+```typescript
+export const Small: Story = {
+    args: { size: "s" },
+};
+
+export const Medium: Story = {
+    args: { size: "m" },
+};
+```
+
+### Comprehensive Coverage Pattern
+
+For complex components like Button, create stories for:
+
+- All variants × all sizes × all color schemes
+- All variants × all color schemes × disabled states
+- Special cases (icons, links, etc.)
+
+## Advanced Story Patterns
+
+### Custom Render Functions
+
+```typescript
+export const IconButton: Story = {
+    args: {
+        variant: "primary",
+        size: "iconS",
+    },
+    argTypes: {
+        // @ts-expect-error - Custom prop for story only
+        iconSize: {
+            control: "select",
+            options: ["s", "m", "l"],
+            defaultValue: "m",
+        },
+    },
+    // @ts-expect-error - Custom prop for story only
+    render: ({ iconSize, ...args }) => (
+        <ComponentName {...args}>
+            <Icon icon="arrow-right" size={iconSize} />
+        </ComponentName>
+    ),
+};
+```
+
+### Composition Stories
+
+```typescript
+export const AsLink: Story = {
+    args: {
+        variant: "primary",
+        colorScheme: "onLight",
+    },
+    render: (args) => (
+        <Button {...args} asChild>
+            <Link href="#">Button Label</Link>
+        </Button>
+    ),
+};
+```
+
+## Documentation Patterns
+
+### Story Comments
+
+Use JSDoc-style comments to group related stories:
+
+```typescript
+/**
+ * Primary
+ */
+export const PrimaryMediumOnLight: Story = {
+    /* ... */
+};
+export const PrimaryMediumOnLightDisabled: Story = {
+    /* ... */
+};
+
+/**
+ * Secondary
+ */
+export const SecondaryMediumOnLight: Story = {
+    /* ... */
+};
+```
+
+### Args Documentation
+
+- Use realistic, meaningful content in args
+- Provide placeholder URLs: `"https://placehold.co/1920x1080"`
+- Use descriptive labels: `"Button Label"`, `"Primary CTA"`
+
+## TypeScript Patterns
+
+### Type Safety
+
+```typescript
+// Proper typing with satisfies
+const meta = {
+    // meta config
+} satisfies Meta<typeof ComponentName>;
+
+// Story type from meta
+type Story = StoryObj<typeof meta>;
+```
+
+### Handling Custom Props
+
+```typescript
+// Use @ts-expect-error for story-only props
+argTypes: {
+    // @ts-expect-error - iconSize is not a valid prop for Button
+    iconSize: {
+        control: "select",
+        options: ["s", "m", "l"],
+    },
+},
+```
+
+## Best Practices
+
+### Story Organization
+
+- Group related stories with comments
+- Order stories logically (primary → secondary → variants)
+- Include both enabled and disabled states
+- Cover all color scheme combinations
+
+### Args Best Practices
+
+- Use realistic content that demonstrates the component
+- Provide meaningful default values
+- Include all required props
+- Test edge cases with specific stories
+
+### Repository Conventions
+
+- Generate stories for all props of a component
+- Use `src/components/ui/.cursor/templates/storybook.template.tsx` as a blueprint
+- Do not create example routes; showcase via Storybook only

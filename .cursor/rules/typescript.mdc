@@ -1,0 +1,51 @@
+---
+description: TypeScript coding standards and best practices (consolidated)
+globs: **/*.ts, **/*.tsx, **/*.d.ts
+---
+
+# TypeScript Best Practices
+
+## Type System
+
+- Prefer types over interfaces for object definitions
+- Use union/intersection/mapped types appropriately
+- Avoid `any`; prefer `unknown` and precise narrowing
+- Avoid enums; use maps or union literals
+- Use generics for reusable patterns
+
+## Naming & Conventions
+
+- Use PascalCase for type names
+- Use camelCase for variables and functions
+- Use UPPER_CASE for constants
+- Use descriptive names with auxiliary verbs (`isLoading`, `hasError`)
+
+## Organization
+
+- Keep type definitions close to usage; co-locate component props
+- Do not create barrel files via `index.ts` for exports
+- Place shared types in a dedicated `types` directory when necessary
+
+## Functions & Errors
+
+- Provide explicit return types for public functions
+- Prefer arrow functions; use early returns to reduce nesting
+- Implement typed error handling and custom error types
+- Prefer async/await; handle rejections with typed catches
+
+## Patterns & Utilities
+
+- Use discriminated unions for complex state
+- Implement type predicates for narrowing
+- Prefer `Record<K, T>` over `{ [key: K]: T }`
+- Use `satisfies` to validate config objects while preserving literals
+- Use branded types for type-safe identifiers
+- Prefer `??` and `?.` for defaults and optionals
+
+## React-Specific Types
+
+- Do not import the global React namespace
+- Do not type components as `FC<Props>`
+- For HTML-wrapping components without refs, use `ComponentPropsWithoutRef<T>`
+- For HTML-wrapping components with refs, use `ComponentPropsWithRef<T>`
+- For non-HTML components that accept children, use `PropsWithChildren<T>`

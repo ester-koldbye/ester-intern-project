@@ -1,0 +1,67 @@
+---
+description: React best practices and patterns for modern web applications (consolidated)
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# React Best Practices
+
+## Component Structure
+
+- Prefer functional components; keep them small and focused
+- Compose over inherit; extract reusable logic into custom hooks
+- Implement proper prop types with TypeScript
+- Split large components into smaller, focused ones
+
+## TypeScript Integration
+
+- Never import the global React namespace
+- Do not type components as `FC<Props>`; use explicit props types
+- For HTML-wrapping components without refs, use `ComponentPropsWithoutRef<T>`
+- For HTML-wrapping components with refs, use `ComponentPropsWithRef<T>`
+- For non-HTML components that accept children, use `PropsWithChildren<T>`
+- Use `satisfies` for config objects to preserve literal types
+- Avoid `any`; use precise types and type predicates for narrowing
+
+## Hooks
+
+- Follow the Rules of Hooks
+- Keep effects minimal; prefer server data and derived state
+- Provide cleanup in `useEffect` when needed; avoid nested hooks
+- Use appropriate dependency arrays; memoize expensive computations
+
+## State Management
+
+- Use `useState` for local state; `useReducer` for complex logic
+- Use Context sparingly and colocate state near usage
+- Prefer server state and URL state over broad client state
+
+## Performance
+
+- Use `useMemo`/`useCallback` judiciously; profile before optimizing
+- Use `React.memo` only for proven wins
+- Lazy-load non-critical UI and assets
+- Use proper `key` props in lists to avoid re-renders
+
+## Forms
+
+- Use controlled inputs
+- Validate with Zod (server-first), mirror minimal client validation
+- Provide submission loading and error states
+
+## Error Handling & UX
+
+- Implement Error Boundaries for client subtrees
+- Handle async errors; show friendly fallback UI
+
+## Accessibility
+
+- Use semantic HTML and proper ARIA attributes
+- Ensure keyboard navigation and focus management
+- Provide alt text; test with screen readers
+
+## Code Organization & Conventions
+
+- Use descriptive names with auxiliary verbs (`isOpen`, `hasError`)
+- Prefer early returns; use `??` and `?.`
+- Keep styles close to components; use Tailwind utilities

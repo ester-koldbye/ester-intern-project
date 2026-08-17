@@ -1,0 +1,56 @@
+---
+description: Tailwind CSS and UI component best practices (consolidated)
+globs: **/*.css, **/*.tsx, src/styles/theme.css
+alwaysApply: false
+---
+
+# Tailwind CSS Best Practices
+
+## Project Setup
+
+- Ensure Tailwind config is properly set up and pruned
+- Configure theme extension, spacing, breakpoints, and plugins
+- Keep a consistent color palette driven by design tokens
+
+## Design Tokens & Colors
+
+- Use semantic color tokens from `src/styles/theme.css`
+- Never hardcode color values; prefer tokenized Tailwind classes
+- Ensure sufficient color contrast and accessible states
+
+## Component Styling
+
+- Prefer utility classes over custom CSS; avoid writing new CSS
+- Group related utilities with `@apply` sparingly for readability
+- Use responsive utilities mobile-first
+- Implement proper state variants (hover, focus, active, disabled)
+- Keep component styles consistent and accessible
+
+## Layout
+
+- Use Flexbox and Grid effectively
+- Apply a consistent spacing system
+- Use container queries when applicable
+- Apply proper padding, margin, and alignment utilities
+
+## Typography
+
+- Use proper font size and line-height utilities
+- Configure custom fonts if needed
+- Use appropriate text alignment and decoration utilities
+
+## Components & Animations
+
+- Prefer shadcn/ui primitives when available
+- Keep variants consistent; use transition and animation utilities thoughtfully
+
+## Responsive Design
+
+- Build mobile-first; scale up with breakpoints
+- Use responsive typography and spacing utilities
+
+## Performance
+
+- Keep purge content accurate to minimize CSS size
+- Minimize custom CSS; prefer utilities
+- Monitor bundle size in production

@@ -1,0 +1,2 @@
+# Run typecheck and lint-staged before committing to avoid CI/CD blocking commits
+npm run typecheck && npm run lint-staged

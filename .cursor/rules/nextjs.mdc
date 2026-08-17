@@ -1,0 +1,69 @@
+---
+description: Next.js with TypeScript and Tailwind UI best practices (consolidated)
+globs: **/*.tsx, **/*.ts, src/**/*.ts, src/**/*.tsx, src/app/**/*.ts, src/app/**/*.tsx
+---
+
+# Next.js Best Practices
+
+## Project Structure
+
+- Use the App Router directory structure
+- Place components in `app` directory for route-specific components
+- Place shared components in `components/modules` directory
+- Place utilities and helpers in `lib` directory
+- Use lowercase with dashes for directories (e.g., `components/modules/module-hero-02`)
+
+## Components
+
+- Use Server Components by default; minimize `use client`
+- Mark client components explicitly with `"use client"`
+- Wrap client components in Suspense with a meaningful fallback
+- Use dynamic loading for non-critical components
+- Implement proper error boundaries for client trees
+- Keep static content and type definitions at file end when practical
+
+## Performance
+
+- Optimize images with `next/image` (prefer WebP/AVIF, set sizes, lazy-load)
+- Minimize `useEffect` and `setState`; prefer server-rendered data
+- Apply streaming where beneficial (e.g., suspense boundaries for large sections)
+- Cache with appropriate `fetchCache` and route segment config
+- Implement ISR/revalidation strategies where appropriate
+- Monitor Core Web Vitals (LCP, CLS, INP/FID)
+
+## Data Fetching
+
+- Prefer Server Components for data fetching
+- Handle errors with typed results; surface friendly fallbacks
+- Use appropriate caching (`force-cache`, `no-store`, or time-based revalidate)
+- Model loading and error states with Suspense and error boundaries
+
+## Routing
+
+- Follow App Router conventions (route groups, parallel routes when needed)
+- Provide `loading.tsx` and `error.tsx` per route segment when relevant
+- Use dynamic routes appropriately and validate params on the server
+
+## Forms and Validation
+
+- Use Zod for schema validation
+- Validate on the server first; mirror minimal client validation for UX
+- Provide loading and error states during submission
+
+## State Management
+
+- Keep client state minimal; prefer server state and URL state
+- Use Context sparingly; colocate state close to usage
+
+## TypeScript & Conventions
+
+- Use TypeScript throughout; avoid `any`
+- Favor types over interfaces; avoid enums in favor of maps
+- Prefer `satisfies` for config objects to preserve literals
+- Use descriptive variable names with auxiliary verbs (`isLoading`, `hasError`)
+- Use `??` and `?.`; prefer early returns to reduce nesting
+
+## Styling
+
+- Use Tailwind CSS utility classes; avoid custom CSS
+- Use semantic design tokens from `src/styles/theme.css`; avoid raw color values
