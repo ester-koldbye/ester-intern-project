@@ -27,9 +27,9 @@ const sizeClasses: Record<NonNullable<ButtonProps["size"]>, string> = {
 };
 
 export const Button = ({
+  className = "",
   variant = "primary",
   size = "M",
-  className = "",
   children,
   ...props
 }: ButtonProps) => {

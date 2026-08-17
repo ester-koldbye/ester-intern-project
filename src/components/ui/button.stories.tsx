@@ -4,10 +4,6 @@ import { Button } from "./button";
 const meta: Meta<typeof Button> = {
     title: "UI/Button",
     component: Button,
-    args: {
-        children: "Countries",
-        variant: "primary",
-    },
     argTypes: {
         variant: {
             control: "radio",
@@ -30,7 +26,9 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {};
+export const Default: Story = {
+    args: { children: "Button"}
+};
 
 export const Primary: Story = {
     args: { variant: "primary", children: "Primary" },
@@ -47,3 +45,17 @@ export const Tertiary: Story = {
 export const Quaternary: Story = {
     args: { variant: "quaternary", children: "Quaternary" },
 };
+
+
+/** Confirms Tailwind 4 tokens from globals.css reach the Storybook preview. */
+export const AllVariants: Story = {
+    args: { children: 'Button' },
+    render: () => (
+        <div className="flex flex-wrap gap-3">
+            <Button>Default</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="tertiary">Tertiary</Button>
+            <Button variant="quaternary">Quaternary</Button>
+        </div>
+    )
+}
