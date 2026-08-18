@@ -49,28 +49,28 @@
 
     /* Line Heights (Figma: "Line height" group) */
     --leading-*: initial;
-    --leading-2xs: 14px;
-    --leading-xs: 16px;
-    --leading-sm: 18px;
-    --leading-lg: 24px;
-    --leading-xl: 40px;
-    --leading-2xl: 56px;
-    --leading-3xl: 64px;
-    --leading-4xl: 72px;
-    --leading-5xl: 96px;
+    --leading-2xs: 0.875rem; /* 14px */
+    --leading-xs: 1rem; /* 16px */
+    --leading-sm: 1.125rem; /* 18px */
+    --leading-lg: 1.5rem; /* 24px */
+    --leading-xl: 2.5rem; /* 40px */
+    --leading-2xl: 3.5rem; /* 56px */
+    --leading-3xl: 4rem; /* 64px */
+    --leading-4xl: 4.5rem; /* 72px */
+    --leading-5xl: 6rem; /* 96px */
 
     /* Font Sizes (Figma: "Font size" group) */
     --text-*: initial;
-    --text-xs: 12px;
-    --text-sm: 14px;
-    --text-button: 16px;
-    --text-md: 20px;
-    --text-lg: 24px;
-    --text-xl: 32px;
-    --text-2xl: 56px;
-    --text-3xl: 64px;
-    --text-4xl: 72px;
-    --text-5xl: 96px;
+    --text-xs: 0.75rem; /* 12px */
+    --text-sm: 0.875rem; /* 14px */
+    --text-button: 1rem; /* 16px */
+    --text-md: 1.25rem; /* 20px */
+    --text-lg: 1.5rem; /* 24px */
+    --text-xl: 2rem; /* 32px */
+    --text-2xl: 3.5rem; /* 56px */
+    --text-3xl: 4rem; /* 64px */
+    --text-4xl: 4.5rem; /* 72px */
+    --text-5xl: 6rem; /* 96px */
 
     /* Letter Spacing (Inspired by Tailwind CSS) */
     /* No letter-spacing tokens defined in Figma yet. */
@@ -84,17 +84,17 @@
     /* --spacing-*: initial; */
 
     /* Padding (Figma: "Padding" group) — named additions on top of the default 4px scale */
-    --spacing-padding-xl-inline: 120px;
-    --spacing-padding-xl-block: 92px;
-    --spacing-padding-m-inline: 10px;
-    --spacing-padding-m-block: 10px;
-    --spacing-padding-inline-mobile: 20px;
-    --spacing-padding-block-mobile: 30px;
+    --spacing-padding-xl-inline: 7.5rem; /* 120px */
+    --spacing-padding-xl-block: 5.75rem; /* 92px */
+    --spacing-padding-m-inline: 0.625rem; /* 10px */
+    --spacing-padding-m-block: 0.625rem; /* 10px */
+    --spacing-padding-inline-mobile: 1.25rem; /* 20px */
+    --spacing-padding-block-mobile: 1.875rem; /* 30px */
 
     /* Gap (Figma: "Gap" group) */
-    --spacing-gap-m: 10px;
-    --spacing-gap-h2: 50px;
-    --spacing-gap-h2-mobile: 20px;
+    --spacing-gap-m: 0.625rem; /* 10px */
+    --spacing-gap-h2: 3.125rem; /* 50px */
+    --spacing-gap-h2-mobile: 1.25rem; /* 20px */
 
     /**
      * BREAKPOINTS & CONTAINERS
@@ -110,7 +110,7 @@
      * You can also use the 4px pixel grid, e.g. --radius-4 === 16px; (4 * 4px)
      */
     /* --radius-*: initial; */
-    --radius-lg: 8px; /* Figma: "Corner" / LG */
+    --radius-lg: 0.5rem; /* 8px — Figma: "Corner" / LG */
 
     /**
      * SHADOWS
