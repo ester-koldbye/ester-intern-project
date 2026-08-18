@@ -22,7 +22,7 @@
     --color-text-primary: var(--color-dark-brown);
     --color-text-secondary: var(--color-white);
     --color-text-tertiary: var(--color-orange);
-    --color-text-fourthiary: var(--color-dark-brown-50);
+    --color-text-quaternary: var(--color-dark-brown-50);
 
     /* Icon colors (Figma: "Icon" group, aliases onto the base palette) */
     --color-icon-primary: var(--color-dark-brown);
