@@ -5,12 +5,16 @@ import { NavLink } from "./nav-link";
 const ArrowIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" viewBox="0 0 7 11" fill="none">
         <path d="M0.353516 10.3535L5.35352 5.35352L0.353516 0.353516" stroke="currentColor"/>
-    </svg>  
+    </svg>
 );
 
-const meta: Meta<typeof NavLink> = {
+const meta = {
     title: "UI/NavLink",
     component: NavLink,
+    tags: ["autodocs"],
+    parameters: {
+        layout: "centered",
+    },
     argTypes: {
         variant: {
             control: "radio",
@@ -23,6 +27,9 @@ const meta: Meta<typeof NavLink> = {
         icon: {
             control: false, // ReactNode, not controllable — see WithIcon stories
         },
+        asChild: {
+            control: "boolean",
+        },
     },
     decorators: [
         (Story) => (
@@ -31,13 +38,13 @@ const meta: Meta<typeof NavLink> = {
             </div>
         ),
     ],
-};
+} satisfies Meta<typeof NavLink>;
 
 export default meta;
-type Story = StoryObj<typeof NavLink>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    args: { children: "NavLink" }
+    args: { children: "NavLink" },
 };
 
 export const Primary: Story = {
@@ -54,4 +61,12 @@ export const WithIcon: Story = {
 
 export const WithIconLeft: Story = {
     args: { children: "NavLink", icon: <ArrowIcon />, iconPosition: "left" },
+};
+
+/** asChild lets consumers map the NavLink's styling onto their own element, e.g. a router Link. */
+export const AsChild: Story = {
+    args: {
+        asChild: true,
+        children: <a href="https://example.com">Link styled as a NavLink</a>,
+    },
 };

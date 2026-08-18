@@ -1,17 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Button } from "./button";
 
-const meta: Meta<typeof Button> = {
+const meta = {
     title: "UI/Button",
     component: Button,
+    tags: ["autodocs"],
+    parameters: {
+        layout: "centered",
+    },
     argTypes: {
         variant: {
             control: "radio",
-            options: ["primary", "secondary", "tertiary"],
+            options: ["primary", "secondary", "tertiary", "quaternary"],
         },
         size: {
             control: "radio",
             options: ["S", "M", "L"],
+        },
+        asChild: {
+            control: "boolean",
         },
     },
     decorators: [
@@ -21,13 +28,13 @@ const meta: Meta<typeof Button> = {
             </div>
         ),
     ],
-};
+} satisfies Meta<typeof Button>;
 
 export default meta;
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    args: { children: "Button"}
+    args: { children: "Button" },
 };
 
 export const Primary: Story = {
@@ -46,10 +53,17 @@ export const Quaternary: Story = {
     args: { variant: "quaternary", children: "Quaternary" },
 };
 
+/** asChild lets consumers map the Button's styling onto their own element, e.g. a router Link. */
+export const AsChild: Story = {
+    args: {
+        asChild: true,
+        children: <a href="https://example.com">Link styled as a button</a>,
+    },
+};
 
-/** Confirms Tailwind 4 tokens from globals.css reach the Storybook preview. */
+/** Confirms Tailwind 4 tokens from theme.css reach the Storybook preview. */
 export const AllVariants: Story = {
-    args: { children: 'Button' },
+    args: { children: "Button" },
     render: () => (
         <div className="flex flex-wrap gap-3">
             <Button>Default</Button>
@@ -57,5 +71,5 @@ export const AllVariants: Story = {
             <Button variant="tertiary">Tertiary</Button>
             <Button variant="quaternary">Quaternary</Button>
         </div>
-    )
-}
+    ),
+};
