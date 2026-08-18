@@ -14,27 +14,22 @@
     --color-white: #ffffff;
     --color-orange: #ce6745;
     --color-dark-brown: #1f1f1f;
-    --color-dark-brown-50: rgba(
-        51,
-        43,
-        36,
-        0.5
-    ); /* Figma "Dark Brown 50%" — a distinct flattened value, not Dark Brown at 50% opacity */
+    --color-dark-brown-50: rgba(51, 43, 36, 0.5); /* "Dark Brown 50%" */
     --color-light-grey: #f3f4f6;
     --color-light-blue: #f8fafc;
 
-    /* Text colors (Figma: "Text" group, aliases onto the base palette) */
+    /* Text colors */
     --color-text-primary: var(--color-dark-brown);
     --color-text-secondary: var(--color-white);
     --color-text-tertiary: var(--color-orange);
     --color-text-quaternary: var(--color-dark-brown-50);
 
-    /* Icon colors (Figma: "Icon" group, aliases onto the base palette) */
+    /* Icon colors */
     --color-icon-primary: var(--color-dark-brown);
     --color-icon-secondary: var(--color-white);
     --color-icon-tertiary: var(--color-orange);
 
-    /* Background colors (Figma: "BG" group) */
+    /* Background colors */
     --color-bg-light-grey: var(--color-light-grey);
     --color-bg-light-blue: var(--color-light-blue);
 
