@@ -11,12 +11,17 @@
     --color-black: rgba(0, 0, 0, 1);
 
     /* Base palette (Figma: "Mode 1" collection, top-level color variables) */
-    --color-white: #FFFFFF;
-    --color-orange: #CE6745;
-    --color-dark-brown: #1F1F1F;
-    --color-dark-brown-50: rgba(51, 43, 36, 0.5); /* Figma "Dark Brown 50%" — a distinct flattened value, not Dark Brown at 50% opacity */
-    --color-light-grey: #F3F4F6;
-    --color-light-blue: #F8FAFC;
+    --color-white: #ffffff;
+    --color-orange: #ce6745;
+    --color-dark-brown: #1f1f1f;
+    --color-dark-brown-50: rgba(
+        51,
+        43,
+        36,
+        0.5
+    ); /* Figma "Dark Brown 50%" — a distinct flattened value, not Dark Brown at 50% opacity */
+    --color-light-grey: #f3f4f6;
+    --color-light-blue: #f8fafc;
 
     /* Text colors (Figma: "Text" group, aliases onto the base palette) */
     --color-text-primary: var(--color-dark-brown);
@@ -116,6 +121,7 @@
      */
     /* --radius-*: initial; */
     --radius-lg: 0.5rem; /* 8px — Figma: "Corner" / LG */
+    --radius-card: 1.5625rem; /* 25px — DestinationCard corner radius, not bound to a Figma variable. Named rather than slotted into lg/xl/2xl so it doesn't silently change the meaning of Tailwind's default radius scale. */
 
     /**
      * SHADOWS
