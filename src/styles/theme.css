@@ -10,7 +10,7 @@
     --color-*: initial;
     --color-black: rgba(0, 0, 0, 1);
 
-    /* Base palette (Figma: "Mode 1" collection, top-level color variables) */
+    /* Base palette */
     --color-white: #ffffff;
     --color-orange: #ce6745;
     --color-dark-brown: #1f1f1f;
