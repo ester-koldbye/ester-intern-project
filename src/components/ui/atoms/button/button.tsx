@@ -8,8 +8,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "border-2 border-orange bg-orange text-text-secondary hover:transparent",
-        secondary: "border-2 border-white bg-white text-text-primary hover:bg-orange",
+        primary: "border-2 border-orange bg-orange text-text-secondary hover:bg-transparent",
+        secondary: "border-2 border-white bg-white text-text-primary hover:bg-orange hover:border-orange hover:text-text-secondary",
         outline: "border-2 border-orange bg-transparent hover:bg-orange hover:text-text-secondary",
       },
       textColor: {
