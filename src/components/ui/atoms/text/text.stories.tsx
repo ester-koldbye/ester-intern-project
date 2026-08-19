@@ -19,9 +19,9 @@ const meta = {
             options: ["p", "span", "div", "figcaption"],
             description: "Restricted on purpose — every option is a plain text container with the same prop surface. Use asChild for anything outside this set.",
         },
-        variant: {
+        textColor: {
             control: "radio",
-            options: ["primary", "secondary", "tertiary", "quaternary"],
+            options: ["dark", "light", "orange", "grey"],
         },
         size: {
             control: "radio",
@@ -75,12 +75,12 @@ export const Weights: Story = {
 export const Variants: Story = {
     render: () => (
         <div className="flex flex-col gap-4">
-            <Text variant="primary">primary — full contrast body copy</Text>
-            <Text variant="quaternary">quaternary — de-emphasised, muted body copy</Text>
-            <Text variant="secondary" className="bg-dark-brown p-2">
-                secondary — white, for dark backgrounds
+            <Text textColor="dark">dark — full contrast body copy</Text>
+            <Text textColor="grey">grey — de-emphasised, muted body copy</Text>
+            <Text textColor="light" className="bg-dark-brown p-2">
+                light — white, for dark backgrounds
             </Text>
-            <Text variant="tertiary">tertiary — orange, for accents/links</Text>
+            <Text textColor="orange">orange — for accents/links</Text>
         </div>
     ),
 };
@@ -91,12 +91,12 @@ export const AsOtherElements: Story = {
         <div className="flex flex-col gap-4">
             <figure className="flex flex-col gap-2">
                 <div className="h-24 rounded-lg bg-light-grey" />
-                <Text as="figcaption" size="sm" variant="quaternary">
+                <Text as="figcaption" size="sm" textColor="grey">
                     figcaption — how an image block renders its caption
                 </Text>
             </figure>
             <div>
-                <Text as="span" size="sm" variant="quaternary">
+                <Text as="span" size="sm" textColor="grey">
                     span — inline, for text inside another line
                 </Text>
             </div>

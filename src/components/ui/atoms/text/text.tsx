@@ -20,11 +20,11 @@ import { cn } from "@/styles/utils";
 
 const textVariants = cva("font-poppins", {
   variants: {
-    variant: {
-      primary: "text-text-primary",
-      secondary: "text-text-secondary",
-      tertiary: "text-text-tertiary",
-      quaternary: "text-text-quaternary",
+    textColor: {
+      dark: "text-text-primary",
+      light: "text-text-secondary",
+      orange: "text-text-tertiary",
+      grey: "text-text-quaternary",
     },
     // sm: 14px/18px. base: 16px/16px, the only size with letter-spacing in
     // Figma. md: 20px/24px. (No lg/xl — those are Heading's sizes.)
@@ -40,7 +40,7 @@ const textVariants = cva("font-poppins", {
     },
   },
   defaultVariants: {
-    variant: "primary",
+    textColor: "dark",
     size: "sm",
     weight: "regular",
   },
@@ -57,7 +57,7 @@ export type TextProps = ComponentPropsWithRef<"p"> &
 
 export const Text = ({
   as = "p",
-  variant,
+  textColor,
   size,
   weight,
   asChild = false,
@@ -71,7 +71,7 @@ export const Text = ({
   return (
     <Comp
       data-slot="text"
-      className={cn(textVariants({ variant, size, weight, className }))}
+      className={cn(textVariants({ textColor, size, weight, className }))}
       ref={ref}
       {...props}
     >
