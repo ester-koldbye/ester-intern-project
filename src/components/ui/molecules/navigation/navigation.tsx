@@ -23,10 +23,13 @@ import {
  * `Button` — rather than introducing new styling. `variant` mirrors those
  * atoms' own "primary"/"secondary" naming and is passed straight through:
  * "primary" for white text on the dark hero header, "secondary" for dark text
- * on light backgrounds. Below the `tablet` breakpoint the desktop row
- * collapses into a hamburger toggle that reveals the same links stacked in a
- * dropdown panel — Figma only specifies the collapsed mobile state, so the
- * open panel's layout (not its content) is this component's own addition.
+ * on light backgrounds. Below 43rem (688px) — this component's own
+ * breakpoint, not the shared `tablet` token in theme.css, since the nav needs
+ * more room than the rest of the design system before it collapses — the
+ * desktop row gives way to a hamburger toggle that reveals the same links
+ * stacked in a dropdown panel. Figma only specifies the collapsed mobile
+ * state, so the open panel's layout (not its content) is this component's
+ * own addition.
  */
 
 const hamburgerBarVariants = cva("block h-0.5 w-6 rounded-full transition-transform", {
@@ -42,7 +45,7 @@ const hamburgerBarVariants = cva("block h-0.5 w-6 rounded-full transition-transf
 });
 
 const mobilePanelVariants = cva(
-    "absolute inset-x-0 top-full z-50 flex flex-col items-start gap-4 p-padding-inline-mobile shadow-[0px_4px_20px_rgba(0,0,0,0.1)] tablet:hidden",
+    "absolute inset-x-0 top-full z-50 flex flex-col items-start gap-4 p-padding-inline-mobile shadow-[0px_4px_20px_rgba(0,0,0,0.1)] min-[43rem]:hidden",
     {
         variants: {
             variant: {
@@ -88,6 +91,8 @@ export const Navigation = ({
     ...props
 }: NavigationProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
+    // Contact button: quaternary (orange border, white text) on the primary/dark nav,
+    // tertiary (orange border, black text) on the secondary/light nav — per Figma.
     const contactVariant = variant === "primary" ? "quaternary" : "tertiary";
     const closeMobileMenu = () => setMobileOpen(false);
 
@@ -95,25 +100,25 @@ export const Navigation = ({
         <nav
             data-slot="navigation"
             className={cn(
-                "relative flex w-full items-center justify-between px-padding-inline-mobile tablet:px-padding-xl-inline",
+                "relative flex w-full items-center justify-between px-padding-inline-mobile min-[43rem]:px-padding-xl-inline",
                 className,
             )}
             ref={ref}
             {...props}
         >
-            <Logo asChild variant={variant} size="L" className="hidden tablet:inline">
+            <Logo asChild variant={variant} size="L" className="hidden min-[43rem]:inline">
                 <Link href={logoHref as Route} aria-label="Go to homepage">
                     {logo}
                 </Link>
             </Logo>
-            <Logo asChild variant={variant} size="M" className="tablet:hidden">
+            <Logo asChild variant={variant} size="M" className="min-[43rem]:hidden">
                 <Link href={logoHref as Route} aria-label="Go to homepage">
                     {logo}
                 </Link>
             </Logo>
 
-            {/* Desktop nav (tablet and up) */}
-            <div className="hidden items-center gap-11.25 tablet:flex">
+            {/* DESKTOP NAVIGATION (43rem and up) */}
+            <div className="hidden items-center gap-11.25 min-[43rem]:flex">
                 <div className="flex items-center gap-7.75">
                     <NavLink asChild variant={variant}>
                         <Link href={homeHref as Route}>Home</Link>
@@ -136,10 +141,10 @@ export const Navigation = ({
                 </Button>
             </div>
 
-            {/* Mobile hamburger toggle (below tablet) */}
+            {/* MOBILE BURGER NAVIGATION hamburger toggle (below 43rem) */}
             <button
                 type="button"
-                className="flex flex-col items-center justify-center gap-1.5 tablet:hidden"
+                className="flex flex-col items-center justify-center gap-1.5 min-[43rem]:hidden"
                 aria-expanded={mobileOpen}
                 aria-controls="navigation-mobile-menu"
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
