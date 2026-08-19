@@ -91,9 +91,9 @@ export const Navigation = ({
     ...props
 }: NavigationProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
-    // Contact button: quaternary (orange border, white text) on the primary/dark nav,
-    // tertiary (orange border, black text) on the secondary/light nav — per Figma.
-    const contactVariant = variant === "primary" ? "quaternary" : "tertiary";
+    // Contact button: outline with white text on the primary/dark nav,
+    // outline with black text on the secondary/light nav — per Figma.
+    const contactTextColor = variant === "primary" ? "light" : "dark";
     const closeMobileMenu = () => setMobileOpen(false);
 
     return (
@@ -136,7 +136,7 @@ export const Navigation = ({
                     </DropdownMenu>
                 </div>
 
-                <Button asChild variant={contactVariant} size="M">
+                <Button asChild variant="outline" textColor={contactTextColor} size="M">
                     <Link href={contactHref as Route}>Contact</Link>
                 </Button>
             </div>
@@ -176,7 +176,7 @@ export const Navigation = ({
                         </DropdownMenuContent>
                     </DropdownMenu>
 
-                    <Button asChild variant={contactVariant} size="M">
+                    <Button asChild variant="outline" textColor={contactTextColor} size="M">
                         <Link href={contactHref as Route} onClick={closeMobileMenu}>
                             Contact
                         </Link>

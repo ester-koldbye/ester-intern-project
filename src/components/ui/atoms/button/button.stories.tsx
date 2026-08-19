@@ -11,7 +11,11 @@ const meta = {
     argTypes: {
         variant: {
             control: "radio",
-            options: ["primary", "secondary", "tertiary", "quaternary"],
+            options: ["primary", "secondary", "outline"],
+        },
+        textColor: {
+            control: "radio",
+            options: ["dark", "light"],
         },
         size: {
             control: "radio",
@@ -38,19 +42,15 @@ export const Default: Story = {
 };
 
 export const Primary: Story = {
-    args: { variant: "primary", children: "Primary" },
+    args: { variant: "primary", textColor: "dark", children: "Primary" }, 
 };
 
 export const Secondary: Story = {
-    args: { variant: "secondary", children: "Secondary" },
+    args: { variant: "secondary", textColor: "dark", children: "Secondary" }, 
 };
 
-export const Tertiary: Story = {
-    args: { variant: "tertiary", children: "Tertiary" },
-};
-
-export const Quaternary: Story = {
-    args: { variant: "quaternary", children: "Quaternary" },
+export const Outline: Story = {
+    args: { variant: "outline", textColor: "dark", children: "Outline" },
 };
 
 /** asChild lets consumers map the Button's styling onto their own element, e.g. a router Link. */
@@ -66,10 +66,10 @@ export const AllVariants: Story = {
     args: { children: "Button" },
     render: () => (
         <div className="flex flex-wrap gap-3">
-            <Button>Default</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="tertiary">Tertiary</Button>
-            <Button variant="quaternary">Quaternary</Button>
+            <Button variant="primary">Default</Button> {/* orange, hover bliver outline med sort tekst */}
+            <Button variant="secondary" textColor="dark">Secondary</Button> {/* hvid med sort tekst */}
+            <Button variant="outline" textColor="dark">Outline (Dark)</Button> {/* outline, sort tekst */}
+            <Button variant="outline" textColor="light">Outline (Light)</Button> {/* outline, hvid tekst */}
         </div>
     ),
 };
