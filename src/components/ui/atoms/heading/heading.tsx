@@ -25,7 +25,7 @@ import { cn } from "@/styles/utils";
  * the prop value tells you exactly which token is in play.
  */
 
-const headingVariants = cva("font-poppins font-bold tracking-[0.32px]", {
+const headingVariants = cva("font-poppins tracking-[0.32px]", {
   variants: {
     variant: {
       primary: "text-text-primary",
@@ -39,9 +39,15 @@ const headingVariants = cva("font-poppins font-bold tracking-[0.32px]", {
       lg: "text-lg",
       md: "text-md",
     },
+    weight: {
+      regular: "font-regular",
+      semibold: "font-semibold",
+      bold: "font-bold",
+    },
   },
   defaultVariants: {
     variant: "primary",
+    weight: "bold",
   },
 });
 
@@ -75,6 +81,7 @@ export const Heading = ({
   level,
   size,
   variant,
+  weight,
   asChild = false,
   className,
   children,
@@ -86,7 +93,7 @@ export const Heading = ({
   return (
     <Comp
       data-slot="heading"
-      className={cn(headingVariants({ size: size ?? (level ? LEVEL_SIZES[level] : "2xl"), variant, className }))}
+      className={cn(headingVariants({ size: size ?? (level ? LEVEL_SIZES[level] : "2xl"), variant, weight, className }))}
       ref={ref}
       {...props}
     >

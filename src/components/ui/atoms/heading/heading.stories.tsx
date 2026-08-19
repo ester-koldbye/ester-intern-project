@@ -27,6 +27,11 @@ const meta = {
             control: "radio",
             options: ["primary", "secondary", "tertiary", "quaternary"],
         },
+        weight: {
+            control: "radio",
+            options: ["regular", "semibold", "bold"],
+            description: "Defaults to bold. Split from size the same way Text's weight is, e.g. a semibold xl title.",
+        },
         asChild: {
             control: "boolean",
         },
@@ -115,6 +120,23 @@ export const Variants: Story = {
             </Heading>
             <Heading level={2} variant="tertiary">
                 tertiary — orange, for accents
+            </Heading>
+        </div>
+    ),
+};
+
+/** Every weight at a fixed size, so the scale is comparable in isolation. */
+export const Weights: Story = {
+    render: () => (
+        <div className="flex flex-col gap-4">
+            <Heading level={2} size="xl" weight="regular">
+                regular — rare, for de-emphasised titles
+            </Heading>
+            <Heading level={2} size="xl" weight="semibold">
+                semibold — e.g. a large card title
+            </Heading>
+            <Heading level={2} size="xl" weight="bold">
+                bold — the default
             </Heading>
         </div>
     ),
