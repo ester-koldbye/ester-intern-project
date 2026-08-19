@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         primary: "border-2 border-orange bg-orange text-text-secondary hover:transparent",
         secondary: "border-2 border-white bg-white text-text-primary hover:bg-orange",
-        outline: "border-2 border-orange bg-transparent hover:bg-orange",
+        outline: "border-2 border-orange bg-transparent hover:bg-orange hover:text-text-secondary",
       },
       textColor: {
         dark: "text-text-primary",
@@ -23,9 +23,8 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      { variant: "outline", textColor: "dark", className: "hover:text-text-primary" },
-      { variant: "outline", textColor: "light", className: "hover:text-text-secondary" },
-
+      // outline's hover is fixed (bg-orange + white text) regardless of
+      // textColor, so it lives on the variant itself rather than here.
       {variant: "primary", textColor: "dark", className: "hover:text-text-primary"},
       {variant: "primary", textColor: "light", className: "hover:text-text-secondary"},
     ],
