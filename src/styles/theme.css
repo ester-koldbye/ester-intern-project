@@ -150,3 +150,7 @@
     --ease-*: initial;
     --animate-*: initial;
 }
+
+a {
+    cursor: pointer;
+}

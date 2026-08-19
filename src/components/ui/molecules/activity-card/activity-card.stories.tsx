@@ -12,7 +12,7 @@ const meta = {
     args: {
         imageSrc: "/destinations/vietnam.JPG",
         tag: "Hike",
-        location: "Link",
+        location: "Location link",
         title: "Activity name",
         titleLevel: 3,
         readMoreHref: "/",
@@ -37,6 +37,8 @@ export const Vertical: Story = {
     args: {
         layout: "vertical",
         size: "L",
+        locationHref: "https://maps.google.com",
+        readMoreHref: "/",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
     },
 };
@@ -46,6 +48,8 @@ export const Compact: Story = {
     args: {
         layout: "vertical",
         size: "M",
+        locationHref: "https://maps.google.com",
+        readMoreHref: "/",
     },
 };
 
@@ -54,6 +58,8 @@ export const CompactWithDescription: Story = {
     args: {
         layout: "vertical",
         size: "M",
+        locationHref: "https://maps.google.com",
+        readMoreHref: "/",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
 };
@@ -63,6 +69,8 @@ export const Horizontal: Story = {
     args: {
         layout: "horizontal",
         size: "M",
+        locationHref: "https://maps.google.com",
+        readMoreHref: "/",
     },
 };
 

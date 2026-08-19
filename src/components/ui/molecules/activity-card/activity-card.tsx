@@ -47,6 +47,7 @@ const activityCardVariants = cva("flex items-start gap-6", {
     },
 });
 
+// Styling for the Image wrapper div
 const activityCardImageVariants = cva("relative shrink-0 overflow-hidden rounded-card", {
     variants: {
         layout: {
@@ -70,7 +71,7 @@ const activityCardImageVariants = cva("relative shrink-0 overflow-hidden rounded
     },
 });
 
-/** Location pin, e.g. next to the "Read more"-adjacent place link. Real vector data from Figma's asset export — never hand-guessed. */
+// LOCATION PIN ICON
 const PinIcon = (props: ComponentPropsWithRef<"svg">) => (
     <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...props}>
         <path
@@ -82,28 +83,17 @@ const PinIcon = (props: ComponentPropsWithRef<"svg">) => (
 
 export type ActivityCardProps = Omit<ComponentPropsWithRef<"div">, "title"> &
     VariantProps<typeof activityCardVariants> & {
-        /** Photo for the activity. */
-        imageSrc: string;
-        /** Alt text for the photo. Defaults to "" (decorative) since `title` already announces the activity. */
-        imageAlt?: string;
-        /** Category badge, e.g. "Hike". Rendered in the dark `Tag` variant, the only one Figma uses on this card. */
-        tag: ReactNode;
-        /** Place name shown next to the pin icon, e.g. "Famous Street". */
-        location: ReactNode;
-        /** When given, `location` renders as a link (e.g. to a map) instead of plain text. */
-        locationHref?: string;
-        /** Activity name, e.g. "Hiking the Blue Mountains". */
-        title: ReactNode;
-        /** Heading level for `title` — chosen by the surrounding page/outline, not defaulted here (see `Heading`). */
-        titleLevel: HeadingLevel;
-        /** Supporting copy under the title. Omit it entirely to match the cards that don't show one. */
-        description?: ReactNode;
-        /** Defaults to "Read more". */
-        readMoreLabel?: ReactNode;
-        /** When given, the button becomes a link via `next/link`. */
-        readMoreHref?: Route | string;
-        /** Only used when `readMoreHref` is omitted. */
-        onReadMoreClick?: MouseEventHandler<HTMLButtonElement>;
+        imageSrc: string; /* activity image */
+        imageAlt?: string; /* alt text for image */
+        tag: ReactNode; /* tag for the activity */
+        location: ReactNode; /* Location name */
+        locationHref?: string; /* URL for the location link */
+        title: ReactNode; /* activity title */
+        titleLevel: HeadingLevel; /* Heading level for the activity title */
+        description?: ReactNode; /* description for the activity */
+        readMoreLabel?: ReactNode; /* Read more label */
+        readMoreHref?: Route | string; /* URL for the read more button */
+        onReadMoreClick?: MouseEventHandler<HTMLButtonElement>; /* only used when `readMoreHref` is omitted */
     };
 
 export const ActivityCard = ({
@@ -130,16 +120,20 @@ export const ActivityCard = ({
     const infoAndTitle = (
         <div className="flex w-full flex-col items-start gap-4">
             <div className="flex w-full items-center justify-between gap-2.5">
+                {/* Row 1: category tag + location */}
                 <Tag variant="dark">{tag}</Tag>
 
-                <div className="flex shrink-0 items-center gap-2.5 text-text-primary">
-                    <PinIcon className="h-4.5 w-3.5 shrink-0" />
-                    <Text asChild={!!locationHref} as="span" size="sm" weight="semibold" className="whitespace-nowrap">
-                        {locationHref ? <a href={locationHref}>{location}</a> : location}
-                    </Text>
-                </div>
+                {locationHref && (
+                    <a href={locationHref} className="flex shrink-0 items-center gap-2.5 text-text-primary">
+                        <PinIcon className="h-4.5 w-3.5 shrink-0" />
+                        <Text as="span" size="sm" weight="semibold" className="whitespace-nowrap">
+                            {location}
+                        </Text>
+                    </a>
+                )}
             </div>
 
+            {/* Row 2: title and description */}
             <div className="flex w-full flex-col items-start gap-2">
                 {size === "L" ? (
                     <Heading level={titleLevel} size="xl" weight="semibold" className="w-full tracking-[-0.32px]">
@@ -151,6 +145,7 @@ export const ActivityCard = ({
                     </Heading>
                 )}
 
+                {/* Paragraph is skipped when no description is provided */}
                 {description && (
                     <Text size="sm" weight="semibold" className="w-full">
                         {description}
@@ -160,6 +155,8 @@ export const ActivityCard = ({
         </div>
     );
 
+    // `readMoreHref` decides whenther this renders as a real link or a plain button with a click handler
+    // `asChild` + `Link` makes `Button`hand its own styling down to the <Link>
     const readMoreButton = readMoreHref ? (
         <Button asChild variant="outline" textColor="dark" size="M" className="shrink-0">
             <Link href={readMoreHref as Route}>{readMoreLabel}</Link>
@@ -177,6 +174,7 @@ export const ActivityCard = ({
             ref={ref}
             {...props}
         >
+            {/* Photo - variant classes can change based on layout and size */}
             <div className={cn(activityCardImageVariants({ layout, size }))}>
                 <Image src={imageSrc} alt={imageAlt} fill sizes="(min-width: 584px) 584px, 100vw" className="object-cover" />
             </div>
@@ -189,6 +187,7 @@ export const ActivityCard = ({
                     {readMoreButton}
                 </div>
             ) : (
+                // Vertical layout: image, info/title block and are three flat sibling stacked by 'activityCardVariants' flex-col.
                 <>
                     {infoAndTitle}
                     {readMoreButton}
