@@ -51,7 +51,7 @@ export const InfoItem = ({ icon = <ClockIcon />, typeTitle, title, description, 
 
             {/* Description is omitted when there's no description */}
             {description && (
-                <Text size="sm" weight="semibold" variant="quaternary" className="pl-6.5">
+                <Text size="sm" weight="semibold" textColor="grey" className="pl-6.5">
                     {description}
                 </Text>
             )}
