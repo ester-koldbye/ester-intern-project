@@ -3,9 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/styles/utils";
 
-const iconButtonVariants = cva(
-  "inline-flex size-[43px] shrink-0 cursor-pointer items-center justify-center rounded-full border-solid drop-shadow-[0px_0px_7px_rgba(0,0,0,0.25)] transition-colors",
-  {
+const iconButtonVariants = cva("inline-flex size-[43px] shrink-0 cursor-pointer items-center justify-center rounded-full border-solid drop-shadow-[0px_0px_7px_rgba(0,0,0,0.25)] transition-colors", {
     variants: {
       variant: {
         // Solid orange circle with white arrow
@@ -14,9 +12,14 @@ const iconButtonVariants = cva(
         // Faint orange circle with orange arrow
         secondary: "border-2 border-orange/25 bg-orange/25 text-orange hover:border-orange/50 hover:bg-orange/50",
       },
+      direction: {
+        right: "",
+        left: "[&_svg]:rotate-180",
+      },
     },
     defaultVariants: {
       variant: "primary",
+      direction: "right",
     },
   },
 );
@@ -45,6 +48,7 @@ export type IconButtonProps = ComponentPropsWithRef<"button"> &
 
 export const IconButton = ({
   variant,
+  direction,
   asChild = false,
   className,
   children,
@@ -55,7 +59,7 @@ export const IconButton = ({
 
   return (
     <Comp
-      className={cn(iconButtonVariants({ variant, className }))}
+      className={cn(iconButtonVariants({ variant, direction, className }))}
       ref={ref}
       {...props}
     >

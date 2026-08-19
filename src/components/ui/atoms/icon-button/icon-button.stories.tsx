@@ -16,6 +16,10 @@ const meta = {
             control: "radio",
             options: ["primary", "secondary"],
         },
+        direction: {
+            control: "radio",
+            options: ["right", "left"],
+        },
         asChild: {
             control: "boolean",
         },
