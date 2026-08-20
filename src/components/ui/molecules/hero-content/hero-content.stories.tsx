@@ -52,6 +52,15 @@ export const ManyButtons: Story = {
     },
 };
 
+/** Figma's shorter "landing hero text" variant, used e.g. for inner-page headers: no pill row at all. */
+export const NoButtons: Story = {
+    args: {
+        heading: "Short headline",
+        description: "My recommendations from my backpacker trip",
+        buttons: [],
+    },
+};
+
 export const CustomCopy: Story = {
     args: {
         heading: "Where to next?",

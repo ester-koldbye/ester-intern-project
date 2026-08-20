@@ -4,7 +4,8 @@ import type { Route } from "next";
 import { cn } from "@/styles/utils";
 import { Heading } from "@/components/ui/atoms/heading/heading";
 import { Text } from "@/components/ui/atoms/text/text";
-import { Button, type ButtonProps } from "@/components/ui/atoms/button/button";
+import { SectionNav } from "@/components/ui/molecules/section-nav/section-nav";
+import type { ButtonProps } from "@/components/ui/atoms/button/button";
 
 /**
  * Hero heading, supporting copy and a row of pill buttons, e.g. the
@@ -22,9 +23,13 @@ import { Button, type ButtonProps } from "@/components/ui/atoms/button/button";
  * text" component. A single responsive element rather than Navigation's
  * dual-render, since only sizing/spacing changes between the two here, not
  * structure.
+ *
+ * `buttons` defaults to none — Figma also has a shorter "landing hero text"
+ * variant with no pill row at all (e.g. for inner-page headers), which this
+ * covers by simply omitting the prop rather than needing a separate variant.
  */
 
-export type HeroButton = Pick<ButtonProps, "variant"> & {
+export type HeroButton = Partial<Pick<ButtonProps, "variant">> & {
     /** Unique key for the list — also used as the link target when `href` is set. */
     key: string;
     label: ReactNode;
@@ -38,18 +43,13 @@ export type HeroContentProps = Omit<
 > & {
     heading?: ReactNode;
     description?: ReactNode;
-    buttons: HeroButton[];
+    buttons?: HeroButton[];
 };
-
-// Figma's Desktop pill matches Button's own "M" size exactly, so only the
-// Mobile pill (smaller than any existing Button size) needs overriding here.
-const pillClassName =
-    "min-w-19.5 p-2.5 text-xs tracking-[0.24px] tablet:min-w-35 tablet:px-5.5 tablet:py-4.5 tablet:text-base tablet:tracking-[0.32px]";
 
 export const HeroContent = ({
     heading = "Welcome to my travel recommendations",
     description = "My recommendations from my backpacker trip and vacations:)",
-    buttons,
+    buttons = [],
     className,
     ref,
     ...props
@@ -57,7 +57,7 @@ export const HeroContent = ({
     return (
         <div
             className={cn(
-                "px-padding-inline-mobile tablet:gap-7.5 tablet:px-padding-xl-inline flex flex-col items-start gap-5",
+                "px-padding-inline-mobile tablet:gap-padding-block-mobile tablet:px-padding-xl-inline flex flex-col items-start gap-5",
                 className,
             )}
             ref={ref}
@@ -82,31 +82,19 @@ export const HeroContent = ({
                 {description}
             </Text>
 
-            <div className="tablet:pb-0 flex flex-wrap items-center gap-3 pt-5 pb-5">
-                {buttons.map(
-                    ({ key, label, href, onClick, variant = "secondary" }) =>
-                        href ? (
-                            <Button
-                                key={key}
-                                asChild
-                                variant={variant}
-                                className={pillClassName}
-                            >
-                                <Link href={href as Route}>{label}</Link>
-                            </Button>
-                        ) : (
-                            <Button
-                                key={key}
-                                type="button"
-                                variant={variant}
-                                onClick={onClick}
-                                className={pillClassName}
-                            >
-                                {label}
-                            </Button>
-                        ),
-                )}
-            </div>
+            <SectionNav 
+                items={buttons.map(({ key, label, href }) => ({
+                    id: key,
+                    label: href ? (
+                        <Link href={href as Route}>{label}</Link>
+                    ) : (
+                        label
+                    ),
+                }))}
+                variant="secondary"
+                size="M"
+                className="tablet:pb-0 flex flex-wrap items-center gap-3 pt-5 pb-5"
+            />
         </div>
     );
 };
