@@ -18,7 +18,7 @@ import type { ButtonProps } from "@/components/ui/atoms/button/button";
  * own "primary"/"secondary"), rather than this component inferring
  * "first = active" from position.
  *
- * Sizing is mobile-first with a `tablet:` (1024px) override on the copy and
+ * Sizing is mobile-first with a `lg:` (1024px) override on the copy and
  * the pills, matching the Desktop/Mobile split in Figma's "landing hero
  * text" component. A single responsive element rather than Navigation's
  * dual-render, since only sizing/spacing changes between the two here, not
@@ -57,7 +57,7 @@ export const HeroContent = ({
     return (
         <div
             className={cn(
-                "px-padding-inline-mobile tablet:gap-padding-block-mobile tablet:px-padding-xl-inline flex flex-col items-start gap-5",
+                "px-padding-inline-mobile lg:gap-padding-block-mobile lg:px-padding-xl-inline flex flex-col items-start gap-5",
                 className,
             )}
             ref={ref}
@@ -68,7 +68,7 @@ export const HeroContent = ({
                 size="xl"
                 weight="semibold"
                 variant="secondary"
-                className="leading-xl tablet:max-w-154.75 tablet:text-2xl tablet:leading-2xl tablet:font-bold tablet:tracking-[-0.56px] w-full tracking-[-0.32px]"
+                className="leading-xl lg:leading-2xl w-full tracking-[-0.32px] lg:max-w-154.75 lg:text-2xl lg:font-bold lg:tracking-[-0.56px]"
             >
                 {heading}
             </Heading>
@@ -77,12 +77,12 @@ export const HeroContent = ({
                 textColor="light"
                 size="sm"
                 weight="semibold"
-                className="tablet:max-w-225 tablet:text-md tablet:leading-lg w-full"
+                className="lg:text-md lg:leading-lg w-full lg:max-w-225"
             >
                 {description}
             </Text>
 
-            <SectionNav 
+            <SectionNav
                 items={buttons.map(({ key, label, href }) => ({
                     id: key,
                     label: href ? (
@@ -93,7 +93,7 @@ export const HeroContent = ({
                 }))}
                 variant="secondary"
                 size="M"
-                className="tablet:pb-0 flex flex-wrap items-center gap-3 pt-5 pb-5"
+                className="flex flex-wrap items-center gap-3 pt-5 pb-5 lg:pb-0"
             />
         </div>
     );
