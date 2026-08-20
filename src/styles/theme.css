@@ -41,8 +41,9 @@
     --font-*: initial;
 
     /* Font Families */
-    /* TODO: swap for the real Poppins asset (e.g. via next/font) once it's hooked up. */
-    --font-poppins: "Poppins", sans-serif;
+    /* Self-hosted via next/font/google in layout.tsx (see poppins.variable on <html>). */
+    --font-poppins: var(--font-poppins-sans), sans-serif;
+    --font-syne: var(--font-syne-sans), sans-serif;
 
     /* Font Weights (Figma: "Font weight" group) */
     --font-weight-*: initial;
