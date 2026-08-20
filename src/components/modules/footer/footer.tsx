@@ -13,9 +13,9 @@ import { NavLink } from "@/components/ui/atoms/nav-link/nav-link";
  * Composed from the existing `Logo` and `NavLink` atoms, same convention as
  * `Navigation` — reusing their "secondary" variant since the footer sits on
  * a white background rather than the dark hero. Sizing is mobile-first with
- * a `tablet:` override, same convention as `Hero`; unlike `Navigation`
+ * a `lg:` override, same convention as `Hero`; unlike `Navigation`
  * (which needs its own tighter breakpoint to fit the nav links), the footer
- * has no dense row to protect, so it uses the shared `tablet` token.
+ * has no dense row to protect, so it uses the shared `lg` token.
  *
  * Facebook/Instagram are the only social icons in Figma, so they're kept as
  * local, inline SVGs rather than a generic icon system — same pattern as
@@ -88,26 +88,36 @@ export const Footer = ({
         <footer
             data-slot="footer"
             className={cn(
-                "px-padding-inline-mobile tablet:gap-20 tablet:px-16 tablet:py-20 flex w-full flex-col items-center gap-12 overflow-clip bg-white py-12",
+                "px-padding-inline-mobile flex w-full flex-col items-center gap-12 overflow-clip bg-white py-12 lg:gap-20 lg:px-16 lg:py-20",
                 className,
             )}
             ref={ref}
             {...props}
         >
             <div className="flex w-full flex-col items-center gap-8">
-                <Logo asChild variant="secondary" size="M" className="tablet:hidden" >
-                    <Link href={logoHref as Route} aria-label="Go to homepage">
-                        {logo}
-                    </Link>
-                </Logo>
-                
-                <Logo asChild variant="secondary" size="L" className="tablet:hidden" >
+                <Logo
+                    asChild
+                    variant="secondary"
+                    size="M"
+                    className="lg:hidden"
+                >
                     <Link href={logoHref as Route} aria-label="Go to homepage">
                         {logo}
                     </Link>
                 </Logo>
 
-                <div className="tablet:w-auto tablet:flex-row tablet:justify-center tablet:gap-8 flex w-full flex-col items-center gap-6">
+                <Logo
+                    asChild
+                    variant="secondary"
+                    size="L"
+                    className="hidden lg:block"
+                >
+                    <Link href={logoHref as Route} aria-label="Go to homepage">
+                        {logo}
+                    </Link>
+                </Logo>
+
+                <div className="flex w-full flex-col items-center gap-6 lg:w-auto lg:flex-row lg:justify-center lg:gap-8">
                     <NavLink asChild variant="secondary">
                         <Link href={homeHref as Route}>Home</Link>
                     </NavLink>
@@ -120,17 +130,17 @@ export const Footer = ({
                 </div>
             </div>
 
-            <div className="tablet:gap-8 tablet:pb-0 flex w-full flex-col items-center gap-6 pb-4">
+            <div className="flex w-full flex-col items-center gap-6 pb-4 lg:gap-8 lg:pb-0">
                 <div
                     aria-hidden
                     className="border-orange/25 bg-orange/25 h-px w-full border"
                 />
 
-                <div className="tablet:flex-row tablet:items-start tablet:justify-between flex w-full flex-col items-center gap-8">
-                    <p className="font-poppins leading-2xs text-text-primary tablet:order-1 order-2 text-xs font-semibold tracking-[0.24px]">
+                <div className="flex w-full flex-col items-center gap-8 lg:flex-row lg:items-start lg:justify-between">
+                    <p className="font-poppins leading-2xs text-text-primary order-2 text-xs font-semibold tracking-[0.24px] lg:order-1">
                         © {year} {owner}
                     </p>
-                    <div className="tablet:order-2 order-1 flex items-center gap-6">
+                    <div className="order-1 flex items-center gap-6 lg:order-2">
                         <a
                             href={facebookHref}
                             target="_blank"
