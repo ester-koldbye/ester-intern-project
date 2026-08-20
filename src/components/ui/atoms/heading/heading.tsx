@@ -26,29 +26,29 @@ import { cn } from "@/styles/utils";
  */
 
 const headingVariants = cva("font-poppins tracking-[0.32px]", {
-  variants: {
-    variant: {
-      primary: "text-text-primary",
-      secondary: "text-text-secondary",
-      tertiary: "text-text-tertiary",
-      quaternary: "text-text-quaternary",
+    variants: {
+        variant: {
+            primary: "text-text-primary",
+            secondary: "text-text-secondary",
+            tertiary: "text-text-tertiary",
+            quaternary: "text-text-quaternary",
+        },
+        size: {
+            "2xl": "text-2xl leading-2xl",
+            xl: "text-xl leading-xl lg:text-2xl lg:leading-2xl",
+            lg: "text-lg leading-lg lg:text-xl lg:leading-xl",
+            md: "text-md leading-md lg:text-lg lg:leading-lg",
+        },
+        weight: {
+            regular: "font-regular",
+            semibold: "font-semibold",
+            bold: "font-bold",
+        },
     },
-    size: {
-      "2xl": "text-2xl",
-      xl: "text-xl",
-      lg: "text-lg",
-      md: "text-md",
+    defaultVariants: {
+        variant: "primary",
+        weight: "bold",
     },
-    weight: {
-      regular: "font-regular",
-      semibold: "font-semibold",
-      bold: "font-bold",
-    },
-  },
-  defaultVariants: {
-    variant: "primary",
-    weight: "bold",
-  },
 });
 
 type HeadingSize = NonNullable<VariantProps<typeof headingVariants>["size"]>;
@@ -57,49 +57,56 @@ export type HeadingLevel = 1 | 2 | 3 | 4;
 
 /** Element per level, as a lookup rather than a built-up string, so the union stays typed. */
 const LEVEL_TAGS: Record<HeadingLevel, ElementType> = {
-  1: "h1",
-  2: "h2",
-  3: "h3",
-  4: "h4",
+    1: "h1",
+    2: "h2",
+    3: "h3",
+    4: "h4",
 };
 
 /** Sensible default appearance for each level, overridden by an explicit `size`. */
 const LEVEL_SIZES: Record<HeadingLevel, HeadingSize> = {
-  1: "2xl",
-  2: "xl",
-  3: "lg",
-  4: "md",
+    1: "2xl",
+    2: "xl",
+    3: "lg",
+    4: "md",
 };
 
 export type HeadingProps = ComponentPropsWithRef<"h1"> &
-  VariantProps<typeof headingVariants> & {
-    asChild?: boolean;
-    level?: HeadingLevel;
-  };
+    VariantProps<typeof headingVariants> & {
+        asChild?: boolean;
+        level?: HeadingLevel;
+    };
 
 export const Heading = ({
-  level,
-  size,
-  variant,
-  weight,
-  asChild = false,
-  className,
-  children,
-  ref,
-  ...props
+    level,
+    size,
+    variant,
+    weight,
+    asChild = false,
+    className,
+    children,
+    ref,
+    ...props
 }: HeadingProps) => {
-  const Comp = asChild ? Slot : level ? LEVEL_TAGS[level] : "h2";
+    const Comp = asChild ? Slot : level ? LEVEL_TAGS[level] : "h2";
 
-  return (
-    <Comp
-      data-slot="heading"
-      className={cn(headingVariants({ size: size ?? (level ? LEVEL_SIZES[level] : "2xl"), variant, weight, className }))}
-      ref={ref}
-      {...props}
-    >
-      {children}
-    </Comp>
-  );
+    return (
+        <Comp
+            data-slot="heading"
+            className={cn(
+                headingVariants({
+                    size: size ?? (level ? LEVEL_SIZES[level] : "2xl"),
+                    variant,
+                    weight,
+                    className,
+                }),
+            )}
+            ref={ref}
+            {...props}
+        >
+            {children}
+        </Comp>
+    );
 };
 
 Heading.displayName = "Heading";

@@ -1,8 +1,14 @@
 import type { ComponentPropsWithRef } from "react";
 import Image from "next/image";
 import { cn } from "@/styles/utils";
-import { Navigation, type NavigationProps } from "@/components/ui/molecules/navigation/navigation";
-import { HeroContent, type HeroContentProps } from "@/components/ui/molecules/hero-content/hero-content";
+import {
+    Navigation,
+    type NavigationProps,
+} from "@/components/ui/molecules/navigation/navigation";
+import {
+    HeroContent,
+    type HeroContentProps,
+} from "@/components/ui/molecules/hero-content/hero-content";
 
 /**
  * Full-bleed page hero, e.g. the "Welcome to my travel recommendations"
@@ -13,7 +19,7 @@ import { HeroContent, type HeroContentProps } from "@/components/ui/molecules/he
  * (a flat tint plus a top-to-bottom fade) match Figma's own layered
  * gradients so text stays legible against any photo.
  *
- * Sizing is mobile-first with a `tablet:` override, same convention as
+ * Sizing is mobile-first with a `lg:` override, same convention as
  * `Navigation` and `HeroContent`. Figma splits this into separate
  * Desktop/Mobile pixel heights (and a shorter "no buttons" variant); rather
  * than hardcoding each as its own fixed-height variant, `min-h-*` plus
@@ -22,7 +28,14 @@ import { HeroContent, type HeroContentProps } from "@/components/ui/molecules/he
  */
 
 export type HeroProps = Omit<ComponentPropsWithRef<"section">, "children"> &
-    Pick<NavigationProps, "countries" | "activeCountryHref" | "logoHref" | "homeHref" | "contactHref"> &
+    Pick<
+        NavigationProps,
+        | "countries"
+        | "activeCountryHref"
+        | "logoHref"
+        | "homeHref"
+        | "contactHref"
+    > &
     Pick<HeroContentProps, "heading" | "description" | "buttons"> & {
         /** Background photo. Defaults to the homepage's own `/hero.jpg`. */
         backgroundSrc?: string;
@@ -47,7 +60,10 @@ export const Hero = ({
     return (
         <section
             data-slot="hero"
-            className={cn("relative isolate flex gap-padding-xl-inline min-h-130 flex-col overflow-hidden tablet:min-h-225", className, )}
+            className={cn(
+                "gap-padding-xl-inline relative isolate flex min-h-130 flex-col overflow-hidden lg:min-h-225",
+                className,
+            )}
             ref={ref}
             {...props}
         >
@@ -60,8 +76,14 @@ export const Hero = ({
                 className="-z-20 object-cover"
             />
             {/* Flat tint + top-to-bottom fade, matching Figma's layered gradients so the nav/heading stay legible over any photo. */}
-            <div aria-hidden className="absolute inset-0 -z-10 bg-black/30 tablet:bg-black/40" />
-            <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-b from-black/50 to-black/0" />
+            <div
+                aria-hidden
+                className="absolute inset-0 -z-10 bg-black/30 lg:bg-black/40"
+            />
+            <div
+                aria-hidden
+                className="absolute inset-0 -z-10 bg-linear-to-b from-black/50 to-black/0"
+            />
 
             <Navigation
                 variant="primary"
@@ -70,14 +92,14 @@ export const Hero = ({
                 logoHref={logoHref}
                 homeHref={homeHref}
                 contactHref={contactHref}
-                className="pt-padding-block-mobile tablet:pt-10"
+                className="pt-padding-block-mobile lg:pt-10"
             />
 
             <HeroContent
                 heading={heading}
                 description={description}
                 buttons={buttons}
-                className="pb-padding-block-mobile tablet:pb-15 min-[43rem]:px-padding-xl-inline"
+                className="pb-padding-block-mobile min-[43rem]:px-padding-xl-inline lg:pb-15"
             />
         </section>
     );
