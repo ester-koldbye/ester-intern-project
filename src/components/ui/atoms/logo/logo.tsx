@@ -3,7 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/styles/utils";
 
-const logoVariants = cva("font-poppins font-bold tracking-[0.32px]", {
+const logoVariants = cva("font-syne font-bold tracking-[0.32px]", {
   variants: {
     variant: {
       primary: "text-text-secondary",
