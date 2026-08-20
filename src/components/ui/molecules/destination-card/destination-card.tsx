@@ -7,10 +7,15 @@ import { cn } from "@/styles/utils";
  * A destination's photo with its name overlaid bottom-left, e.g. the
  * "Australia" card linking into that country's pages.
  *
- * Comes in three fixed sizes (`L` 589×361, `M` 384×361, `S` 160×150) rather
- * than scaling fluidly — `S`'s label drops to a smaller, bolder size to stay
- * legible on the much shorter card, so the sizes aren't just a linear resize
- * of one another.
+ * Comes in three sizes (`L`, `M`, `S`) — `S`'s label drops to a smaller,
+ * bolder size to stay legible on the much shorter card, so the sizes aren't
+ * just a linear resize of one another. Below `lg`, `L`/`M` are fixed
+ * small squares (Figma's mobile thumbnail spec). From `lg` up, `L`/`M`
+ * switch to `w-full` plus their Figma aspect ratio, so a card fluidly fills
+ * whatever grid column it's placed in — 2-up for `L`, 3-up for `M` — instead
+ * of jumping between a handful of fixed pixel widths as the viewport grows.
+ * `S` stays a fixed small square throughout; it's used as a standalone
+ * thumbnail, not as a grid item that needs to fill available width.
  *
  * Purely presentational — `imageSrc` and `label` fully determine its
  * content, so unlike most atoms here it has no `asChild` escape hatch (Radix
@@ -24,9 +29,9 @@ const destinationCardVariants = cva(
     {
         variants: {
             size: {
-                L: "h-[361px] w-[589px]",
-                M: "h-[361px] w-[384px]",
-                S: "h-[150px] w-[160px]",
+                L: "h-auto w-full aspect-[589/361]",
+                M: "h-auto w-full aspect-[589/361] lg:aspect-[350/300]",
+                S: "h-[130px] w-[130px]",
             },
         },
         defaultVariants: {
@@ -36,13 +41,13 @@ const destinationCardVariants = cva(
 );
 
 const destinationCardLabelVariants = cva(
-    "absolute font-poppins whitespace-nowrap text-text-secondary",
+    "absolute font-poppins whitespace-nowrap text-text-secondary bottom-4 left-2.5 text-md md:text-lg lg:text-xl md:text-lg lg:leading-xl font-semibold tracking-[-0.32px] ",
     {
         variants: {
             size: {
-                L: "bottom-6 left-9 text-xl leading-xl font-semibold tracking-[-0.32px]",
-                M: "bottom-6 left-6 text-xl leading-xl font-semibold tracking-[-0.32px]",
-                S: "bottom-4 left-2.5 text-lg leading-lg font-bold",
+                L: "lg:bottom-6 lg:left-9",
+                M: "lg:bottom-6 lg:left-6",
+                S: "bottom-4 left-2.5 text-md leading-md font-bold",
             },
         },
         defaultVariants: {
@@ -55,11 +60,16 @@ type DestinationCardSize = NonNullable<
     VariantProps<typeof destinationCardVariants>["size"]
 >;
 
-/** Rendered width per `size`, matching each fixed card width — used to size the photo request. */
+/**
+ * Approximate rendered width per `size`, used to size the photo request.
+ * Below `lg` every size is the fixed 130px thumbnail. From `lg` up,
+ * `L`/`M` are fluid — sized as a fraction of the viewport matching their grid
+ * (2-up/3-up), capped at their share of the 1440px desktop max-width.
+ */
 const IMAGE_SIZES: Record<DestinationCardSize, string> = {
-    L: "589px",
-    M: "384px",
-    S: "160px",
+    L: "(max-width: 1023px) 130px, (max-width: 1439px) 50vw, 720px",
+    M: "(max-width: 1023px) 130px, (max-width: 1439px) 33vw, 480px",
+    S: "130px",
 };
 
 export type DestinationCardProps = Omit<
