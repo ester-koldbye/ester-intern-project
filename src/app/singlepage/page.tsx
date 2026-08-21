@@ -1,6 +1,7 @@
 // Singlepage: bare-bones page template with just a hero and breadcrumbs (WIP)
 import { Hero } from "@/components/modules/hero/hero";
 import { Breadcrumbs } from "@/components/ui/molecules/breadcrumbs/breadcrumbs";
+import { getNavCountries } from "@/lib/destinations";
 
 
 // SEO metadata for this route
@@ -9,30 +10,20 @@ export const metadata = {
   description: "Welcome to the singlepage page of my travel recommendations!",
 };
 
-// Matches the destinations listed further down the page.
-const COUNTRIES = [
-    { href: "/australia", label: "Australia" },
-    { href: "/thailand", label: "Thailand" },
-    { href: "/indonesia", label: "Indonesia" },
-    { href: "/vietnam", label: "Vietnam" },
-    { href: "/italy", label: "Italy" },
-];
-
-
-// BREADCRUMB
+// BREADCRUMB — no real parent page for this WIP template, so just Home -> Singlepage.
 const ITEMS = [
     { href: "/", label: "Home" },
-    { href: "/country", label: "Country" },
-    { href: "/city", label: "City" },
     { href: "/singlepage", label: "Singlepage" },
 ];
 
-const Singlepage = () => {
+const Singlepage = async () => {
+    const countries = await getNavCountries();
+
     return (
         <main>
             {/* Hero section with page intro, no jump-links on this page */}
             <Hero
-                countries={COUNTRIES}
+                countries={countries}
                 heading="Singlepage"
                 description="This is the singlepage."
             />

@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import Image from "next/image";
 import { cn } from "@/styles/utils";
-import { Heading } from "@/components/ui/atoms/heading/heading";
+import { Heading, type HeadingLevel } from "@/components/ui/atoms/heading/heading";
 import {
     InfoItem,
     type InfoItemProps,
@@ -138,14 +138,17 @@ export type ActivityGalleryProps = Omit<
     ComponentPropsWithRef<"section">,
     "children"
 > & {
-    /** The activity's name, rendered as this page's H1. */
+    /** The activity's name. */
     heading: ReactNode;
+    /** Heading level for `heading`. Defaults to 1 (this section is the page's own title); pass 2 if a page-level `Hero` already renders the H1 above it. */
+    headingLevel?: HeadingLevel;
     images: ActivityGalleryImage[];
     info: ActivityInfoItem[];
 };
 
 export const ActivityGallery = ({
     heading,
+    headingLevel = 1,
     images,
     info,
     className,
@@ -165,7 +168,7 @@ export const ActivityGallery = ({
             ref={ref}
             {...props}
         >
-            <Heading level={1} size="2xl" weight="bold">
+            <Heading level={headingLevel} size="2xl" weight="bold">
                 {heading}
             </Heading>
 

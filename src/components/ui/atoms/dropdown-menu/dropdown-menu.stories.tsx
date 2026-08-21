@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import Link from "next/link";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./dropdown-menu";
 
 const COUNTRIES = ["Australia", "Thailand", "Vietnam", "Italy", "Greece"];
@@ -82,7 +83,7 @@ export const AsLink: Story = {
             <DropdownMenuTrigger>Countries</DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
-                    <a href="/thailand">Thailand</a>
+                    <Link href="/thailand">Thailand</Link>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

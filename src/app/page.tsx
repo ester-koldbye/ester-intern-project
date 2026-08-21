@@ -1,32 +1,31 @@
-import { Hero } from "@/components/modules/hero/hero";
 import Link from "next/link";
+import { Hero } from "@/components/modules/hero/hero";
 import { Heading } from "@/components/ui/atoms/heading/heading";
 import { DestinationCard } from "@/components/ui/molecules/destination-card/destination-card";
 import { Button } from "@/components/ui/atoms/button/button";
+import { getAllCountries, getNavCountries } from "@/lib/destinations";
 
-// Matches the destinations listed further down the page.
-const COUNTRIES = [
-    { href: "/australia", label: "Australia" },
-    { href: "/thailand", label: "Thailand" },
-    { href: "/indonesia", label: "Indonesia" },
-    { href: "/vietnam", label: "Vietnam" },
-    { href: "/italy", label: "Italy" },
-];
+const Home = async () => {
+    const [countries, navCountries] = await Promise.all([
+        getAllCountries(),
+        getNavCountries(),
+    ]);
 
-const Home = () => {
+    // First two show large (matches Figma's 2-up row); the rest show medium in a 3-up row below.
+    const [featuredCountries, otherCountries] = [countries.slice(0, 2), countries.slice(2)];
+
     return (
         <main>
             <Hero
-                countries={COUNTRIES}
+                countries={navCountries}
                 heading="Welcome to my travel recommendations"
                 description="Discover the destinations for my recommendations, tips and tricks from my backpacker trip and vacations!"
                 buttons={[
                     {
                         key: "destinations",
                         label: "Destinations",
-                        // href: "#destinations",
+                        href: "#destinations",
                     },
-                    
                 ]}
             />
             <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
@@ -45,57 +44,34 @@ const Home = () => {
                     {/* DESTINATION CARDS */}
                     <div className="flex w-full max-w-360 flex-col gap-3 md:gap-5">
                         <div className="grid w-full gap-3 sm:grid-cols-2 md:gap-5">
-                            <Link href="/">
-                                <DestinationCard
-                                    imageSrc="/destinations/australia.jpg"
-                                    imageAlt="A scenic view of Australia"
-                                    label="Australia"
-                                    size="L"
-                                />
-                            </Link>
-
-                            <Link href="/">
-                                <DestinationCard
-                                    imageSrc="/destinations/thailand.jpg"
-                                    imageAlt="A scenic view of Thailand"
-                                    label="Thailand"
-                                    size="L"
-                                />
-                            </Link>
+                            {featuredCountries.map((country) => (
+                                <Link key={country.slug} href={`/${country.slug}`}>
+                                    <DestinationCard
+                                        imageSrc={country.imageSrc}
+                                        imageAlt={country.imageAlt}
+                                        label={country.name}
+                                        size={country.size}
+                                    />
+                                </Link>
+                            ))}
                         </div>
                         <div className="grid w-full gap-3 sm:grid-cols-3 md:gap-5">
-                            <Link href="/">
-                                <DestinationCard
-                                    imageSrc="/destinations/indonesia.jpg"
-                                    imageAlt="A scenic view of Indonesia"
-                                    label="Indonesia"
-                                    size="M"
-                                />
-                            </Link>
-                            
-                            <Link href="/">
-                                <DestinationCard
-                                    imageSrc="/destinations/vietnam.jpg"
-                                    imageAlt="A scenic view of Vietnam"
-                                    label="Vietnam"
-                                    size="M"
-                                />
-                            </Link>
-                            
-                            <Link href="/">
-                                <DestinationCard
-                                    imageSrc="/destinations/italy.jpg"
-                                    imageAlt="A scenic view of Italy"
-                                    label="Italy"
-                                    size="M"
-                                />
-                            </Link>
+                            {otherCountries.map((country) => (
+                                <Link key={country.slug} href={`/${country.slug}`}>
+                                    <DestinationCard
+                                        imageSrc={country.imageSrc}
+                                        imageAlt={country.imageAlt}
+                                        label={country.name}
+                                        size={country.size}
+                                    />
+                                </Link>
+                            ))}
                         </div>
                     </div>
 
                     {/* BUTTON */}
-                    <Button textColor="light" className="hover:text-text-primary">
-                        See all the destinations
+                    <Button asChild textColor="light" className="hover:text-text-primary">
+                        <a href="#destinations">See all the destinations</a>
                     </Button>
                 </section>
             </div>

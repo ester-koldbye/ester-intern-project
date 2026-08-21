@@ -1,25 +1,17 @@
-// Single-activity detail page, e.g. /activity/wat-arun — what ActivityCard's
-// "Read more" button links to. Content comes from `getActivity`, which today
-// reads a local mock list but is already shaped like an async fetch, so
-// swapping it for a real API/CMS call later doesn't change this page.
+// Single-activity detail page, e.g. /thailand/bangkok/wat-arun — what
+// ActivityCard's "Read more" button links to. Nested under its city so the
+// URL matches the real country -> city -> activity hierarchy. Content comes
+// from `getActivity`, which today reads a local mock list but is already
+// shaped like an async fetch, so swapping it for a real API/CMS call later
+// doesn't change this page.
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ActivityGallery, ActivityInfoIcons } from "@/components/modules/activity-gallery/activity-gallery";
 import { ActivityAbout } from "@/components/modules/activity-about/activity-about";
-import { Breadcrumbs } from "@/components/ui/molecules/breadcrumbs/breadcrumbs";
-import { getActivity, getActivitySlugs } from "@/lib/activities";
 import { Hero } from "@/components/modules/hero/hero";
-
-
-
-const COUNTRIES = [
-    { href: "/australia", label: "Australia" },
-    { href: "/thailand", label: "Thailand" },
-    { href: "/indonesia", label: "Indonesia" },
-    { href: "/vietnam", label: "Vietnam" },
-    { href: "/italy", label: "Italy" },
-];
-
+import { Breadcrumbs } from "@/components/ui/molecules/breadcrumbs/breadcrumbs";
+import { getActivity, getActivityParams } from "@/lib/activities";
+import { getCountry, getCity, getNavCountries } from "@/lib/destinations";
 
 // Icons per well-known info row, matching Figma's own four (see ActivityInfoIcons) — "Visited" needs none, InfoItem's own default is already the clock glyph.
 const ICON_BY_INFO_ID: Record<string, React.ReactNode> = {
@@ -30,15 +22,14 @@ const ICON_BY_INFO_ID: Record<string, React.ReactNode> = {
 
 // Pre-renders every known activity at build time; new slugs added later still work, just rendered on first request instead.
 export async function generateStaticParams() {
-    const slugs = await getActivitySlugs();
-    return slugs.map((slug) => ({ slug }));
+    return getActivityParams();
 }
 
 export async function generateMetadata({
     params,
-}: PageProps<"/activity/[slug]">): Promise<Metadata> {
-    const { slug } = await params;
-    const activity = await getActivity(slug);
+}: PageProps<"/[country]/[city]/[activity]">): Promise<Metadata> {
+    const { country, city, activity: activitySlug } = await params;
+    const activity = await getActivity(country, city, activitySlug);
 
     if (!activity) {
         return { title: "Activity not found" };
@@ -50,26 +41,37 @@ export async function generateMetadata({
     };
 }
 
-const ActivityPage = async ({ params }: PageProps<"/activity/[slug]">) => {
-    const { slug } = await params;
-    const activity = await getActivity(slug);
+const ActivityPage = async ({
+    params,
+}: PageProps<"/[country]/[city]/[activity]">) => {
+    const { country: countrySlug, city: citySlug, activity: activitySlug } = await params;
 
-    if (!activity) {
+    const [activity, country, city, navCountries] = await Promise.all([
+        getActivity(countrySlug, citySlug, activitySlug),
+        getCountry(countrySlug),
+        getCity(countrySlug, citySlug),
+        getNavCountries(),
+    ]);
+
+    if (!activity || !country || !city) {
         notFound();
     }
 
     const breadcrumbItems = [
         { href: "/", label: "Home" },
-        { href: `/activity/${activity.slug}`, label: activity.heading },
+        { href: `/${country.slug}`, label: country.name },
+        { href: `/${country.slug}/${city.slug}`, label: city.name },
+        { href: `/${country.slug}/${city.slug}/${activity.slug}`, label: activity.heading },
     ];
 
     return (
         <main>
             {/* Hero section with page intro, no jump-links on this page */}
             <Hero
-                countries={COUNTRIES}
+                countries={navCountries}
+                activeCountryHref={`/${country.slug}`}
                 heading={activity.heading}
-                description="This is the singlepage."
+                description={`Everything to know about ${activity.heading}.`}
             />
 
             <div className="py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
@@ -77,6 +79,7 @@ const ActivityPage = async ({ params }: PageProps<"/activity/[slug]">) => {
             </div>
             <ActivityGallery
                 heading={activity.heading}
+                headingLevel={2}
                 images={activity.images}
                 info={activity.info.map((item) => ({
                     ...item,

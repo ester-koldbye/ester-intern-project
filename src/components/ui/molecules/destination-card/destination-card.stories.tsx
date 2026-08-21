@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import Link from "next/link";
 import { DestinationCard } from "./destination-card";
 
 const meta = {
@@ -9,7 +10,7 @@ const meta = {
         layout: "centered",
     },
     args: {
-        imageSrc: "/destinations/australia.jpg",
+        imageSrc: "/destinations/australia.JPG",
         label: "Australia",
     },
     argTypes: {
@@ -94,7 +95,7 @@ export const FillsGrid: Story = {
                 <DestinationCard
                     {...args}
                     size="L"
-                    imageSrc="/destinations/thailand.jpg"
+                    imageSrc="/destinations/thailand.JPG"
                     label="Thailand"
                 />
             </div>
@@ -102,19 +103,19 @@ export const FillsGrid: Story = {
                 <DestinationCard
                     {...args}
                     size="M"
-                    imageSrc="/destinations/indonesia.jpg"
+                    imageSrc="/destinations/indonesia.JPG"
                     label="Indonesia"
                 />
                 <DestinationCard
                     {...args}
                     size="M"
-                    imageSrc="/destinations/vietnam.jpg"
+                    imageSrc="/destinations/vietnam.JPG"
                     label="Vietnam"
                 />
                 <DestinationCard
                     {...args}
                     size="M"
-                    imageSrc="/destinations/italy.jpg"
+                    imageSrc="/destinations/italy.JPG"
                     label="Italy"
                 />
             </div>
@@ -126,8 +127,8 @@ export const FillsGrid: Story = {
 export const AsLink: Story = {
     args: { size: "M" },
     render: (args) => (
-        <a href="/australia">
+        <Link href="/australia">
             <DestinationCard {...args} />
-        </a>
+        </Link>
     ),
 };

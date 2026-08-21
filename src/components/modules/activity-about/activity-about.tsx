@@ -7,7 +7,7 @@ import { Text } from "@/components/ui/atoms/text/text";
  * "About recommendation" section on an activity detail page: a bulleted
  * description, a Pros/Cons pair, an "Open in Google Maps" link, and an
  * embedded map — Figma's activity-detail frame (node 17:5780), shown below
- * `ActivityGallery` on `/activity/[slug]`.
+ * `ActivityGallery` on `/[country]/[city]/[activity]`.
  *
  * Figma's own map is a static London screenshot baked into the design file
  * — not usable as-is since it wouldn't match whichever activity/city this

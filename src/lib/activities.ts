@@ -1,14 +1,25 @@
 import type { ActivityGalleryImage, ActivityInfoItem } from "@/components/modules/activity-gallery/activity-gallery";
 
 /**
- * Mock "database" for single-activity pages (`/activity/[slug]`), standing
- * in for a future API/CMS call. Shaped so swapping `getActivity`'s body for
- * a real `fetch` is a drop-in change — callers already `await` it and handle
- * a possible `undefined` (not found), exactly like a network call would.
+ * Mock "database" for single-activity pages, nested under their city —
+ * `/[country]/[city]/[activity]`, e.g. `/thailand/bangkok/wat-arun` —
+ * standing in for a future API/CMS call. Shaped so swapping `getActivity`'s
+ * body for a real `fetch` is a drop-in change — callers already `await` it
+ * and handle a possible `undefined` (not found), exactly like a network call
+ * would.
+ *
+ * `countrySlug`/`citySlug` are required (not just a display detail) since
+ * they're part of the activity's own URL and identity: the same `slug`
+ * could exist under two different cities without colliding, the way
+ * `getCity`'s `(countrySlug, citySlug)` pair already works in
+ * `src/lib/destinations.ts`.
  */
 
 export type Activity = {
     slug: string;
+    /** Which country/city (see `src/lib/destinations.ts`) this activity belongs to — makes up its URL together with `slug`. */
+    countrySlug: string;
+    citySlug: string;
     heading: string;
     images: ActivityGalleryImage[];
     info: ActivityInfoItem[];
@@ -22,6 +33,8 @@ export type Activity = {
 const ACTIVITIES: Activity[] = [
     {
         slug: "wat-arun",
+        countrySlug: "thailand",
+        citySlug: "bangkok",
         heading: "Wat Arun",
         images: [
             { src: "/destinations/thailand/bangkok.jpg", alt: "Wat Arun temple at sunset" },
@@ -55,8 +68,23 @@ const ACTIVITIES: Activity[] = [
     },
 ];
 
-export const getActivity = async (slug: string): Promise<Activity | undefined> =>
-    ACTIVITIES.find((activity) => activity.slug === slug);
+export const getActivity = async (
+    countrySlug: string,
+    citySlug: string,
+    slug: string,
+): Promise<Activity | undefined> =>
+    ACTIVITIES.find(
+        (activity) =>
+            activity.countrySlug === countrySlug &&
+            activity.citySlug === citySlug &&
+            activity.slug === slug,
+    );
 
-export const getActivitySlugs = async (): Promise<string[]> =>
-    ACTIVITIES.map((activity) => activity.slug);
+export const getActivityParams = async (): Promise<
+    { country: string; city: string; activity: string }[]
+> =>
+    ACTIVITIES.map((activity) => ({
+        country: activity.countrySlug,
+        city: activity.citySlug,
+        activity: activity.slug,
+    }));
