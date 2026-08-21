@@ -3,6 +3,9 @@ import { cn } from "@/styles/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
+// Template for a new UI component. Copy this file and rename to scaffold a component.
+
+// Defines the style variants and their Tailwind classes
 const buttonVariants = cva("base-classes", {
     variants: {
         variant: {
@@ -32,6 +35,7 @@ const buttonVariants = cva("base-classes", {
     },
 });
 
+// Props: native button props + variant props + optional asChild
 type ButtonProps = ComponentPropsWithRef<"button"> &
     VariantProps<typeof buttonVariants> & {
         asChild?: boolean;
@@ -47,6 +51,7 @@ const Button = ({
     ref,
     ...props
 }: ButtonProps) => {
+    // Renders as the child element instead of <button> when asChild is set
     const Comp = asChild ? Slot : "button";
 
     return (

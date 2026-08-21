@@ -31,6 +31,8 @@ const Home = () => {
             />
             <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
                 <section className="flex flex-col items-center gap-6 py-6 lg:gap-8 lg:py-8">
+
+                    {/* HEADINGS */}
                     <div className="flex flex-col gap-2 px-6 pt-6 text-center">
                         <Heading level={1} size="md" variant="tertiary">
                             City breaks, road trips and local tips!
@@ -40,6 +42,7 @@ const Home = () => {
                         </Heading>
                     </div>
 
+                    {/* DESTINATION CARDS */}
                     <div className="flex w-full max-w-360 flex-col gap-3 md:gap-5">
                         <div className="grid w-full gap-3 sm:grid-cols-2 md:gap-5">
                             <Link href="/">
@@ -69,6 +72,7 @@ const Home = () => {
                                     size="M"
                                 />
                             </Link>
+                            
                             <Link href="/">
                                 <DestinationCard
                                     imageSrc="/destinations/vietnam.jpg"
@@ -77,6 +81,7 @@ const Home = () => {
                                     size="M"
                                 />
                             </Link>
+                            
                             <Link href="/">
                                 <DestinationCard
                                     imageSrc="/destinations/italy.jpg"
@@ -88,10 +93,8 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <Button
-                        textColor="light"
-                        className="hover:text-text-primary"
-                    >
+                    {/* BUTTON */}
+                    <Button textColor="light" className="hover:text-text-primary">
                         See all the destinations
                     </Button>
                 </section>

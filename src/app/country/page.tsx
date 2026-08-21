@@ -11,6 +11,7 @@ export const metadata = {
   description: "Welcome to the country page of my travel recommendations!",
 };
 
+// BREADCRUMB
 const ITEMS = [
     { href: "/", label: "Home" },
     { href: "/country", label: "Country" },
@@ -19,6 +20,7 @@ const ITEMS = [
 const Country = () => {
     return (
         <main>
+            {/* Hero section with page intro and jump-links */}
             <Hero
                 countries={[]}
                 heading="Country page"
@@ -36,6 +38,8 @@ const Country = () => {
             <Tips id="tips"/>
 
             <FoodDrinks id="food-drinks" />
+
+            {/* Cities visited in this country, laid out as a 3-column image grid */}
             <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
                 <section className="flex flex-col items-center gap-6 py-6 lg:gap-8 lg:py-8">
                     <div className="px-6 pt-6 text-center">
@@ -45,6 +49,7 @@ const Country = () => {
                     </div>
 
                     <div className="flex flex-col md:flex-row w-full max-w-360 gap-3 md:gap-5">
+                        {/* Column 1 */}
                         <div className="grid w-full gap-3 md:gap-5">
                             <Link href="#">
                                 <DestinationCard
@@ -72,6 +77,7 @@ const Country = () => {
                                 />
                             </Link>
                         </div>
+                        {/* Column 2 */}
                         <div className="grid w-full gap-3 md:gap-5">
                             <Link href="#">
                                 <DestinationCard
@@ -92,6 +98,7 @@ const Country = () => {
                                 />
                             </Link>
                         </div>
+                        {/* Column 3 */}
                         <div className="grid w-full h-full gap-3 md:gap-5">
                             <Link href="#">
                                 <DestinationCard
