@@ -1,12 +1,13 @@
 import { Hero } from "@/components/modules/hero/hero";
-import { Tips } from "@/components/modules/tips/tips";
 import { FoodDrinks } from "@/components/modules/food-drinks/food-drinks";
+import { CardsSection } from "@/components/modules/cards-section/cards-section";
 import { Breadcrumbs } from "@/components/ui/molecules/breadcrumbs/breadcrumbs";
 import { Heading } from "@/components/ui/atoms/heading/heading";
 import { DestinationCard } from "@/components/ui/molecules/destination-card/destination-card";
+import { TipCard, type TipCardProps } from "@/components/ui/molecules/tip-card/tip-card";
 import Link from "next/link";
 
-// Country page: hero, tips, food & drinks, plus a grid of cities visited
+// Country page: hero, tips, food & drinks, cities visited, and what we missed
 
 // SEO metadata for this route
 export const metadata = {
@@ -20,10 +21,59 @@ const ITEMS = [
     { href: "/country", label: "Country" },
 ];
 
+// Placeholder content for "What did we miss" — a flat list, not pre-grouped
+// into rows, so it can later be swapped for whatever a fetch/CMS call returns
+// and CardsSection will still map it out into the right number of cards.
+type MissedItem = Pick<TipCardProps, "title" | "description">;
+
+const WHAT_WE_MISSED: MissedItem[] = [
+    {
+        title: "Better rain gear",
+        description: "Monsoon season hit harder than expected — pack a proper poncho, not just an umbrella.",
+    },
+    {
+        title: "Motorbike lessons before arriving",
+        description: "Renting one is cheap and common, but we wish we'd practiced before hitting real traffic.",
+    },
+    {
+        title: "More local SIM data",
+        description: "We kept running out of data mid-trip — get a bigger plan than you think you need.",
+    },
+];
+
+type TipItem = Pick<TipCardProps, "title" | "description">;
+const TIPS: TipItem[] = [
+    {
+        title: "Dont book everything",
+        description: "Not everything needs to be booked in advance",
+    },
+    {
+        title: "Try streetfood",
+        description:
+            "Try the streetfood a local spots - Its so good and way way cheaper",
+    },
+    {
+        title: "Eat spicy food at home",
+        description:
+            "Before you go, train yourself to eat spicy food (its for your own good)",
+    },
+
+    {
+        title: "Apps for transportation",
+        description:
+            "Grab (cheap transport)\n\nBold (cheap transport, but it's often more expensive than grab)",
+    },
+    {
+        title: "Apps for accomendation",
+        description:
+            "Hostelword (for booking hostels and getting to know the travelers in the hostels that you are staying at)\n\nAgoda (for booking cheap hotels)",
+    },
+];
+
 const Country = () => {
     return (
         <main>
-            {/* Hero section with page intro and jump-links */}
+            {/* HERO SECTION */}
             <Hero
                 countries={[]}
                 heading="Country page"
@@ -38,11 +88,21 @@ const Country = () => {
             <div className="py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
                 <Breadcrumbs items={ITEMS} />
             </div>
-            <Tips id="tips"/>
 
+            {/* TIPS SECTION */}
+            <CardsSection
+                id="tips"
+                heading="Tips"
+                items={TIPS}
+                renderItem={(item) => (
+                    <TipCard title={item.title} description={item.description} />
+                )}
+            />
+
+            {/* FOOD & DRINKS SECTION */}
             <FoodDrinks id="food-drinks" />
 
-            {/* Cities visited in this country, laid out as a 3-column image grid */}
+            {/* CITIES VISITIED SECTION - laid out as a 3-column image grid */}
             <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
                 <section className="flex flex-col items-center gap-6 py-6 lg:gap-8 lg:py-8">
                     <div className="px-6 pt-6 text-center">
@@ -134,8 +194,16 @@ const Country = () => {
                     </div>
                 </section>
             </div>
-            
-            <Tips id="what-we-miss"/>
+
+            {/* WHAT DID WE MISS SECTION */}
+            <CardsSection
+                id="what-did-we-miss"
+                heading="What did we miss?"
+                items={WHAT_WE_MISSED}
+                renderItem={(item) => (
+                    <TipCard title={item.title} description={item.description} />
+                )}
+            />
         </main>
     );
 };
