@@ -136,7 +136,7 @@ export const ActivityCard = ({
             {/* Row 2: title and description */}
             <div className="flex w-full flex-col items-start gap-2">
                 {size === "L" ? (
-                    <Heading level={titleLevel} size="xl" weight="semibold" className="w-full tracking-[-0.32px]">
+                    <Heading level={titleLevel} size="lg" weight="semibold" className="w-full tracking-[-0.32px]">
                         {title}
                     </Heading>
                 ) : (

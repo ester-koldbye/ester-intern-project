@@ -1,7 +1,8 @@
-// City page: hero with jump-links to city-level sections (tips, activities, etc.)
+// City page: hero with jump-links to city-level sections (tips, recommendations, etc.)
 import { Hero } from "@/components/modules/hero/hero";
 import { Breadcrumbs } from "@/components/ui/molecules/breadcrumbs/breadcrumbs";
 import { CardsSection } from "@/components/modules/cards-section/cards-section";
+import { Recommendations, type RecommendationItem } from "@/components/modules/recommendations/recommendations";
 import { TipCard, type TipCardProps } from "@/components/ui/molecules/tip-card/tip-card";
 
 // SEO metadata for this route
@@ -53,18 +54,81 @@ const TIPS: TipItem[] = [
         description:
             "Before you go, train yourself to eat spicy food (its for your own good)",
     },
-
+];
+// Placeholder content for "My recommendations" — a flat list, not pre-split
+// per category, so it's ready to be swapped for a fetched activity list per
+// city; Recommendations both filters and maps it out into however many cards
+// each category actually has.
+const RECOMMENDATIONS: RecommendationItem[] = [
     {
-        title: "Apps for transportation",
-        description:
-            "Grab (cheap transport)\n\nBold (cheap transport, but it's often more expensive than grab)",
+        id: "doi-suthep",
+        category: "activities",
+        imageSrc: "/destinations/thailand/chiang-mai.jpg",
+        tag: "Hike",
+        location: "Chiang Mai",
+        locationHref: "https://maps.google.com",
+        title: "Doi Suthep temple hike",
+        description: "A steep but short hike up to one of Thailand's most famous temples, with a view over the whole city.",
+        readMoreHref: "/",
+        favorite: true,
     },
     {
-        title: "Apps for accomendation",
-        description:
-            "Hostelword (for booking hostels and getting to know the travelers in the hostels that you are staying at)\n\nAgoda (for booking cheap hotels)",
+        id: "island-hopping",
+        category: "activities",
+        imageSrc: "/destinations/thailand/phiphi.jpg",
+        tag: "Boat trip",
+        location: "Koh Phi Phi",
+        locationHref: "https://maps.google.com",
+        title: "Island hopping tour",
+        readMoreHref: "/",
+    },
+    {
+        id: "cooking-class",
+        category: "activities",
+        imageSrc: "/destinations/thailand/koh-samui.jpg",
+        tag: "Class",
+        location: "Chiang Mai",
+        locationHref: "https://maps.google.com",
+        title: "Thai cooking class",
+        readMoreHref: "/",
+    },
+    // Where to eat: nothing marked as a favorite yet — renders as a plain
+    // "Where to eat" heading over a hero+stack of everything, no "Other" split.
+    {
+        id: "night-bazaar",
+        category: "where-to-eat",
+        imageSrc: "/destinations/thailand/bangkok.jpg",
+        tag: "Famous street",
+        location: "Bangkok",
+        locationHref: "https://maps.google.com",
+        title: "Night bazaar street food",
+        readMoreHref: "/",
+    },
+    // Going out: one favorite and nothing else — matches Figma's own "Going
+    // out spots" example (a single hero card, no "Other" section).
+    {
+        id: "full-moon-party",
+        category: "going-out",
+        imageSrc: "/destinations/thailand/koh-phangan.jpg",
+        tag: "Party",
+        location: "Koh Phangan",
+        locationHref: "https://maps.google.com",
+        title: "Full Moon Party",
+        readMoreHref: "/",
+        favorite: true,
+    },
+    {
+        id: "riverside-hostel",
+        category: "accommodations",
+        imageSrc: "/destinations/thailand/krabi.JPG",
+        tag: "Hostel",
+        location: "Krabi",
+        locationHref: "https://maps.google.com",
+        title: "Riverside hostel",
+        readMoreHref: "/",
     },
 ];
+
 const City = () => {
     return (
         <main>
@@ -75,10 +139,7 @@ const City = () => {
                 description="This is the city page."
                 buttons={[
                     { key: "tips", label: "Tips", href: "#tips", },
-                    { key: "activities", label: "Activities", href: "#activities", },
-                    { key: "going-out", label: "Going out", href: "#going-out", },
-                    { key: "where-to-eat", label: "Where to eat", href: "#where-to-eat", },
-                    { key: "accommondation", label: "Accommondation", href: "#accommondation", },
+                    { key: "recommendations", label: "Recommendations", href: "#recommendations", },
                     { key: "what-did-we-miss", label: "What We Missed", href: "#what-did-we-miss", },
                 ]}
             />
@@ -97,9 +158,9 @@ const City = () => {
                 )}
             />
 
-            {/* TODO: activities, going-out, where-to-eat and accommondation sections are still missing */}
+            {/* MY RECOMMENDATIONS SECTION — activities/where-to-eat/going-out/accommodations, filterable by category */}
+            <Recommendations id="recommendations" items={RECOMMENDATIONS} />
 
-            
             {/* WHAT DID WE MISS SECTION */}
             <CardsSection
                 id="what-did-we-miss"
