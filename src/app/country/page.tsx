@@ -148,7 +148,7 @@ const Country = () => {
             <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
                 <section className="flex flex-col items-center gap-6 py-6 lg:gap-8 lg:py-8">
                     <div className="px-6 pt-6 text-center">
-                        <Heading level={2} size="xl" id="destinations">
+                        <Heading level={2} size="xl" id="cities">
                             Cities I visited
                         </Heading>
                     </div>
