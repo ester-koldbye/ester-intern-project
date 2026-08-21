@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/styles/utils";
 
+// Site logo/wordmark, e.g. "TRAVEL GUIDE" in the header and footer
 const logoVariants = cva("font-syne font-bold tracking-[0.32px]", {
   variants: {
     variant: {

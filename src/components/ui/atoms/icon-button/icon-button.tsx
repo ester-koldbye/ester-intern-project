@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/styles/utils";
 
+// Round icon-only button (arrow by default), e.g. "next" controls on a carousel
 const iconButtonVariants = cva("inline-flex size-[43px] shrink-0 cursor-pointer items-center justify-center rounded-full border-solid drop-shadow-[0px_0px_7px_rgba(0,0,0,0.25)] transition-colors", {
     variants: {
       variant: {

@@ -3,6 +3,13 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/styles/utils";
 
+/**
+ * Pill-shaped call-to-action button, e.g. "Explore Now" on the hero.
+ *
+ * `asChild` (via Radix `Slot`) lets consumers render it as e.g. a `next/link`
+ * `<Link>` instead of a `<button>`, keeping the same look for links and
+ * actions alike.
+ */
 const buttonVariants = cva(
   "inline-flex cursor-pointer items-center justify-center rounded-[30px] border-solid font-poppins font-semibold tracking-[0.32px] transition-colors",
   {
