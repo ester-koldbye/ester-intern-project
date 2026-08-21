@@ -6,6 +6,9 @@ import { Heading } from "@/components/ui/atoms/heading/heading";
 import { DestinationCard } from "@/components/ui/molecules/destination-card/destination-card";
 import Link from "next/link";
 
+// Country page: hero, tips, food & drinks, plus a grid of cities visited
+
+// SEO metadata for this route
 export const metadata = {
   title: "Travel recommendations | Country",
   description: "Welcome to the country page of my travel recommendations!",

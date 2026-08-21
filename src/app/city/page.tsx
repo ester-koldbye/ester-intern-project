@@ -1,8 +1,10 @@
+// City page: hero with jump-links to city-level sections (tips, activities, etc.)
 import { Hero } from "@/components/modules/hero/hero";
 import { Tips } from "@/components/modules/tips/tips";
 import { Breadcrumbs } from "@/components/ui/molecules/breadcrumbs/breadcrumbs";
 
 
+// SEO metadata for this route
 export const metadata = {
   title: "Travel recommendations | City",
   description: "Welcome to the city page of my travel recommendations!",
@@ -18,6 +20,7 @@ const ITEMS = [
 const City = () => {
     return (
         <main>
+            {/* Hero section with page intro and jump-links to sections below */}
             <Hero
                 countries={[]}
                 heading="City page"
@@ -36,8 +39,8 @@ const City = () => {
             </div>
             <Tips id="tips"/>
 
-            
-            
+            {/* TODO: activities, going-out, where-to-eat and accommondation sections are still missing */}
+
             <Tips id="what-we-miss"/>
         </main>
     );
