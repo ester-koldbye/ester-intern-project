@@ -1,6 +1,7 @@
 "use client";
 import { useReportWebVitals } from "next/web-vitals";
 
+// Logs Core Web Vitals metrics to the console in dev only
 const ReportWebVitals = () => {
     useReportWebVitals((metric) => {
         if (process.env.NODE_ENV === "production") {
