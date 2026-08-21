@@ -1,5 +1,5 @@
 import { Hero } from "@/components/modules/hero/hero";
-import { FoodDrinks } from "@/components/modules/food-drinks/food-drinks";
+import { FoodDrinks, type FoodDrinksItem } from "@/components/modules/food-drinks/food-drinks";
 import { CardsSection } from "@/components/modules/cards-section/cards-section";
 import { Breadcrumbs } from "@/components/ui/molecules/breadcrumbs/breadcrumbs";
 import { Heading } from "@/components/ui/atoms/heading/heading";
@@ -38,6 +38,48 @@ const WHAT_WE_MISSED: MissedItem[] = [
     {
         title: "More local SIM data",
         description: "We kept running out of data mid-trip — get a bigger plan than you think you need.",
+    },
+];
+
+// Placeholder content for "Foods & Drinks to try" — a flat list, ready to be
+// swapped for a fetched dish list; FoodDrinks maps it into however many
+// columns/rows of accordion entries the data calls for.
+const FOOD_DRINKS: FoodDrinksItem[] = [
+    {
+        title: "Green Curry",
+        points: ["Typical thai dish with rice on the rice.", "Can be very spicy."],
+    },
+    {
+        title: "Pad Kaprow",
+        points: ["Stir-fried holy basil, usually with pork or chicken.", "Ask for it without egg if you're not into runny yolks."],
+    },
+    {
+        title: "Tom Yum Soup",
+        points: ["Hot and sour soup, usually with shrimp.", "One of the spicier options on this list."],
+    },
+    {
+        title: "Mango Sticky Rice",
+        points: ["Sweet, coconutty, and everywhere for a reason."],
+    },
+    {
+        title: "Red Curry",
+        points: ["Sweet, coconutty, and everywhere for a reason."],
+    },
+    {
+        title: "Coconut Soup",
+        points: ["Sweet, coconutty, and everywhere for a reason."],
+    },
+    {
+        title: "Khao Soi",
+        points: ["Sweet, coconutty, and everywhere for a reason."],
+    },
+    {
+        title: "Massam Curry",
+        points: ["Sweet, coconutty, and everywhere for a reason."],
+    },
+    {
+        title: "Panang Curry",
+        points: ["Sweet, coconutty, and everywhere for a reason."],
     },
 ];
 
@@ -100,7 +142,7 @@ const Country = () => {
             />
 
             {/* FOOD & DRINKS SECTION */}
-            <FoodDrinks id="food-drinks" />
+            <FoodDrinks id="food-drinks" items={FOOD_DRINKS} />
 
             {/* CITIES VISITIED SECTION - laid out as a 3-column image grid */}
             <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">

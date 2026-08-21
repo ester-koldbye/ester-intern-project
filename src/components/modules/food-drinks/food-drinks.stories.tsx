@@ -40,6 +40,13 @@ export const FewerItems: Story = {
     },
 };
 
+/** `columns` controls the split independently of item count — 3 columns here instead of the default 2. */
+export const ThreeColumns: Story = {
+    args: {
+        columns: 3,
+    },
+};
+
 /** Items don't need `points` — a trigger with nothing to expand still renders correctly. */
 export const NoAnswers: Story = {
     args: {

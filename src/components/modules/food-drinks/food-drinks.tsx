@@ -19,10 +19,15 @@ import {
  * because the underlying `Accordion` needs interactivity.
  *
  * `items` is a plain array rather than a fixed set of slots, so the number
- * of accordion entries — and their text — follows whatever's passed in. The
- * two-column split below is just that list divided roughly in half (Figma's
- * own 5/4 split for 9 items falls out of the same math); it collapses to a
- * single column below `lg`.
+ * of accordion entries — and how many land in each column — follows
+ * whatever's passed in. That means it's ready for fetched data: a page can
+ * own its own `FoodDrinksItem[]` (from an API/CMS call) and hand it to
+ * `items` as-is, no restructuring needed, the same way `CardsSection`'s
+ * `items` works for Tips-style sections. `columns` (default 2, Figma's own
+ * split) controls how many columns that list is divided into — Figma's own
+ * 5/4 split for 9 items across 2 columns falls out of the same even-ish
+ * chunking; it collapses to a single column below `lg` regardless of
+ * `columns`.
  *
  * Every item starts closed — `type="multiple"` (so more than one can be open
  * at a time, matching Figma) rather than mirroring Figma's screenshot-time
@@ -37,18 +42,10 @@ export type FoodDrinksItem = {
 };
 
 const DEFAULT_ITEMS: FoodDrinksItem[] = [
-    "Green Curry",
-    "Red Curry",
-    "Coconut Soup",
-    "Mango Sticky Rice",
-    "Khao Soi",
-    "Pad Kaprow",
-    "Tom Yum Soup",
-    "Massam Curry",
-    "Panang curry",
+    "Food name",
 ].map((title) => ({
     title,
-    points: ["Typical thai dish with rice on the rice.", "Can be very spicy."],
+    points: ["Food description"],
 }));
 
 export type FoodDrinksProps = Omit<
@@ -58,18 +55,26 @@ export type FoodDrinksProps = Omit<
     heading?: ReactNode;
     description?: ReactNode;
     items?: FoodDrinksItem[];
+    /** How many columns to split `items` across (`lg` and up only — single column below that regardless). Defaults to 2, matching Figma. */
+    columns?: number;
 };
 
 export const FoodDrinks = ({
     heading = "Foods & Drinks to try",
     description = "Try at restaurants, night markets or on the street",
     items = DEFAULT_ITEMS,
+    columns = 2,
     className,
     ref,
     ...props
 }: FoodDrinksProps) => {
-    const half = Math.ceil(items.length / 2);
-    const columns = [items.slice(0, half), items.slice(half)];
+    // Even-ish chunking, e.g. 9 items / 2 columns -> 5 then 4, matching
+    // Figma's own split; empty columns are dropped so fewer items than
+    // `columns` doesn't render blank slots.
+    const perColumn = Math.ceil(items.length / Math.max(1, columns));
+    const itemColumns = Array.from({ length: columns }, (_, i) =>
+        items.slice(i * perColumn, (i + 1) * perColumn),
+    ).filter((column) => column.length > 0);
 
     return (
         <section
@@ -96,11 +101,11 @@ export const FoodDrinks = ({
                 type="multiple"
                 className="flex w-full flex-col gap-8 lg:flex-row lg:gap-16"
             >
-                {columns.map((column, columnIndex) => (
+                {itemColumns.map((column, columnIndex) => (
                     <div
                         // Columns are a pure layout split of one flat list, not separate data — index is fine.
                         key={columnIndex}
-                        className="border-dark-brown flex w-full flex-1 flex-col border-b"
+                        className="border-dark-brown flex w-full flex-1 flex-col"
                     >
                         {column.map((item, itemIndex) => {
                             const value = `item-${columnIndex}-${itemIndex}`;
