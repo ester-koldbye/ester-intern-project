@@ -11,6 +11,14 @@ export const metadata = {
   description: "Welcome to the city page of my travel recommendations!",
 };
 
+const COUNTRIES = [
+    { href: "/australia", label: "Australia" },
+    { href: "/thailand", label: "Thailand" },
+    { href: "/indonesia", label: "Indonesia" },
+    { href: "/vietnam", label: "Vietnam" },
+    { href: "/italy", label: "Italy" },
+];
+
 // BREADCRUMB
 const ITEMS = [
     { href: "/", label: "Home" },
@@ -61,15 +69,16 @@ const TIPS: TipItem[] = [
 // each category actually has.
 const RECOMMENDATIONS: RecommendationItem[] = [
     {
-        id: "doi-suthep",
+        id: "wat-arun",
         category: "activities",
-        imageSrc: "/destinations/thailand/chiang-mai.jpg",
-        tag: "Hike",
-        location: "Chiang Mai",
+        imageSrc: "/destinations/thailand/bangkok.jpg",
+        tag: "Temple",
+        location: "Bangkok",
         locationHref: "https://maps.google.com",
-        title: "Doi Suthep temple hike",
-        description: "A steep but short hike up to one of Thailand's most famous temples, with a view over the whole city.",
-        readMoreHref: "/",
+        title: "Wat Arun",
+        description: "One of Bangkok's most famous temples, especially striking around sunset.",
+        // Links to the real activity detail page (gallery + info panel) — see src/app/activity/[slug]/page.tsx
+        readMoreHref: "/activity/wat-arun",
         favorite: true,
     },
     {
@@ -134,7 +143,7 @@ const City = () => {
         <main>
             {/* Hero section with page intro and jump-links to sections below */}
             <Hero
-                countries={[]}
+                countries={COUNTRIES}
                 heading="City page"
                 description="This is the city page."
                 buttons={[

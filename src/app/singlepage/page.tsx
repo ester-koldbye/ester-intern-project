@@ -9,6 +9,16 @@ export const metadata = {
   description: "Welcome to the singlepage page of my travel recommendations!",
 };
 
+// Matches the destinations listed further down the page.
+const COUNTRIES = [
+    { href: "/australia", label: "Australia" },
+    { href: "/thailand", label: "Thailand" },
+    { href: "/indonesia", label: "Indonesia" },
+    { href: "/vietnam", label: "Vietnam" },
+    { href: "/italy", label: "Italy" },
+];
+
+
 // BREADCRUMB
 const ITEMS = [
     { href: "/", label: "Home" },
@@ -22,7 +32,7 @@ const Singlepage = () => {
         <main>
             {/* Hero section with page intro, no jump-links on this page */}
             <Hero
-                countries={[]}
+                countries={COUNTRIES}
                 heading="Singlepage"
                 description="This is the singlepage."
             />
