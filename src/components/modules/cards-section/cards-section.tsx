@@ -61,7 +61,7 @@ export const CardsSection = <TItem,>({
             {...props}
         >
             {heading && (
-                <Heading level={2} size="2xl" weight="semibold">
+                <Heading level={2} size="xl" weight="semibold">
                     {heading}
                 </Heading>
             )}

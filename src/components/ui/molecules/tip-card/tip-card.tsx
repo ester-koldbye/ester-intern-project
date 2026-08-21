@@ -40,10 +40,10 @@ export const TipCard = ({
             ref={ref}
             {...props}
         >
-            <p className="font-poppins text-text-primary text-lg leading-lg font-bold">
+            <p className="font-poppins text-text-primary text-md leading-md md:text-lg md:leading-lg font-bold">
                 {title}
             </p>
-            <Text as="div" size="md" weight="semibold" className="whitespace-pre-line">
+            <Text as="div" size="md" weight="semibold" className="text-base md:text-md whitespace-pre-line">
                 {description}
             </Text>
         </div>
