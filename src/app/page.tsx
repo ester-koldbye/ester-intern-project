@@ -28,11 +28,11 @@ const Home = async () => {
                     },
                 ]}
             />
-            <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
-                <section className="flex flex-col items-center gap-6 py-6 lg:gap-8 lg:py-8">
+            <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-xl-inline px-padding-block-mobile lg:px-padding-xl-block">
+                <section className="flex flex-col items-center gap-6 lg:gap-8">
 
                     {/* HEADINGS */}
-                    <div className="flex flex-col gap-2 px-6 pt-6 text-center">
+                    <div className="flex flex-col gap-2 text-center">
                         <Heading level={1} size="md" variant="tertiary">
                             City breaks, road trips and local tips!
                         </Heading>
@@ -43,6 +43,7 @@ const Home = async () => {
 
                     {/* DESTINATION CARDS */}
                     <div className="flex w-full max-w-360 flex-col gap-3 md:gap-5">
+                        {/* First two countries */}
                         <div className="grid w-full gap-3 sm:grid-cols-2 md:gap-5">
                             {featuredCountries.map((country) => (
                                 <Link key={country.slug} href={`/${country.slug}`}>
@@ -55,6 +56,7 @@ const Home = async () => {
                                 </Link>
                             ))}
                         </div>
+                        {/* Next three countries */}
                         <div className="grid w-full gap-3 sm:grid-cols-3 md:gap-5">
                             {otherCountries.map((country) => (
                                 <Link key={country.slug} href={`/${country.slug}`}>

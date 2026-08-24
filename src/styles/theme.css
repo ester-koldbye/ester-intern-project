@@ -71,7 +71,7 @@
     --text-base: 1rem; /* 16px */
     --text-md: 1.25rem; /* 20px */
     --text-lg: 1.5rem; /* 24px */
-    --text-xl: 1.8rem; /* 32px */
+    --text-xl: 1.8rem; /* 28.8px */
     --text-2xl: 3.5rem; /* 56px */
     --text-3xl: 4rem; /* 64px */
     --text-4xl: 4.5rem; /* 72px */
@@ -93,8 +93,8 @@
     --spacing-padding-xl-block: 5.75rem; /* 92px */
     --spacing-padding-m-inline: 0.625rem; /* 10px */
     --spacing-padding-m-block: 0.625rem; /* 10px */
-    --spacing-padding-inline-mobile: 1.25rem; /* 20px */
-    --spacing-padding-block-mobile: 1.875rem; /* 30px */
+    --spacing-padding-inline-mobile: 1.875rem; /* 30px */
+    --spacing-padding-block-mobile: 1.25rem; /* 20px */
 
     /* Gap (Figma: "Gap" group) */
     --spacing-gap-m: 0.625rem; /* 10px */

@@ -30,7 +30,7 @@ const destinationCardVariants = cva(
         variants: {
             size: {
                 L: "h-auto w-full aspect-[589/361]",
-                M: "h-auto w-full aspect-[589/361] lg:aspect-[350/300]",
+                M: "h-auto w-full aspect-[589/361]",
                 S: "h-[130px] w-[130px]",
             },
         },

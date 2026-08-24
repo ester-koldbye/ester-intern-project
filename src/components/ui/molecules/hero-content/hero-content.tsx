@@ -1,6 +1,4 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
-import Link from "next/link";
-import type { Route } from "next";
 import { cn } from "@/styles/utils";
 import { Heading } from "@/components/ui/atoms/heading/heading";
 import { Text } from "@/components/ui/atoms/text/text";
@@ -83,13 +81,9 @@ export const HeroContent = ({
             </Text>
 
             <SectionNav
-                items={buttons.map(({ key, label, href }) => ({
+                items={buttons.map(({ key, label }) => ({
                     id: key,
-                    label: href ? (
-                        <Link href={href as Route}>{label}</Link>
-                    ) : (
-                        label
-                    ),
+                    label,
                 }))}
                 variant="secondary"
                 size="M"

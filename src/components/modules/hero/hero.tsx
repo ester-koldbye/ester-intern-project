@@ -61,7 +61,7 @@ export const Hero = ({
         <section
             data-slot="hero"
             className={cn(
-                "gap-padding-xl-inline relative isolate flex min-h-130 flex-col overflow-hidden lg:min-h-225",
+                "gap-padding-xl-inline relative isolate flex flex-col overflow-hidden h-full min-h-130 lg:min-h-175",
                 className,
             )}
             ref={ref}

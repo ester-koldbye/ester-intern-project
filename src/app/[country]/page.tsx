@@ -71,11 +71,11 @@ const CountryPage = async ({ params }: PageProps<"/[country]">) => {
                 buttons={
                     country.content
                         ? [
-                              { key: "tips", label: "Tips", href: "#tips" },
-                              { key: "food-drinks", label: "Food & Drinks", href: "#food-drinks" },
-                              { key: "cities", label: "Cities", href: "#cities" },
-                              { key: "what-did-we-miss", label: "What We Missed", href: "#what-did-we-miss" },
-                          ]
+                            { key: "tips", label: "Tips", href: "#tips" },
+                            { key: "food-drinks", label: "Food & Drinks", href: "#food-drinks" },
+                            { key: "cities", label: "Cities", href: "#cities" },
+                            { key: "what-did-we-miss", label: "What We Missed", href: "#what-did-we-miss" },
+                        ]
                         : []
                 }
             />
