@@ -204,7 +204,7 @@ export const Recommendations = ({
         <section
             data-slot="recommendations"
             className={cn(
-                "py-padding-block-mobile px-padding-inline-mobile md:py-padding-m-block md:px-padding-m-inline lg:py-padding-xl-block lg:px-padding-xl-inline flex w-full flex-col items-start gap-12 bg-white lg:gap-20",
+                "py-padding-block-mobile px-padding-inline-mobile md:py-padding-m-block md:px-padding-m-inline lg:py-padding-xl-block lg:px-padding-xl-inline flex w-full flex-col items-start gap-6 lg:gap-8 bg-white",
                 className,
             )}
             ref={ref}
@@ -214,9 +214,9 @@ export const Recommendations = ({
                 View all {selectedCategory ? selectedCategory.label : recommendationsLabel}
             </Heading>
 
-            <div className="flex w-full flex-col items-start gap-8 lg:flex-row lg:gap-11">
+            <div className="flex w-full flex-col items-start gap-6 lg:gap-8 lg:flex-row">
                 {/* Results: one group per visible category. Mobile shows the category filters first (below), desktop mirrors Figma with results on the left. */}
-                <div className="order-2 flex w-full flex-1 flex-col items-start gap-16 lg:order-1">
+                <div className="order-2 flex w-full flex-1 flex-col items-start gap-6 lg:gap-8 lg:order-1">
                     {categoryGroups.length === 0 ? (
                         <Text size="sm" weight="semibold" textColor="grey">
                             No recommendations in this category yet.
@@ -225,7 +225,7 @@ export const Recommendations = ({
                         categoryGroups.map(({ category, categoryItems, favorites, others }) => (
                             <div
                                 key={category.id}
-                                className="flex w-full flex-col items-start gap-16"
+                                className="flex w-full flex-col items-start gap-6 lg:gap-8"
                             >
                                 {favorites.length > 0 ? (
                                     <>
