@@ -68,6 +68,7 @@ const ActivityPage = async ({
         <main>
             {/* Hero section with page intro, no jump-links on this page */}
             <Hero
+                backgroundSrc={city.imageSrc} /* TODO: have an activity image */
                 countries={navCountries}
                 activeCountryHref={`/${country.slug}`}
                 heading={activity.heading}

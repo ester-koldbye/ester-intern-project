@@ -64,6 +64,7 @@ const CountryPage = async ({ params }: PageProps<"/[country]">) => {
         <main>
             {/* HERO SECTION */}
             <Hero
+                backgroundSrc={country.imageSrc}
                 countries={navCountries}
                 activeCountryHref={`/${country.slug}`}
                 heading={country.name}

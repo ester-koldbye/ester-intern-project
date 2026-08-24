@@ -60,6 +60,7 @@ const CityPage = async ({ params }: PageProps<"/[country]/[city]">) => {
         <main>
             {/* Hero section with page intro and jump-links to sections below */}
             <Hero
+                backgroundSrc={city.imageSrc}
                 countries={navCountries}
                 activeCountryHref={`/${country.slug}`}
                 heading={city.name}
