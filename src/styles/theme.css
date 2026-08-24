@@ -91,8 +91,8 @@
     /* Padding (Figma: "Padding" group) — named additions on top of the default 4px scale */
     --spacing-padding-xl-inline: 7.5rem; /* 120px */
     --spacing-padding-xl-block: 5.75rem; /* 92px */
-    --spacing-padding-m-inline: 0.625rem; /* 10px */
-    --spacing-padding-m-block: 0.625rem; /* 10px */
+    --spacing-padding-m-inline: 2rem; /* 32px */
+    --spacing-padding-m-block: 2.5rem; /* 32px */
     --spacing-padding-inline-mobile: 1.875rem; /* 30px */
     --spacing-padding-block-mobile: 1.25rem; /* 20px */
 

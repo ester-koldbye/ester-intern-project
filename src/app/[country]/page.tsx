@@ -79,7 +79,7 @@ const CountryPage = async ({ params }: PageProps<"/[country]">) => {
                         : []
                 }
             />
-            <div className="py-padding-inline-mobile lg:py-padding-xl-inline px-padding-block-mobile lg:px-padding-xl-block">
+            <div className="py-padding-inline-mobile md:py-padding-m-inline lg:py-padding-xl-inline px-padding-block-mobile md:px-padding-m-block lg:px-padding-xl-block">
                 <Breadcrumbs items={breadcrumbItems} />
             </div>
 
@@ -105,7 +105,7 @@ const CountryPage = async ({ params }: PageProps<"/[country]">) => {
 
                     {/* CITIES VISITED SECTION - laid out as a 3-column image grid */}
                     {cities.length > 0 && (
-                        <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-xl-inline px-padding-block-mobile lg:px-padding-xl-block">
+                        <div className="bg-light-blue py-padding-inline-mobile md:py-padding-m-inline lg:py-padding-xl-inline px-padding-block-mobile md:px-padding-m-block lg:px-padding-xl-block">
                             <section className="flex flex-col items-center gap-6 py-6 lg:gap-8 lg:py-8">
                                 <div className="px-6 pt-6 text-center">
                                     <Heading level={2} size="xl" id="cities">

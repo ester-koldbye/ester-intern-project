@@ -80,7 +80,7 @@ export const FoodDrinks = ({
         <section
             data-slot="food-drinks"
             className={cn(
-                "px-padding-block-mobile py-padding-inline-mobile lg:px-padding-xl-block lg:py-padding-xl-inline flex w-full flex-col items-center gap-12 bg-white lg:gap-20",
+                "py-padding-block-mobile px-padding-inline-mobile md:py-padding-m-block md:px-padding-m-inline lg:py-padding-xl-block lg:px-padding-xl-inline flex w-full flex-col items-center gap-12 bg-white lg:gap-20",
                 className,
             )}
             ref={ref}

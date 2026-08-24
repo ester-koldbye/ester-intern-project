@@ -53,7 +53,7 @@ export const CardsSection = <TItem,>({
         <section
             data-slot="cards-section"
             className={cn(
-                "bg-bg-light-blue py-padding-inline-mobile lg:py-padding-xl-inline px-padding-block-mobile lg:px-padding-xl-block flex w-full flex-col items-start gap-12 lg:gap-20",
+                "bg-bg-light-blue px-padding-inline-mobile md:px-padding-m-inline lg:px-padding-xl-inline py-padding-block-mobile md:py-padding-m-block lg:py-padding-xl-block flex w-full flex-col items-start gap-12 lg:gap-20",
                 className,
             )}
             ref={ref}

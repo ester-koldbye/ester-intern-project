@@ -88,7 +88,7 @@ export const Footer = ({
         <footer
             data-slot="footer"
             className={cn(
-                "px-padding-inline-mobile flex w-full flex-col items-center gap-12 overflow-clip bg-white py-12 lg:gap-20 lg:px-16 lg:py-20",
+                "py-padding-block-mobile md:py-padding-m-block lg:py-padding-xl-block px-padding-inline-mobile md:px-padding-m-inline lg:px-padding-xl-inline flex w-full flex-col items-center gap-12 overflow-clip bg-white lg:gap-20",
                 className,
             )}
             ref={ref}

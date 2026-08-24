@@ -28,7 +28,7 @@ const Home = async () => {
                     },
                 ]}
             />
-            <div className="bg-light-blue py-padding-inline-mobile lg:py-padding-xl-inline px-padding-block-mobile lg:px-padding-xl-block">
+            <div className="bg-light-blue px-padding-inline-mobile md:px-padding-m-inline lg:px-padding-xl-inline py-padding-block-mobile md:py-padding-m-block lg:py-padding-xl-block">
                 <section className="flex flex-col items-center gap-6 lg:gap-8">
 
                     {/* HEADINGS */}

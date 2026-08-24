@@ -65,13 +65,13 @@ export const ActivityAbout = ({
         <section
             data-slot="activity-about"
             className={cn(
-                "bg-bg-light-blue px-padding-block-mobile py-padding-inline-mobile lg:px-padding-xl-block lg:py-padding-xl-inline flex w-full items-center justify-center",
+                "bg-bg-light-blue py-padding-block-mobile px-padding-inline-mobile md:py-padding-m-block md:px-padding-m-inline lg:py-padding-xl-block lg:px-padding-xl-inline flex w-full items-center justify-center",
                 className,
             )}
             ref={ref}
             {...props}
         >
-            <div className="flex w-full max-w-[770px] flex-col items-center gap-3.5">
+            <div className="flex w-full max-w-192.5 flex-col items-center gap-3.5">
                 <div className="flex w-full flex-col items-start gap-7.5 pb-7.5">
                     <div className="flex flex-col items-start gap-2.5">
                         <Heading level={headingLevel} size="xl" weight="bold">
