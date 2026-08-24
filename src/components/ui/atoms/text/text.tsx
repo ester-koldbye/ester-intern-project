@@ -30,7 +30,7 @@ const textVariants = cva("font-poppins", {
     // Figma. md: 20px/24px. (No lg/xl — those are Heading's sizes.)
     size: {
       sm: "text-sm leading-sm",
-      base: "text-base leading-xs tracking-[0.32px]",
+      base: "text-base",
       md: "text-md leading-lg",
     },
     weight: {

@@ -281,9 +281,59 @@ const CITIES: City[] = [
                 },
             ],
             recommendations: [
+                // The 4 favorites below are ordered deliberately: whichever
+                // is first becomes `FeaturedGroup`'s hero, the rest fill the
+                // stacked column in that same order — matching Figma's own
+                // "My favorite activities" example, which uses this exact
+                // city/lineup.
+                {
+                    id: "bangkok-wat-arun",
+                    category: "activities",
+                    favorite: true,
+                    imageSrc: "/destinations/thailand/bangkok.jpg",
+                    imageAlt: "A photo of Wat Arun",
+                    tag: "Temple",
+                    location: "Bangkok",
+                    title: "Wat Arun",
+                    readMoreHref: "/thailand/bangkok/wat-arun",
+                    locationHref: "https://maps.app.goo.gl/CfW46tTvMK2kWV4C9",
+                    description:
+                        "Perfect for sunset. You need to wear a sarong. Really beautiful temple and you can get there with the local boat-taxi. We didn't pay to get in, but we think you're supposed to pay for entry (we went in through the exit).",
+                },
+                {
+                    id: "bangkok-the-grand-palace",
+                    category: "activities",
+                    favorite: true,
+                    imageSrc: "/destinations/thailand/bangkok.jpg",
+                    imageAlt: "A photo of The Grand Palace",
+                    tag: "Palace",
+                    location: "Bangkok",
+                    title: "The Grand Palace",
+                    readMoreHref: "/thailand/bangkok/the-grand-palace",
+                    locationHref: "https://maps.app.goo.gl/VKEw79tU3g76xRv7A",
+                    description:
+                        "Many beautiful temples. A bit expensive but worth it. You need to wear a sarong.",
+                },
+                {
+                    id: "bangkok-rajadamnern-muay-thai-stadium-thaiboksning",
+                    category: "activities",
+                    favorite: true,
+                    imageSrc: "/destinations/thailand/bangkok.jpg",
+                    imageAlt:
+                        "A photo of Rajadamnern Muay Thai Stadium (Thaiboksning)",
+                    tag: "Stadium",
+                    location: "Bangkok",
+                    title: "Rajadamnern Muay Thai Stadium (Thaiboksning)",
+                    readMoreHref:
+                        "/thailand/bangkok/rajadamnern-muay-thai-stadium-thaiboksning",
+                    locationHref: "https://maps.app.goo.gl/ZzMYaJwUUtac2ypd6",
+                    description:
+                        "A bit expensive, but super fun and definitely worth it. Buy the wristband so you get free refills.",
+                },
                 {
                     id: "bangkok-khao-san-road",
                     category: "activities",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/bangkok.jpg",
                     imageAlt: "A photo of Khao San Road",
                     tag: "Famous street",
@@ -348,34 +398,6 @@ const CITIES: City[] = [
                         "Lots of street food. We weren't brave enough to try any of the food. We recommend going on a guided tour to try the food.",
                 },
                 {
-                    id: "bangkok-the-grand-palace",
-                    category: "activities",
-                    imageSrc: "/destinations/thailand/bangkok.jpg",
-                    imageAlt: "A photo of The Grand Palace",
-                    tag: "Palace",
-                    location: "Bangkok",
-                    title: "The Grand Palace",
-                    readMoreHref: "/thailand/bangkok/the-grand-palace",
-                    locationHref: "https://maps.app.goo.gl/VKEw79tU3g76xRv7A",
-                    description:
-                        "Many beautiful temples. A bit expensive but worth it. You need to wear a sarong.",
-                },
-                {
-                    id: "bangkok-rajadamnern-muay-thai-stadium-thaiboksning",
-                    category: "activities",
-                    imageSrc: "/destinations/thailand/bangkok.jpg",
-                    imageAlt:
-                        "A photo of Rajadamnern Muay Thai Stadium (Thaiboksning)",
-                    tag: "Stadium",
-                    location: "Bangkok",
-                    title: "Rajadamnern Muay Thai Stadium (Thaiboksning)",
-                    readMoreHref:
-                        "/thailand/bangkok/rajadamnern-muay-thai-stadium-thaiboksning",
-                    locationHref: "https://maps.app.goo.gl/ZzMYaJwUUtac2ypd6",
-                    description:
-                        "A bit expensive, but super fun and definitely worth it. Buy the wristband so you get free refills.",
-                },
-                {
                     id: "bangkok-iconsiam",
                     category: "activities",
                     imageSrc: "/destinations/thailand/bangkok.jpg",
@@ -387,19 +409,6 @@ const CITIES: City[] = [
                     locationHref: "https://maps.app.goo.gl/sC5o4KqnkcBw3Jbt7",
                     description:
                         "Perfect for shopping. We ate at one of their rooftop restaurants, with a beautiful view of Bangkok's skyline.",
-                },
-                {
-                    id: "bangkok-wat-arun",
-                    category: "activities",
-                    imageSrc: "/destinations/thailand/bangkok.jpg",
-                    imageAlt: "A photo of Wat Arun",
-                    tag: "Temple",
-                    location: "Bangkok",
-                    title: "Wat Arun",
-                    readMoreHref: "/thailand/bangkok/wat-arun",
-                    locationHref: "https://maps.app.goo.gl/CfW46tTvMK2kWV4C9",
-                    description:
-                        "Perfect for sunset. You need to wear a sarong. Really beautiful temple and you can get there with the local boat-taxi. We didn't pay to get in, but we think you're supposed to pay for entry (we went in through the exit).",
                 },
                 {
                     id: "bangkok-b-dtur-i-kanalerne",
@@ -471,6 +480,7 @@ const CITIES: City[] = [
                 {
                     id: "koh-samui-overlap-stone",
                     category: "activities",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/koh-samui.jpg",
                     imageAlt: "A photo of Overlap Stone",
                     tag: "Attraction",
@@ -496,6 +506,7 @@ const CITIES: City[] = [
                 {
                     id: "koh-samui-big-buddha-temple-wat-phra-yai",
                     category: "activities",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/koh-samui.jpg",
                     imageAlt: "A photo of Big Buddha Temple (Wat Phra Yai)",
                     tag: "Temple",
@@ -593,6 +604,7 @@ const CITIES: City[] = [
                 {
                     id: "koh-phangan-amsterdam-bar",
                     category: "activities",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/koh-phangan.jpg",
                     imageAlt: "A photo of Amsterdam bar",
                     tag: "Bar",
@@ -656,6 +668,7 @@ const CITIES: City[] = [
                 {
                     id: "koh-phangan-bt-restaurant-koh-phangan",
                     category: "where-to-eat",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/koh-phangan.jpg",
                     imageAlt: "A photo of Bt. Restaurant koh phangan",
                     tag: "Restaurant",
@@ -710,23 +723,11 @@ const CITIES: City[] = [
                 },
             ],
             recommendations: [
-                {
-                    id: "koh-tao-sun-suwan-360-view-and-sky-bar",
-                    category: "activities",
-                    imageSrc: "/destinations/thailand/koh-tao.JPG",
-                    imageAlt: "A photo of Sun Suwan 360° View & Sky Bar",
-                    tag: "Bar / Viewpoint",
-                    location: "Koh Tao",
-                    title: "Sun Suwan 360° View & Sky Bar",
-                    readMoreHref:
-                        "/thailand/koh-tao/sun-suwan-360-view-and-sky-bar",
-                    locationHref: "https://maps.app.goo.gl/b2KBnjsSmnNKK4JGA",
-                    description:
-                        "Very beautiful viewpoint. You have to pay to get into the viewpoint.",
-                },
+                // Favorites first (hero + up to 3 stacked, display order), then the rest.
                 {
                     id: "koh-tao-la-bondana-diving",
                     category: "activities",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/koh-tao.JPG",
                     imageAlt: "A photo of La Bondana Diving",
                     tag: "Dive center",
@@ -740,6 +741,7 @@ const CITIES: City[] = [
                 {
                     id: "koh-tao-queen-s-cabaret",
                     category: "activities",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/koh-tao.JPG",
                     imageAlt: "A photo of Queen's Cabaret",
                     tag: "Cabaret/nightclub",
@@ -749,6 +751,35 @@ const CITIES: City[] = [
                     locationHref: "https://maps.app.goo.gl/98gw4rvhjC3qRfH49",
                     description:
                         "Rretty cheap and you get a free drink included when you buy a ticket. Really good energy. A must on Koh Tao.",
+                },
+                {
+                    id: "koh-tao-shark-bay",
+                    category: "activities",
+                    favorite: true,
+                    imageSrc: "/destinations/thailand/koh-tao.JPG",
+                    imageAlt: "A photo of Shark Bay",
+                    tag: "Beach",
+                    location: "Koh Tao",
+                    title: "Shark Bay",
+                    readMoreHref: "/thailand/koh-tao/shark-bay",
+                    locationHref: "https://maps.app.goo.gl/Qay7jyLEDwiigoQ78",
+                    description:
+                        "Very beautiful beach. Had to pay to get there, but worth it.",
+                },
+                {
+                    id: "koh-tao-sun-suwan-360-view-and-sky-bar",
+                    category: "activities",
+                    favorite: true,
+                    imageSrc: "/destinations/thailand/koh-tao.JPG",
+                    imageAlt: "A photo of Sun Suwan 360° View & Sky Bar",
+                    tag: "Bar / Viewpoint",
+                    location: "Koh Tao",
+                    title: "Sun Suwan 360° View & Sky Bar",
+                    readMoreHref:
+                        "/thailand/koh-tao/sun-suwan-360-view-and-sky-bar",
+                    locationHref: "https://maps.app.goo.gl/b2KBnjsSmnNKK4JGA",
+                    description:
+                        "Very beautiful viewpoint. You have to pay to get into the viewpoint.",
                 },
                 {
                     id: "koh-tao-koh-tao-mini-golf",
@@ -774,19 +805,6 @@ const CITIES: City[] = [
                     locationHref: "https://maps.app.goo.gl/HPzWEnovC58dK5QAA",
                     description:
                         "Main beach. Very long so lots of spots to lay down. Free.",
-                },
-                {
-                    id: "koh-tao-shark-bay",
-                    category: "activities",
-                    imageSrc: "/destinations/thailand/koh-tao.JPG",
-                    imageAlt: "A photo of Shark Bay",
-                    tag: "Beach",
-                    location: "Koh Tao",
-                    title: "Shark Bay",
-                    readMoreHref: "/thailand/koh-tao/shark-bay",
-                    locationHref: "https://maps.app.goo.gl/Qay7jyLEDwiigoQ78",
-                    description:
-                        "Very beautiful beach. Had to pay to get there, but worth it.",
                 },
                 {
                     id: "koh-tao-mango-bay",
@@ -828,6 +846,7 @@ const CITIES: City[] = [
                 {
                     id: "koh-tao-jungle-party",
                     category: "going-out",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/koh-tao.JPG",
                     imageAlt: "A photo of Jungle Party",
                     tag: "Going out",
@@ -841,6 +860,7 @@ const CITIES: City[] = [
                 {
                     id: "koh-tao-fishbowl-beach-bar",
                     category: "going-out",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/koh-tao.JPG",
                     imageAlt: "A photo of Fishbowl Beach Bar",
                     tag: "Restaurant / Bar",
@@ -854,6 +874,7 @@ const CITIES: City[] = [
                 {
                     id: "koh-tao-995-roasted-duck",
                     category: "where-to-eat",
+                    favorite: true,
                     imageSrc: "/destinations/thailand/koh-tao.JPG",
                     imageAlt: "A photo of 995 Roasted Duck",
                     tag: "Restaurant",
