@@ -162,7 +162,7 @@ export const ActivityGallery = ({
         <section
             data-slot="activity-gallery"
             className={cn(
-                "py-padding-block-mobile px-padding-inline-mobile md:py-padding-m-block md:px-padding-m-inline lg:py-padding-xl-block lg:px-padding-xl-inline flex w-full flex-col items-start gap-10 bg-white lg:gap-15",
+                "padding-block-responsive padding-inline-responsive flex w-full flex-col items-start gap-10 bg-white lg:gap-15",
                 className,
             )}
             ref={ref}

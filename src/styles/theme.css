@@ -156,6 +156,31 @@
     --animate-*: initial;
 }
 
+/* PADDING FOR RESPONSIVE BLOCK & INLINE */
+@utility padding-block-responsive {
+    padding-block: var(--spacing-padding-block-mobile);
+
+    @variant md {
+        padding-block: var(--spacing-padding-m-block);
+    }
+
+    @variant lg {
+        padding-block: var(--spacing-padding-xl-block);
+    }
+}
+
+@utility padding-inline-responsive {
+    padding-inline: var(--spacing-padding-inline-mobile);
+
+    @variant md {
+        padding-inline: var(--spacing-padding-m-inline);
+    }
+
+    @variant lg {
+        padding-inline: var(--spacing-padding-xl-inline);
+    }
+}
+
 a {
     cursor: pointer;
 }

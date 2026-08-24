@@ -99,7 +99,7 @@ export const Hero = ({
                 heading={heading}
                 description={description}
                 buttons={buttons}
-                className="pb-padding-block-mobile min-[43rem]:px-padding-xl-inline lg:pb-15"
+                className="padding-block-responsive padding-inline-responsive lg:pb-15"
             />
         </section>
     );

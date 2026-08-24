@@ -55,7 +55,7 @@ export const HeroContent = ({
     return (
         <div
             className={cn(
-                "px-padding-inline-mobile md:px-padding-m-inline lg:px-padding-xl-inline lg:gap-padding-block-mobile  flex flex-col items-start gap-5",
+                "flex flex-col items-start gap-5",
                 className,
             )}
             ref={ref}

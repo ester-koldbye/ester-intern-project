@@ -32,31 +32,33 @@ export const Breadcrumbs = ({
     ...props
 }: BreadcrumbsProps) => {
     return (
-        <nav
-            aria-label="Breadcrumb"
-            data-slot="breadcrumbs"
-            className={cn(className)}
-            ref={ref}
-            {...props}
-        >
-            <ol className="flex flex-wrap items-center">
-                {items.map((item, index) => {
-                    const isLast = index === items.length - 1;
+        <div className="padding-block-responsive padding-inline-responsive">
+            <nav
+                aria-label="Breadcrumb"
+                data-slot="breadcrumbs"
+                className={cn(className)}
+                ref={ref}
+                {...props}
+            >
+                <ol className="flex flex-wrap items-center">
+                    {items.map((item, index) => {
+                        const isLast = index === items.length - 1;
 
-                    return (
-                        <li key={item.href}>
-                            <BreadcrumbItem
-                                href={item.href}
-                                isActive={isLast}
-                                showSeparator={!isLast}
-                            >
-                                {item.label}
-                            </BreadcrumbItem>
-                        </li>
-                    );
-                })}
-            </ol>
-        </nav>
+                        return (
+                            <li key={item.href}>
+                                <BreadcrumbItem
+                                    href={item.href}
+                                    isActive={isLast}
+                                    showSeparator={!isLast}
+                                >
+                                    {item.label}
+                                </BreadcrumbItem>
+                            </li>
+                        );
+                    })}
+                </ol>
+            </nav>
+        </div>
     );
 };
 

@@ -100,7 +100,7 @@ export const Navigation = ({
         <nav
             data-slot="navigation"
             className={cn(
-                "relative flex w-full items-center justify-between px-padding-inline-mobile md:px-padding-m-inline lg:px-padding-xl-inline",
+                "relative flex w-full items-center justify-between padding-inline-responsive",
                 className,
             )}
             ref={ref}

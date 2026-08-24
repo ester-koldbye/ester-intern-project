@@ -204,7 +204,7 @@ export const Recommendations = ({
         <section
             data-slot="recommendations"
             className={cn(
-                "py-padding-block-mobile px-padding-inline-mobile md:py-padding-m-block md:px-padding-m-inline lg:py-padding-xl-block lg:px-padding-xl-inline flex w-full flex-col items-start gap-6 lg:gap-8 bg-white",
+                "padding-block-responsive padding-inline-responsive flex w-full flex-col items-start gap-6 lg:gap-8 bg-white",
                 className,
             )}
             ref={ref}
