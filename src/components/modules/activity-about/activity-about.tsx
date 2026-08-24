@@ -65,7 +65,7 @@ export const ActivityAbout = ({
         <section
             data-slot="activity-about"
             className={cn(
-                "bg-bg-light-blue px-padding-inline-mobile py-padding-block-mobile lg:px-padding-xl-inline lg:py-padding-xl-block flex w-full items-center justify-center",
+                "bg-bg-light-blue px-padding-block-mobile py-padding-inline-mobile lg:px-padding-xl-block lg:py-padding-xl-inline flex w-full items-center justify-center",
                 className,
             )}
             ref={ref}

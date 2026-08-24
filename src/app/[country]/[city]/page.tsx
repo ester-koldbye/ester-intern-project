@@ -67,14 +67,14 @@ const CityPage = async ({ params }: PageProps<"/[country]/[city]">) => {
                 buttons={
                     city.content
                         ? [
-                              { key: "tips", label: "Tips", href: "#tips" },
-                              { key: "recommendations", label: "Recommendations", href: "#recommendations" },
-                              { key: "what-did-we-miss", label: "What We Missed", href: "#what-did-we-miss" },
-                          ]
+                            { key: "tips", label: "Tips", href: "#tips" },
+                            { key: "recommendations", label: "Recommendations", href: "#recommendations" },
+                            { key: "what-did-we-miss", label: "What We Missed", href: "#what-did-we-miss" },
+                        ]
                         : []
                 }
             />
-            <div className="py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
+            <div className="py-padding-inline-mobile lg:py-padding-xl-inline px-padding-block-mobile lg:px-padding-xl-block">
                 <Breadcrumbs items={breadcrumbItems} />
             </div>
 

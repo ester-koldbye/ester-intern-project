@@ -14,12 +14,12 @@ import { cn } from "@/styles/utils";
  */
 
 const breadcrumbItemVariants = cva(
-  "font-poppins font-regular text-sm leading-sm transition-colors",
+  "font-poppins font-semibold text-base leading-sm sm:text-md transition-colors hover:font-bold",
   {
     variants: {
       isActive: {
-        true: "text-text-tertiary hover:font-semibold",
-        false: "text-text-primary hover:font-semibold hover:text-text-tertiary",
+        true: "text-text-tertiary ",
+        false: "text-text-primary hover:text-text-tertiary",
       },
     },
     defaultVariants: {
@@ -59,7 +59,7 @@ export const BreadcrumbItem = ({
       </Comp>
       {/* Slot requires a single child, so asChild consumers own their own separator. */}
       {showSeparator && !asChild && (
-        <span aria-hidden="true" className="mx-2 text-text-primary">
+        <span aria-hidden="true" className="mx-2 text-text-primary font-semibold">
           /
         </span>
       )}

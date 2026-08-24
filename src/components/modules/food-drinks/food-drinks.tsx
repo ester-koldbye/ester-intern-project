@@ -80,14 +80,14 @@ export const FoodDrinks = ({
         <section
             data-slot="food-drinks"
             className={cn(
-                "px-padding-inline-mobile py-padding-block-mobile lg:px-padding-xl-inline lg:py-padding-xl-block flex w-full flex-col items-center gap-12 bg-white lg:gap-20",
+                "px-padding-block-mobile py-padding-inline-mobile lg:px-padding-xl-block lg:py-padding-xl-inline flex w-full flex-col items-center gap-12 bg-white lg:gap-20",
                 className,
             )}
             ref={ref}
             {...props}
         >
             <div className="flex w-full max-w-3xl flex-col items-center gap-6 text-center">
-                <Heading level={2} size="2xl" weight="semibold">
+                <Heading level={2} size="xl" weight="semibold">
                     {heading}
                 </Heading>
                 {description && (

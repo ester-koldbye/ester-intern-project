@@ -74,7 +74,7 @@ const ActivityPage = async ({
                 description={`Everything to know about ${activity.heading}.`}
             />
 
-            <div className="py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
+            <div className="py-padding-inline-mobile lg:py-padding-xl-inline px-padding-block-mobile lg:px-padding-xl-block">
                 <Breadcrumbs items={breadcrumbItems} />
             </div>
             <ActivityGallery

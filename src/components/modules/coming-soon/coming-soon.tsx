@@ -28,7 +28,7 @@ export const ComingSoon = ({
         <section
             data-slot="coming-soon"
             className={cn(
-                "px-padding-inline-mobile py-padding-block-mobile lg:px-padding-xl-inline lg:py-padding-xl-block flex w-full flex-col items-center gap-4 bg-white text-center",
+                "px-padding-block-mobile py-padding-inline-mobile lg:px-padding-xl-block lg:py-padding-xl-inline flex w-full flex-col items-center gap-4 bg-white text-center",
                 className,
             )}
             ref={ref}

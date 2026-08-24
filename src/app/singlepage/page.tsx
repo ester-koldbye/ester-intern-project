@@ -27,7 +27,7 @@ const Singlepage = async () => {
                 heading="Singlepage"
                 description="This is the singlepage."
             />
-            <div className="py-padding-inline-mobile lg:py-padding-inline px-padding-block-mobile lg:px-padding-xl-block">
+            <div className="py-padding-inline-mobile lg:py-padding-xl-inline px-padding-block-mobile lg:px-padding-xl-block">
                 <Breadcrumbs items={ITEMS} />
             </div>
             {/* TODO: page content goes here */}
