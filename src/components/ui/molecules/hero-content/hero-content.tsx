@@ -73,7 +73,7 @@ export const HeroContent = ({
 
             <Text
                 textColor="light"
-                size="sm"
+                size="base"
                 weight="semibold"
                 className="lg:text-md lg:leading-lg w-full lg:max-w-225"
             >

@@ -41,7 +41,7 @@ const textVariants = cva("font-poppins", {
   },
   defaultVariants: {
     textColor: "dark",
-    size: "sm",
+    size: "base",
     weight: "regular",
   },
 });

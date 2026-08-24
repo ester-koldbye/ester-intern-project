@@ -34,7 +34,7 @@ export const TipCard = ({
         <div
             data-slot="tip-card"
             className={cn(
-                "border-dark-brown flex w-full flex-1 flex-col gap-2 border-l-2 pl-8",
+                "border-dark-brown flex w-full flex-1 flex-col gap-2 border-l-2 pl-4 md:pl-8",
                 className,
             )}
             ref={ref}
@@ -43,7 +43,7 @@ export const TipCard = ({
             <p className="font-poppins text-text-primary text-md leading-md md:text-lg md:leading-lg font-bold">
                 {title}
             </p>
-            <Text as="div" size="md" weight="semibold" className="text-base md:text-md whitespace-pre-line">
+            <Text as="div" size="md" weight="semibold" className="text-base lg:text-md whitespace-pre-line">
                 {description}
             </Text>
         </div>

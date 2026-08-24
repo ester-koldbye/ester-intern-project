@@ -105,9 +105,9 @@ const CountryPage = async ({ params }: PageProps<"/[country]">) => {
 
                     {/* CITIES VISITED SECTION - laid out as a 3-column image grid */}
                     {cities.length > 0 && (
-                        <div className="bg-light-blue py-padding-inline-mobile md:py-padding-m-inline lg:py-padding-xl-inline px-padding-block-mobile md:px-padding-m-block lg:px-padding-xl-block">
-                            <section className="flex flex-col items-center gap-6 py-6 lg:gap-8 lg:py-8">
-                                <div className="px-6 pt-6 text-center">
+                        <div className="bg-light-blue px-padding-inline-mobile md:px-padding-m-inline lg:px-padding-xl-inline py-padding-block-mobile md:py-padding-m-block lg:py-padding-xl-block">
+                            <section className="flex flex-col items-center gap-6 lg:gap-8">
+                                <div className="text-center">
                                     <Heading level={2} size="xl" id="cities">
                                         Cities I visited
                                     </Heading>
@@ -137,14 +137,14 @@ const CountryPage = async ({ params }: PageProps<"/[country]">) => {
                     )}
 
                     {/* WHAT DID WE MISS SECTION */}
-                    <CardsSection
+                    {/* <CardsSection
                         id="what-did-we-miss"
                         heading="What did we miss?"
                         items={country.content.whatDidWeMiss}
                         renderItem={(item) => (
                             <TipCard title={item.title} description={item.description} />
                         )}
-                    />
+                    /> */}
                 </>
             )}
         </main>
