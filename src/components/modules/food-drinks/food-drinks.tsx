@@ -80,7 +80,7 @@ export const FoodDrinks = ({
         <section
             data-slot="food-drinks"
             className={cn(
-                "padding-block-responsive padding-inline-responsive flex w-full flex-col items-center  gap-6 lg:gap-8 bg-white",
+                "padding-block-responsive padding-inline-responsive flex w-full flex-col items-center gap-6 lg:gap-8 bg-white",
                 className,
             )}
             ref={ref}
@@ -99,13 +99,23 @@ export const FoodDrinks = ({
 
             <Accordion
                 type="multiple"
-                className="flex w-full flex-col gap-8 lg:flex-row lg:gap-16"
+                className="flex w-full flex-col md:gap-8 md:flex-row lg:gap-16"
             >
                 {itemColumns.map((column, columnIndex) => (
                     <div
                         // Columns are a pure layout split of one flat list, not separate data — index is fine.
                         key={columnIndex}
-                        className="border-dark-brown flex w-full flex-1 flex-col"
+                        className={cn(
+                            "border-dark-brown flex w-full flex-1 flex-col",
+                            // Below `md`, columns stack into one visual list, so
+                            // only the truly last item (last column's last child)
+                            // should close it off. From `md` up, columns sit
+                            // side by side, so every column's last child closes
+                            // its own list.
+                            "md:*:last:border-b",
+                            columnIndex === itemColumns.length - 1 &&
+                                "*:last:border-b",
+                        )}
                     >
                         {column.map((item, itemIndex) => {
                             const value = `item-${columnIndex}-${itemIndex}`;

@@ -35,7 +35,7 @@ export type AccordionItemProps = ComponentPropsWithRef<
 const AccordionItem = ({ className, ref, ...props }: AccordionItemProps) => (
     <AccordionPrimitive.Item
         data-slot="accordion-item"
-        className={cn("border-dark-brown border-t last:border-b", className)}
+        className={cn("border-dark-brown border-t", className)}
         ref={ref}
         {...props}
     />
