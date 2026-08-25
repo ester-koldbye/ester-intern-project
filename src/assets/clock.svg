@@ -1,0 +1,12 @@
+<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.33 12.6631C22.33 17.9777 17.9807 22.3262 12.665 22.3262C7.34933 22.3262 3 17.9777 3 12.6631C3 7.3485 7.34933 3.00003 12.665 3.00003C17.9807 3.00003 22.33 7.3485 22.33 12.6631Z" stroke="#1F1F1F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.13526 17.3412C7.37018 17.1063 7.75105 17.1063 7.98598 17.3412C8.2209 17.5761 8.2209 17.9568 7.98598 18.1917C7.75105 18.4266 7.37018 18.4266 7.13526 18.1917C6.90033 17.9568 6.90033 17.5761 7.13526 17.3412Z" fill="#1F1F1F"/>
+<path d="M17.344 7.13447C17.5789 6.89958 17.9598 6.89958 18.1947 7.13447C18.4297 7.36935 18.4297 7.75014 18.1947 7.98502C17.9598 8.2199 17.5789 8.2199 17.344 7.98502C17.1091 7.75014 17.1091 7.36935 17.344 7.13447Z" fill="#1F1F1F"/>
+<path d="M7.98598 7.13447C8.2209 7.36935 8.2209 7.75014 7.98598 7.98502C7.75109 8.2199 7.37018 8.2199 7.13526 7.98502C6.90033 7.75014 6.90033 7.36935 7.13526 7.13447C7.37018 6.89958 7.75109 6.89958 7.98598 7.13447Z" fill="#1F1F1F"/>
+<path d="M18.1947 17.3412C18.4296 17.5761 18.4296 17.9568 18.1947 18.1917C17.9598 18.4266 17.5789 18.4266 17.344 18.1917C17.1091 17.9568 17.1091 17.5761 17.344 17.3412C17.5789 17.1063 17.9598 17.1063 18.1947 17.3412Z" fill="#1F1F1F"/>
+<path d="M12.665 5.44584V6.64871" stroke="#1F1F1F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.665 18.6775V19.8804" stroke="#1F1F1F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.44632 12.6631H6.64943" stroke="#1F1F1F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.6806 12.6631H19.8837" stroke="#1F1F1F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.665 9.05447V12.6631L16.2744 16.2717" stroke="#1F1F1F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
