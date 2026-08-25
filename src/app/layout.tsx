@@ -33,7 +33,7 @@ const RootLayout = ({
 }>) => {
     return (
         <html lang="en" className={`${poppins.variable} ${syne.variable}`}>
-            <body className="antialiased">
+            <body className="antialiased max-w-screen-3xl m-auto">
                 <ReportWebVitals />
                 {children}
                 <Footer />
