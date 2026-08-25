@@ -34,10 +34,10 @@ const headingVariants = cva("font-poppins tracking-[0.32px]", {
             quaternary: "text-text-quaternary",
         },
         size: {
-            "2xl": "text-2xl leading-2xl",
-            xl: "text-xl leading-xl lg:text-2xl lg:leading-2xl",
-            lg: "text-lg leading-lg lg:text-xl lg:leading-xl",
-            md: "text-md leading-md lg:text-lg lg:leading-lg",
+            "2xl": "h-xxl leading-2xl",
+            xl: "h-xl leading-xl lg:leading-2xl",
+            lg: "h-lg leading-lg lg:leading-xl",
+            md: "h-md leading-md lg:leading-lg",
         },
         weight: {
             regular: "font-regular",

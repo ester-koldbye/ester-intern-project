@@ -2,8 +2,8 @@
 @import "tw-animate-css";
 
 @theme {
-    /**
-     * COLORS
+
+    /*********** COLORS ***********
      * We remove the built in colors from Tailwind.
      * You need to define your own colors based on the design tokens from Figma.
      */
@@ -33,8 +33,8 @@
     --color-bg-light-grey: var(--color-light-grey);
     --color-bg-light-blue: var(--color-light-blue);
 
-    /**
-     * TYPOGRAPHY
+    
+    /*********** TYPOGRAPHY ***********
      * We remove the built in typography from Tailwind.
      * You need to define your own typography based on the design tokens from Figma.
      */
@@ -181,6 +181,60 @@
     }
 }
 
+html {
+    /* min and max scale bounds (global layout) */
+    --min-scale-bound: 20rem;
+    --max-scale-bound: 80rem;
+    scroll-behavior: smooth;
+}
+
 a {
     cursor: pointer;
+}
+
+*,
+*::before,
+*::after {
+    /* ☠️ = private */
+
+    /* default values */
+    --fs-def: inherit;
+    --fs-min: inherit;
+    --fs-max: inherit;
+
+    /* viewport and font size delta */
+    --☠️-vp-delta: calc(var(--max-scale-bound) - var(--min-scale-bound));
+    --☠️-fs-delta: calc(var(--fs-max) - var(--fs-min));
+
+    /* numeric delta values */
+    --☠️-vp-num: tan(atan2(var(--☠️-vp-delta), 1rem));
+    --☠️-fs-num: tan(atan2(var(--☠️-fs-delta), 1rem));
+
+    /* mid range values (components) */
+    --☠️-divisor: calc(var(--☠️-vp-num) / var(--☠️-fs-num));
+    --☠️-vw-mid: calc(100vw / var(--☠️-divisor));
+    --☠️-fs-mid: calc(var(--fs-min) - (var(--min-scale-bound) / var(--☠️-divisor)));
+
+    /* clamp value */
+    --☠️-fs-clamp: clamp(var(--fs-min), var(--☠️-vw-mid) + var(--☠️-fs-mid), var(--fs-max));
+
+    /* property value */
+    font-size: var(--fs, var(--☠️-fs-clamp, var(--fs-def, var(--fs-min, var(--fs-max)))));
+}
+
+.h-xxl{
+    --fs-max: var(--text-5xl);
+    --fs-min: var(--text-xl);
+}
+.h-xl{
+    --fs-max: var(--text-2xl); /* 3.5rem = 56px */
+    --fs-min: var(--text-xl);  /* 1.8rem = 28.8px */
+}
+.h-lg{
+    --fs-max: var(--text-xl);  /* 1.8rem = 28.8px */
+    --fs-min: var(--text-lg);  /* 1.5rem = 24px */
+}
+.h-md{
+    --fs-max: var(--text-lg);
+    --fs-min: var(--text-md);
 }

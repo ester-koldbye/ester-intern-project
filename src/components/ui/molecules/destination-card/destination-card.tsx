@@ -41,7 +41,7 @@ const destinationCardVariants = cva(
 );
 
 const destinationCardLabelVariants = cva(
-    "absolute font-poppins whitespace-nowrap text-text-secondary bottom-4 left-2.5 text-md md:text-lg lg:text-xl md:text-lg lg:leading-xl font-semibold tracking-[-0.32px] ",
+    "absolute font-poppins whitespace-nowrap text-text-secondary bottom-4 left-2.5 h-md lg:leading-xl font-semibold tracking-[-0.32px] ",
     {
         variants: {
             size: {
