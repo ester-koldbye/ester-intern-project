@@ -20,7 +20,7 @@ const meta = {
     argTypes: {
         layout: {
             control: "radio",
-            options: ["vertical", "horizontal"],
+            options: ["vertical", "horizontal", "responsive"],
         },
         size: {
             control: "radio",
@@ -72,6 +72,37 @@ export const Horizontal: Story = {
         locationHref: "https://maps.google.com",
         readMoreHref: "/",
     },
+};
+
+/**
+ * `layout="responsive"` starts vertical and switches to horizontal once its
+ * container is wide enough (≥584px) — it needs an ancestor with `@container`
+ * to measure against, so this story wraps it in two boxes of different
+ * widths rather than resizing the whole viewport.
+ */
+export const Responsive: Story = {
+    args: {
+        layout: "responsive",
+        size: "M",
+        locationHref: "https://maps.google.com",
+        readMoreHref: "/",
+    },
+    render: (args) => (
+        <div className="flex flex-col gap-8">
+            <div>
+                <p className="mb-2 text-sm text-text-secondary">Narrow container (400px) — stays vertical</p>
+                <div className="@container w-100">
+                    <ActivityCard {...args} />
+                </div>
+            </div>
+            <div>
+                <p className="mb-2 text-sm text-text-secondary">Wide container (700px) — goes horizontal</p>
+                <div className="@container w-175">
+                    <ActivityCard {...args} />
+                </div>
+            </div>
+        </div>
+    ),
 };
 
 /** `readMoreHref`/`locationHref` wire the button and the location label to `next/link`/an anchor instead of a plain button. */

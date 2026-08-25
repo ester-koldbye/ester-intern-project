@@ -2,7 +2,9 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Recommendations, type RecommendationItem } from "./recommendations";
 
 const ITEMS: RecommendationItem[] = [
-    // Activities: two favorites (hero + one stacked) plus two others (grid).
+    // Activities: 5 favorites — FeaturedGroup's own cap (1 hero + 3 stacked)
+    // kicks in, so the 5th ("chinatown") spills into "Other activities"
+    // alongside the 2 genuine non-favorites, rather than being dropped.
     {
         id: "wat-arun",
         category: "activities",
@@ -27,6 +29,39 @@ const ITEMS: RecommendationItem[] = [
         readMoreHref: "/",
     },
     {
+        id: "muay-thai-stadium",
+        category: "activities",
+        favorite: true,
+        imageSrc: "/destinations/thailand/koh-tao.JPG",
+        tag: "Stadium",
+        location: "Bangkok",
+        locationHref: "https://maps.google.com",
+        title: "Rajadamnern Muay Thai Stadium",
+        readMoreHref: "/",
+    },
+    {
+        id: "khao-san-road-activities",
+        category: "activities",
+        favorite: true,
+        imageSrc: "/destinations/thailand/koh-phangan.jpg",
+        tag: "Famous street",
+        location: "Bangkok",
+        locationHref: "https://maps.google.com",
+        title: "Khao San Road",
+        readMoreHref: "/",
+    },
+    {
+        id: "chinatown",
+        category: "activities",
+        favorite: true,
+        imageSrc: "/destinations/thailand/krabi.JPG",
+        tag: "Famous street",
+        location: "Bangkok",
+        locationHref: "https://maps.google.com",
+        title: "Chinatown",
+        readMoreHref: "/",
+    },
+    {
         id: "floating-market",
         category: "activities",
         imageSrc: "/destinations/thailand/koh-phangan.jpg",
@@ -37,16 +72,17 @@ const ITEMS: RecommendationItem[] = [
         readMoreHref: "/",
     },
     {
-        id: "chinatown",
+        id: "sleeping-buddha",
         category: "activities",
-        imageSrc: "/destinations/thailand/krabi.JPG",
-        tag: "Famous street",
+        imageSrc: "/destinations/thailand/pai.JPG",
+        tag: "Temple",
         location: "Bangkok",
         locationHref: "https://maps.google.com",
-        title: "Chinatown",
+        title: "The Sleeping Buddha",
         readMoreHref: "/",
     },
-    // Where to eat: no favorites yet, so it's a plain "Where to eat" heading over a hero+stack of everything.
+    // Where to eat: no favorites, and 3 items — enough to show the fallback
+    // 3-column/1-column grid rather than a hero+stack.
     {
         id: "night-bazaar",
         category: "where-to-eat",
@@ -57,11 +93,31 @@ const ITEMS: RecommendationItem[] = [
         title: "Night bazaar street food",
         readMoreHref: "/",
     },
-    // Going out: a single favorite, nothing else — matches Figma's own "Going out spots" example.
+    {
+        id: "seven-eleven",
+        category: "where-to-eat",
+        imageSrc: "/destinations/thailand/koh-samui.jpg",
+        tag: "Restaurant",
+        location: "Bangkok",
+        locationHref: "https://maps.google.com",
+        title: "7/11",
+        readMoreHref: "/",
+    },
+    {
+        id: "corgi-cafe",
+        category: "where-to-eat",
+        imageSrc: "/destinations/thailand/krabi.JPG",
+        tag: "Cafe",
+        location: "Bangkok",
+        locationHref: "https://maps.google.com",
+        title: "Corgi In The Garden",
+        readMoreHref: "/",
+    },
+    // Going out: a single item, no favorites — matches Figma's own "Going out
+    // spots" example: one full-width hero card, not a lopsided grid.
     {
         id: "khao-san-road",
         category: "going-out",
-        favorite: true,
         imageSrc: "/destinations/thailand/koh-phangan.jpg",
         tag: "Famous street",
         location: "Bangkok",
@@ -87,12 +143,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * "View all": every category with data gets its own group. Activities has
- * favorites, so it splits into "My favorite activities" + "Other
- * activities"; Where to eat has none, so it's just "Where to eat" over a
- * hero+stack of everything; Going out has one favorite and nothing else, so
- * only "My favorite going out" shows, no "Other" heading. Accommodations has
- * no data at all, so it doesn't render.
+ * "View all": every category with data gets its own group, separated by a
+ * thin divider. Activities has 5 favorites, so it splits into "My favorite
+ * activities" (hero + 3 stacked — Figma's cap) and "Other activities" (the
+ * 5th favorite plus the 2 genuine non-favorites, in the 3-column grid);
+ * Where to eat has no favorites but 3 items, so it's "Where to eat" straight
+ * over the same grid; Going out has one item and no favorites, so it's "Going
+ * out" over a single full-width hero card. Accommodations has no data at
+ * all, so it doesn't render.
  */
 export const Default: Story = {};
 

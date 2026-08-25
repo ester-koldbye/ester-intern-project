@@ -75,9 +75,10 @@ const CityPage = async ({ params }: PageProps<"/[country]/[city]">) => {
                         : []
                 }
             />
-            <div className="px-padding-inline-mobile md:px-padding-m-inline lg:px-padding-xl-inline py-padding-block-mobile md:py-padding-m-block lg:py-padding-xl-block">
-                <Breadcrumbs items={breadcrumbItems} />
-            </div>
+            
+            {/* BREADCRUMBS */}
+            <Breadcrumbs items={breadcrumbItems} />
+            
 
             {!city.content ? (
                 <ComingSoon

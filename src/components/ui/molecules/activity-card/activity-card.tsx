@@ -23,55 +23,94 @@ import { Button } from "@/components/ui/atoms/button/button";
  *
  * Like `DestinationCard`, sizes are fixed rather than fluid: a page picks
  * `size="L"` or `size="M"` per breakpoint instead of the card resizing
- * itself internally.
+ * itself internally. `layout="vertical"`/`"horizontal"` are the same kind of
+ * fixed choice, always rendering the same way regardless of available space.
+ *
+ * `layout="responsive"` is the one exception: it starts `vertical` and
+ * switches to `horizontal` once its container has room (≥584px, the
+ * horizontal card's Figma width), via a CSS container query — so it needs an
+ * ancestor with the `@container` class (`container-type: inline-size`) to
+ * measure against. Without one, a container query never matches anything and
+ * the card just stays vertical, e.g.:
+ *
+ *   <div className="@container ...">
+ *     <ActivityCard layout="responsive" size="M" ... />
+ *   </div>
  */
 
+export type ActivityCardLayout = "vertical" | "horizontal" | "responsive";
+export type ActivityCardSize = "L" | "M";
+
+/** Every layout/size combo as one key, for the width/height lookups below. */
+const variantKey = (layout: ActivityCardLayout, size: ActivityCardSize) => `${layout}_${size}` as const;
+
+// Container-query breakpoint shared by every "responsive" entry below: the
+// point at which there's enough room for the 250px square image plus a
+// legible text column next to it (≈ the horizontal card's own 584px width).
+const RESPONSIVE_BREAKPOINT = "@[584px]" as const;
+
+// Root wrapper: sets flex direction (stacked for vertical, side-by-side for
+// horizontal). Width depends on `size` too, so it isn't a cva variant here —
+// see `activityCardWidth` below instead.
 const activityCardVariants = cva("flex items-start gap-6", {
     variants: {
         layout: {
-            vertical: "w-[584px] flex-col",
-            horizontal: "w-[584px] flex-row items-center",
-        },
-        size: {
-            L: "",
-            M: "",
+            vertical: "flex-col",
+            horizontal: "flex-row items-center",
+            // Starts like `vertical`, then switches to `horizontal`'s row +
+            // centered alignment once the container is wide enough.
+            responsive: `flex-col ${RESPONSIVE_BREAKPOINT}:flex-row ${RESPONSIVE_BREAKPOINT}:items-center`,
         },
     },
-    compoundVariants: [
-        // Card 3's spec width (378.67px) — the compact vertical card.
-        { layout: "vertical", size: "M", className: "w-[379px]" },
-    ],
     defaultVariants: {
         layout: "vertical",
-        size: "L",
     },
 });
 
-// Styling for the Image wrapper div
+// Card width per Figma spec: every combo is 584px except the compact
+// vertical/M card (378.67px, rounded to 379px). `responsive` fills its
+// container instead — the whole point is to adapt to whatever space it's
+// given, rather than assume a fixed size.
+const activityCardWidth: Record<ReturnType<typeof variantKey>, string> = {
+    vertical_L: "w-[584px]",
+    vertical_M: "w-[379px]",
+    horizontal_L: "w-[584px]",
+    horizontal_M: "w-[584px]",
+    responsive_L: "w-full",
+    responsive_M: "w-full",
+};
+
+// Base styling for the Image wrapper div — `layout` alone decides whether it
+// stretches full-width (vertical/responsive). Actual dimensions come from
+// `activityCardImageSize` below, keyed by every layout/size pair.
 const activityCardImageVariants = cva("relative shrink-0 overflow-hidden rounded-card", {
     variants: {
         layout: {
             vertical: "w-full",
             horizontal: "",
-        },
-        size: {
-            L: "",
-            M: "",
+            responsive: "w-full",
         },
     },
-    compoundVariants: [
-        { layout: "vertical", size: "L", className: "h-[400px]" },
-        { layout: "vertical", size: "M", className: "h-[300px]" },
-        { layout: "horizontal", size: "M", className: "size-[250px]" },
-        { layout: "horizontal", size: "L", className: "size-[250px]" },
-    ],
     defaultVariants: {
         layout: "vertical",
-        size: "L",
     },
 });
 
-// LOCATION PIN ICON
+// Image dimensions per Figma spec, keyed by layout/size. `responsive` mixes
+// the two: `vertical`'s fixed height (full width) below the breakpoint,
+// `horizontal`'s fixed square above it.
+const activityCardImageSize: Record<ReturnType<typeof variantKey>, string> = {
+    vertical_L: "h-[400px]",
+    vertical_M: "h-[300px]",
+    horizontal_L: "size-[250px]",
+    horizontal_M: "size-[250px]",
+    responsive_L: `h-[400px] ${RESPONSIVE_BREAKPOINT}:size-[250px]`,
+    responsive_M: `h-[300px] ${RESPONSIVE_BREAKPOINT}:size-[250px]`,
+};
+
+// Location pin icon used next to the location link below. Inlined as SVG
+// (rather than an icon library import) so its `currentColor` fill picks up
+// the surrounding text color automatically.
 const PinIcon = (props: ComponentPropsWithRef<"svg">) => (
     <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...props}>
         <path
@@ -83,6 +122,7 @@ const PinIcon = (props: ComponentPropsWithRef<"svg">) => (
 
 export type ActivityCardProps = Omit<ComponentPropsWithRef<"div">, "title"> &
     VariantProps<typeof activityCardVariants> & {
+        size?: ActivityCardSize; /* card scale — see activityCardWidth/activityCardImageSize */
         imageSrc: string; /* activity image */
         imageAlt?: string; /* alt text for image */
         tag: ReactNode; /* tag for the activity */
@@ -133,21 +173,23 @@ export const ActivityCard = ({
                 )}
             </div>
 
-            {/* Row 2: title and description */}
-            <div className="flex w-full flex-col items-start gap-2">
-                {size === "L" ? (
-                    <Heading level={titleLevel} size="lg" weight="semibold" className="w-full tracking-[-0.32px]">
-                        {title}
-                    </Heading>
-                ) : (
-                    <Heading level={titleLevel} size="lg" className="w-full">
-                        {title}
-                    </Heading>
-                )}
+            {/* Row 2: title and description.
+                Per Figma spec, only the L card's title is semibold with
+                tightened tracking; the M card falls back to Heading's own
+                default weight (bold) by leaving `weight` unset. */}
+            <div className="flex w-full flex-col items-start gap-3">
+                <Heading
+                    level={titleLevel}
+                    size="lg"
+                    weight={size === "L" ? "semibold" : undefined}
+                    className={cn("w-full", size === "L" && "tracking-[-0.32px]")}
+                >
+                    {title}
+                </Heading>
 
                 {/* Paragraph is skipped when no description is provided */}
                 {description && (
-                    <Text size="sm" weight="semibold" className="w-full">
+                    <Text size="base" weight="semibold" className="w-full">
                         {description}
                     </Text>
                 )}
@@ -155,39 +197,68 @@ export const ActivityCard = ({
         </div>
     );
 
-    // `readMoreHref` decides whenther this renders as a real link or a plain button with a click handler
-    // `asChild` + `Link` makes `Button`hand its own styling down to the <Link>
-    const readMoreButton = readMoreHref ? (
-        <Button asChild variant="outline" textColor="dark" size="M" className="shrink-0">
-            <Link href={readMoreHref as Route}>{readMoreLabel}</Link>
-        </Button>
-    ) : (
-        <Button variant="outline" textColor="dark" size="M" className="shrink-0" onClick={onReadMoreClick}>
-            {readMoreLabel}
+    // `readMoreHref` decides whether this renders as a real link or a plain
+    // button with a click handler. When it's a link, `asChild` makes `Button`
+    // pass its own styling down to the `Link` instead of rendering a `<button>`
+    // wrapping it — so there's exactly one focusable, one semantically-correct
+    // element. `onClick` only applies in the plain-button case (a link ignores it).
+    const readMoreButton = (
+        <Button
+            asChild={!!readMoreHref}
+            variant="outline"
+            textColor="dark"
+            size="M"
+            className="shrink-0"
+            onClick={readMoreHref ? undefined : onReadMoreClick}
+        >
+            {readMoreHref ? <Link href={readMoreHref as Route}>{readMoreLabel}</Link> : readMoreLabel}
         </Button>
     );
+
+    // `layout` defaults to "vertical" above, but cva's own typing still
+    // allows `null` (to explicitly opt out of the variant) — fall back the
+    // same way here so it's always a valid key into the lookups below.
+    const resolvedLayout = layout ?? "vertical";
+    const key = variantKey(resolvedLayout, size);
+
+    // "horizontal" and "responsive" both need the info/title block and the
+    // button wrapped in their own right-hand column (image left, column
+    // right, once "responsive" has crossed its breakpoint). Only "vertical"
+    // renders them as flat siblings instead.
+    const isColumnLayout = resolvedLayout !== "vertical";
 
     return (
         <div
             data-slot="activity-card"
-            className={cn(activityCardVariants({ layout, size, className }))}
+            className={cn(activityCardVariants({ layout }), activityCardWidth[key], className)}
             ref={ref}
             {...props}
         >
-            {/* Photo - variant classes can change based on layout and size */}
-            <div className={cn(activityCardImageVariants({ layout, size }))}>
+            {/* Photo. `fill` + the wrapper's own height/width (set by
+                activityCardImageSize above) size the image; only the
+                object-fit behavior lives here. */}
+            <div className={cn(activityCardImageVariants({ layout }), activityCardImageSize[key])}>
                 <Image src={imageSrc} alt={imageAlt} fill sizes="(min-width: 584px) 584px, 100vw" className="object-cover" />
             </div>
 
-            {layout === "horizontal" ? (
-                // Figma nests the title group and the button in one right-hand
-                // column (16px gap) rather than as siblings of the image.
-                <div className="flex w-full flex-1 flex-col items-start gap-4">
+            {isColumnLayout ? (
+                // Figma spec: 16px gap between info/title and button. For
+                // "responsive", that only applies once it's actually a
+                // column (past the breakpoint) — below it, it should read
+                // exactly like "vertical"'s 24px flat-sibling gap.
+                <div
+                    className={cn(
+                        "flex w-full flex-1 flex-col items-start",
+                        resolvedLayout === "responsive" ? `gap-6 ${RESPONSIVE_BREAKPOINT}:gap-4` : "gap-4",
+                    )}
+                >
                     {infoAndTitle}
                     {readMoreButton}
                 </div>
             ) : (
-                // Vertical layout: image, info/title block and are three flat sibling stacked by 'activityCardVariants' flex-col.
+                // Vertical: no extra wrapper needed — image, info/title block
+                // and button are already three flat siblings, stacked by the
+                // root's own `flex-col` (see activityCardVariants above).
                 <>
                     {infoAndTitle}
                     {readMoreButton}
