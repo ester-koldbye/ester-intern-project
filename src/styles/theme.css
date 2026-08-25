@@ -194,50 +194,77 @@ a {
 }
 
 
-/* TYPOGRAPHY SCALING */
-*,
-*::before,
-*::after {
-    /* ☠️ = private */
+/* TYPOGRAPHY SCALING
+ * Kept inside `@layer base`: `@import "tailwindcss"` declares the layer
+ * order `theme, base, components, utilities`, and any rule left unlayered
+ * outranks *every* layer regardless of specificity. Left unlayered, this
+ * universal `*` selector's `font-size` would beat Tailwind's `text-*`
+ * utilities (which live in `@layer utilities`) everywhere in the app — not
+ * just on elements meant to opt into fluid scaling via `.h-*`. Inside
+ * `@layer base`, `utilities` still wins whenever a component sets an
+ * explicit `text-*` size, while `.h-*` (same layer, higher specificity than
+ * `*`) still overrides the defaults below for elements that opt in.
+ *
+ * `h1`–`h6` are restated explicitly alongside `*` below because Tailwind's
+ * own preflight (also in `@layer base`) resets `h1,h2,h3,h4,h5,h6 { font-size:
+ * inherit }` — a type selector, which outranks the universal `*` on
+ * specificity alone once both live in the same layer. Repeating the tag
+ * selectors here ties that specificity; since this block is declared after
+ * `@import "tailwindcss"`, it comes later in `base`'s merged rule order and
+ * wins the tie — the same pattern Tailwind's own docs use for overriding
+ * preflight.
+ */
+@layer base {
+    *,
+    *::before,
+    *::after,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        /* ☠️ = private */
 
-    /* default values */
-    --fs-def: inherit;
-    --fs-min: inherit;
-    --fs-max: inherit;
+        /* default values */
+        --fs-def: inherit;
+        --fs-min: inherit;
+        --fs-max: inherit;
 
-    /* viewport and font size delta */
-    --☠️-vp-delta: calc(var(--max-scale-bound) - var(--min-scale-bound));
-    --☠️-fs-delta: calc(var(--fs-max) - var(--fs-min));
+        /* viewport and font size delta */
+        --☠️-vp-delta: calc(var(--max-scale-bound) - var(--min-scale-bound));
+        --☠️-fs-delta: calc(var(--fs-max) - var(--fs-min));
 
-    /* numeric delta values */
-    --☠️-vp-num: tan(atan2(var(--☠️-vp-delta), 1rem));
-    --☠️-fs-num: tan(atan2(var(--☠️-fs-delta), 1rem));
+        /* numeric delta values */
+        --☠️-vp-num: tan(atan2(var(--☠️-vp-delta), 1rem));
+        --☠️-fs-num: tan(atan2(var(--☠️-fs-delta), 1rem));
 
-    /* mid range values (components) */
-    --☠️-divisor: calc(var(--☠️-vp-num) / var(--☠️-fs-num));
-    --☠️-vw-mid: calc(100vw / var(--☠️-divisor));
-    --☠️-fs-mid: calc(var(--fs-min) - (var(--min-scale-bound) / var(--☠️-divisor)));
+        /* mid range values (components) */
+        --☠️-divisor: calc(var(--☠️-vp-num) / var(--☠️-fs-num));
+        --☠️-vw-mid: calc(100vw / var(--☠️-divisor));
+        --☠️-fs-mid: calc(var(--fs-min) - (var(--min-scale-bound) / var(--☠️-divisor)));
 
-    /* clamp value */
-    --☠️-fs-clamp: clamp(var(--fs-min), var(--☠️-vw-mid) + var(--☠️-fs-mid), var(--fs-max));
+        /* clamp value */
+        --☠️-fs-clamp: clamp(var(--fs-min), var(--☠️-vw-mid) + var(--☠️-fs-mid), var(--fs-max));
 
-    /* property value */
-    font-size: var(--fs, var(--☠️-fs-clamp, var(--fs-def, var(--fs-min, var(--fs-max)))));
-}
+        /* property value */
+        font-size: var(--fs, var(--☠️-fs-clamp, var(--fs-def, var(--fs-min, var(--fs-max)))));
+    }
 
-.h-xxl{
-    --fs-max: var(--text-5xl);
-    --fs-min: var(--text-xl);
-}
-.h-xl{
-    --fs-max: var(--text-2xl); /* 3.5rem = 56px */
-    --fs-min: var(--text-xl);  /* 1.8rem = 28.8px */
-}
-.h-lg{
-    --fs-max: var(--text-xl);  /* 1.8rem = 28.8px */
-    --fs-min: var(--text-lg);  /* 1.5rem = 24px */
-}
-.h-md{
-    --fs-max: var(--text-lg);
-    --fs-min: var(--text-md);
+    .h-xxl{
+        --fs-max: var(--text-5xl);
+        --fs-min: var(--text-xl);
+    }
+    .h-xl{
+        --fs-max: var(--text-2xl); /* 3.5rem = 56px */
+        --fs-min: var(--text-xl);  /* 1.8rem = 28.8px */
+    }
+    .h-lg{
+        --fs-max: var(--text-xl);  /* 1.8rem = 28.8px */
+        --fs-min: var(--text-lg);  /* 1.5rem = 24px */
+    }
+    .h-md{
+        --fs-max: var(--text-lg);
+        --fs-min: var(--text-md);
+    }
 }

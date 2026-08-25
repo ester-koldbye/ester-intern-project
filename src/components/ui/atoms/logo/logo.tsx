@@ -11,7 +11,7 @@ const logoVariants = cva("font-syne font-bold tracking-[0.32px]", {
       secondary: "text-text-primary",
     },
     size: {
-      S: "text-sm",
+      S: "text-base",
       M: "text-md",
       L: "text-xl",
     },
