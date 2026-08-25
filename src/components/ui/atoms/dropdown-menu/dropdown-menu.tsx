@@ -117,7 +117,7 @@ const DropdownMenuContent = ({
 DropdownMenuContent.displayName = "DropdownMenuContent";
 
 const dropdownMenuItemVariants = cva(
-  "cursor-pointer font-poppins text-sm leading-sm font-regular outline-none transition-colors select-none",
+  "cursor-pointer font-poppins text-base font-semibold outline-none transition-colors select-none",
   {
     variants: {
       variant: {
@@ -125,7 +125,7 @@ const dropdownMenuItemVariants = cva(
         default: "text-text-primary hover:text-text-tertiary focus-visible:text-text-tertiary",
 
         // Current page, e.g. Thailand while browsing Thailand pages
-        active: "text-text-tertiary",
+        active: "text-text-tertiary font-bold",
       },
     },
     defaultVariants: {

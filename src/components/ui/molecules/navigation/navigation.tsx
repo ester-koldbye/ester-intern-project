@@ -168,7 +168,7 @@ export const Navigation = ({
                         <DropdownMenuContent align="start">
                             {countries.map((country) => (
                                 <DropdownMenuItem key={country.href} asChild active={country.href === activeCountryHref}>
-                                    <Link href={country.href as Route} onClick={closeMobileMenu}>
+                                    <Link href={country.href as Route} onClick={closeMobileMenu} className="text-base font-bold">
                                         {country.label}
                                     </Link>
                                 </DropdownMenuItem>
