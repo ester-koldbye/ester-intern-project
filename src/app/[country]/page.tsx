@@ -3,7 +3,6 @@
 // local mock list but is already shaped like an async fetch. A country that
 // exists but has no write-up yet (see src/lib/destinations.ts) renders
 // ComingSoon instead of 404ing — only a genuinely unknown slug does that.
-import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/modules/hero/hero";
@@ -121,14 +120,14 @@ const CountryPage = async ({ params }: PageProps<"/[country]">) => {
                                             {cities
                                                 .filter((_, cityIndex) => cityIndex % 3 === columnIndex)
                                                 .map((city) => (
-                                                    <Link key={city.slug} href={`/${country.slug}/${city.slug}`}>
-                                                        <DestinationCard
-                                                            imageSrc={city.imageSrc}
-                                                            imageAlt={city.imageAlt}
-                                                            label={city.name}
-                                                            size={city.size}
-                                                        />
-                                                    </Link>
+                                                    <DestinationCard
+                                                        key={city.slug}
+                                                        imageSrc={city.imageSrc}
+                                                        imageAlt={city.imageAlt}
+                                                        label={city.name}
+                                                        size={city.size}
+                                                        href={`/${country.slug}/${city.slug}`}
+                                                    />
                                                 ))}
                                         </div>
                                     ))}

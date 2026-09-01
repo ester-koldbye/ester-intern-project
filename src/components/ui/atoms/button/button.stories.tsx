@@ -11,7 +11,7 @@ const meta = {
     argTypes: {
         variant: {
             control: "radio",
-            options: ["primary", "secondary", "outline"],
+            options: ["primary", "secondary", "outline", "overlay"],
         },
         textColor: {
             control: "radio",
@@ -53,6 +53,10 @@ export const Outline: Story = {
     args: { variant: "outline", textColor: "dark", children: "Outline" },
 };
 
+export const Overlay: Story = {
+    args: { variant: "overlay", children: "Primary Button" },
+};
+
 /** asChild lets consumers map the Button's styling onto their own element, e.g. a router Link. */
 export const AsChild: Story = {
     args: {
@@ -80,6 +84,8 @@ export const AllVariants: Story = {
                 Outline (Light)
             </Button>{" "}
             {/* outline, hvid tekst */}
+            <Button variant="overlay">Primary Button</Button>{" "}
+            {/* mørk scrim, bliver blå ved hover, altid hvid tekst */}
         </div>
     ),
 };

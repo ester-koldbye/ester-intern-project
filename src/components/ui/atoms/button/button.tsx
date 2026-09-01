@@ -11,16 +11,22 @@ import { cn } from "@/styles/utils";
  * actions alike.
  */
 const buttonVariants = cva(
-    "inline-flex cursor-pointer items-center justify-center rounded-[30px] border-solid font-poppins font-semibold tracking-[0.32px] transition-colors",
+    "border-2 inline-flex cursor-pointer items-center justify-center rounded-[30px] border-solid font-poppins font-semibold tracking-[0.32px] transition-colors",
     {
         variants: {
             variant: {
                 primary:
-                    "border-2 border-blue bg-blue text-text-secondary hover:bg-transparent",
+                    "border-blue bg-blue text-text-secondary hover:bg-transparent",
                 secondary:
-                    "border-2 border-white bg-white text-text-primary hover:bg-blue hover:border-blue hover:text-text-secondary",
+                    "border-white bg-white text-text-primary hover:bg-blue hover:border-blue hover:text-text-secondary",
                 outline:
-                    "border-2 border-blue bg-transparent hover:bg-blue hover:text-text-secondary",
+                    "border-blue bg-transparent hover:bg-blue hover:text-text-secondary",
+                // Thicker border + a dark scrim fill (so the label stays
+                // readable over a photo) that solidifies to blue on hover,
+                // with a bolder, uppercase label. See Figma node 173-6373
+                // (default) / 173-6375 (hover).
+                overlay:
+                    "border-blue bg-dark-brown-50 font-bold uppercase hover:bg-blue",
             },
             textColor: {
                 dark: "text-text-primary",
@@ -28,8 +34,8 @@ const buttonVariants = cva(
             },
             size: {
                 S: "min-w-28 px-4 py-3 text-sm leading-2xs",
-                M: "min-w-35 px-5.5 py-4.5 text-base leading-xs",
-                L: "min-w-40 px-7 py-5 text-md leading-lg",
+                M: "min-w-35 px-4 py-3 text-sm leading-xs",
+                L: "min-w-40 px-7 py-5 text-sm leading-lg",
             },
         },
         compoundVariants: [
@@ -44,6 +50,13 @@ const buttonVariants = cva(
                 variant: "primary",
                 textColor: "light",
                 className: "hover:text-text-secondary",
+            },
+            // overlay's label is always white — the scrim/blue backgrounds
+            // it's designed for never pair with dark text — regardless of
+            // textColor.
+            {
+                variant: "overlay",
+                className: "text-text-secondary",
             },
         ],
         defaultVariants: {

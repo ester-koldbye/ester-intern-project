@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Hero } from "@/components/modules/hero/hero";
 import { Heading } from "@/components/ui/atoms/heading/heading";
 import { DestinationCard } from "@/components/ui/molecules/destination-card/destination-card";
@@ -46,27 +45,27 @@ const Home = async () => {
                         {/* First two countries */}
                         <div className="grid w-full gap-3 sm:grid-cols-2 md:gap-5">
                             {featuredCountries.map((country) => (
-                                <Link key={country.slug} href={`/${country.slug}`}>
-                                    <DestinationCard
-                                        imageSrc={country.imageSrc}
-                                        imageAlt={country.imageAlt}
-                                        label={country.name}
-                                        size={country.size}
-                                    />
-                                </Link>
+                                <DestinationCard
+                                    key={country.slug}
+                                    imageSrc={country.imageSrc}
+                                    imageAlt={country.imageAlt}
+                                    label={country.name}
+                                    size={country.size}
+                                    href={`/${country.slug}`}
+                                />
                             ))}
                         </div>
                         {/* Next three countries */}
                         <div className="grid w-full gap-3 sm:grid-cols-3 md:gap-5">
                             {otherCountries.map((country) => (
-                                <Link key={country.slug} href={`/${country.slug}`}>
-                                    <DestinationCard
-                                        imageSrc={country.imageSrc}
-                                        imageAlt={country.imageAlt}
-                                        label={country.name}
-                                        size={country.size}
-                                    />
-                                </Link>
+                                <DestinationCard
+                                    key={country.slug}
+                                    imageSrc={country.imageSrc}
+                                    imageAlt={country.imageAlt}
+                                    label={country.name}
+                                    size={country.size}
+                                    href={`/${country.slug}`}
+                                />
                             ))}
                         </div>
                     </div>

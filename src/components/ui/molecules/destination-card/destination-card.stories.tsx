@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import Link from "next/link";
 import { DestinationCard } from "./destination-card";
 
 const meta = {
@@ -12,6 +11,7 @@ const meta = {
     args: {
         imageSrc: "/destinations/australia.JPG",
         label: "Australia",
+        href: "/australia",
     },
     argTypes: {
         size: {
@@ -58,7 +58,7 @@ export const Medium: Story = {
     ],
 };
 
-/** Small — a fixed 130×150 thumbnail at every breakpoint, used as a standalone thumbnail rather than a grid item. Label drops to a smaller, bolder size to stay legible on the shorter card. */
+/** Small — a fixed 130×150 thumbnail at every breakpoint, used as a standalone thumbnail rather than a grid item. Label drops to a smaller, bolder size and the button is skipped entirely — too little room for a 140px pill. */
 export const Small: Story = {
     args: { size: "S" },
 };
@@ -91,12 +91,13 @@ export const FillsGrid: Story = {
     render: (args) => (
         <div className="flex max-w-360 flex-col gap-4">
             <div className="grid grid-cols-2 gap-2">
-                <DestinationCard {...args} size="L" label="Australia" />
+                <DestinationCard {...args} size="L" label="Australia" href="/australia" />
                 <DestinationCard
                     {...args}
                     size="L"
                     imageSrc="/destinations/thailand.JPG"
                     label="Thailand"
+                    href="/thailand"
                 />
             </div>
             <div className="grid grid-cols-3 gap-2">
@@ -105,30 +106,28 @@ export const FillsGrid: Story = {
                     size="M"
                     imageSrc="/destinations/indonesia.JPG"
                     label="Indonesia"
+                    href="/indonesia"
                 />
                 <DestinationCard
                     {...args}
                     size="M"
                     imageSrc="/destinations/vietnam.JPG"
                     label="Vietnam"
+                    href="/vietnam"
                 />
                 <DestinationCard
                     {...args}
                     size="M"
                     imageSrc="/destinations/italy.JPG"
                     label="Italy"
+                    href="/italy"
                 />
             </div>
         </div>
     ),
 };
 
-/** Cards are purely presentational; wrap in a link (e.g. `next/link`'s `Link`) to make one navigable. */
-export const AsLink: Story = {
-    args: { size: "M" },
-    render: (args) => (
-        <Link href="/australia">
-            <DestinationCard {...args} />
-        </Link>
-    ),
+/** Without `href` the card renders with no button at all — purely presentational, e.g. wrap it in your own `Link` from the outside. */
+export const NoButton: Story = {
+    args: { size: "M", href: undefined },
 };
