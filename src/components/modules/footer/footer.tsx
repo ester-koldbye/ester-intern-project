@@ -133,7 +133,7 @@ export const Footer = ({
             <div className="flex w-full flex-col items-center gap-6 pb-4 lg:gap-8 lg:pb-0">
                 <div
                     aria-hidden
-                    className="border-orange/25 bg-orange/25 h-px w-full border"
+                    className="border-blue/25 bg-blue/25 h-px w-full border"
                 />
 
                 <div className="flex w-full flex-col items-center gap-8 lg:flex-row lg:items-start lg:justify-between">

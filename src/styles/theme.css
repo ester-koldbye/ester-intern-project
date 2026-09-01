@@ -2,7 +2,6 @@
 @import "tw-animate-css";
 
 @theme {
-
     /*********** COLORS ***********
      * We remove the built in colors from Tailwind.
      * You need to define your own colors based on the design tokens from Figma.
@@ -12,7 +11,7 @@
 
     /* Base palette */
     --color-white: #ffffff;
-    --color-orange: #ce6745;
+    --color-blue: #0098ff;
     --color-dark-brown: #1f1f1f;
     --color-dark-brown-50: rgba(51, 43, 36, 0.5); /* "Dark Brown 50%" */
     --color-light-grey: #f3f4f6;
@@ -21,19 +20,18 @@
     /* Text colors */
     --color-text-primary: var(--color-dark-brown);
     --color-text-secondary: var(--color-white);
-    --color-text-tertiary: var(--color-orange);
+    --color-text-tertiary: var(--color-blue);
     --color-text-quaternary: var(--color-dark-brown-50);
 
     /* Icon colors */
     --color-icon-primary: var(--color-dark-brown);
     --color-icon-secondary: var(--color-white);
-    --color-icon-tertiary: var(--color-orange);
+    --color-icon-tertiary: var(--color-blue);
 
     /* Background colors */
     --color-bg-light-grey: var(--color-light-grey);
     --color-bg-light-blue: var(--color-light-blue);
 
-    
     /*********** TYPOGRAPHY ***********
      * We remove the built in typography from Tailwind.
      * You need to define your own typography based on the design tokens from Figma.
@@ -193,7 +191,6 @@ a {
     cursor: pointer;
 }
 
-
 /* TYPOGRAPHY SCALING
  * Kept inside `@layer base`: `@import "tailwindcss"` declares the layer
  * order `theme, base, components, utilities`, and any rule left unlayered
@@ -242,28 +239,37 @@ a {
         /* mid range values (components) */
         --☠️-divisor: calc(var(--☠️-vp-num) / var(--☠️-fs-num));
         --☠️-vw-mid: calc(100vw / var(--☠️-divisor));
-        --☠️-fs-mid: calc(var(--fs-min) - (var(--min-scale-bound) / var(--☠️-divisor)));
+        --☠️-fs-mid: calc(
+            var(--fs-min) - (var(--min-scale-bound) / var(--☠️-divisor))
+        );
 
         /* clamp value */
-        --☠️-fs-clamp: clamp(var(--fs-min), var(--☠️-vw-mid) + var(--☠️-fs-mid), var(--fs-max));
+        --☠️-fs-clamp: clamp(
+            var(--fs-min),
+            var(--☠️-vw-mid) + var(--☠️-fs-mid),
+            var(--fs-max)
+        );
 
         /* property value */
-        font-size: var(--fs, var(--☠️-fs-clamp, var(--fs-def, var(--fs-min, var(--fs-max)))));
+        font-size: var(
+            --fs,
+            var(--☠️-fs-clamp, var(--fs-def, var(--fs-min, var(--fs-max))))
+        );
     }
 
-    .h-xxl{
+    .h-xxl {
         --fs-max: var(--text-5xl);
         --fs-min: var(--text-xl);
     }
-    .h-xl{
+    .h-xl {
         --fs-max: var(--text-2xl); /* 3.5rem = 56px */
-        --fs-min: var(--text-xl);  /* 1.8rem = 28.8px */
+        --fs-min: var(--text-xl); /* 1.8rem = 28.8px */
     }
-    .h-lg{
-        --fs-max: var(--text-xl);  /* 1.8rem = 28.8px */
-        --fs-min: var(--text-lg);  /* 1.5rem = 24px */
+    .h-lg {
+        --fs-max: var(--text-xl); /* 1.8rem = 28.8px */
+        --fs-min: var(--text-lg); /* 1.5rem = 24px */
     }
-    .h-md{
+    .h-md {
         --fs-max: var(--text-lg);
         --fs-min: var(--text-md);
     }

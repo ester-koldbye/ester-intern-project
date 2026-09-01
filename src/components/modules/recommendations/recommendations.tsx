@@ -4,7 +4,10 @@ import { Fragment, useState } from "react";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/styles/utils";
-import { Heading, type HeadingLevel } from "@/components/ui/atoms/heading/heading";
+import {
+    Heading,
+    type HeadingLevel,
+} from "@/components/ui/atoms/heading/heading";
 import { Text } from "@/components/ui/atoms/text/text";
 import {
     ActivityCard,
@@ -84,7 +87,12 @@ export type RecommendationItem = Pick<
 };
 
 /** Strips the list-only fields (`id`, `category`, `favorite`) so the rest can be spread straight onto `ActivityCard`. */
-const toCardProps = ({ id, category, favorite, ...cardProps }: RecommendationItem) => cardProps;
+const toCardProps = ({
+    id,
+    category,
+    favorite,
+    ...cardProps
+}: RecommendationItem) => cardProps;
 
 const ALL_CATEGORY = "all";
 
@@ -211,7 +219,9 @@ export const Recommendations = ({
     ...props
 }: RecommendationsProps) => {
     const [activeCategory, setActiveCategory] = useState<string>(ALL_CATEGORY);
-    const selectedCategory = categories.find((category) => category.id === activeCategory);
+    const selectedCategory = categories.find(
+        (category) => category.id === activeCategory,
+    );
 
     // Every category under "View all", or just the selected one when
     // filtered — same per-category group rendering either way, just fewer
@@ -223,14 +233,20 @@ export const Recommendations = ({
 
     const categoryGroups = visibleCategories
         .map((category) => {
-            const categoryItems = items.filter((item) => item.category === category.id);
+            const categoryItems = items.filter(
+                (item) => item.category === category.id,
+            );
             const favorites = categoryItems.filter((item) => item.favorite);
             // `FeaturedGroup`'s own cap (1 hero + 3 stacked) — computed here
             // too so the leftovers can be routed into the grid instead of
             // silently dropped.
             const heroFavorites = favorites.slice(0, 4);
-            const heroFavoriteIds = new Set(heroFavorites.map((item) => item.id));
-            const gridItems = categoryItems.filter((item) => !heroFavoriteIds.has(item.id));
+            const heroFavoriteIds = new Set(
+                heroFavorites.map((item) => item.id),
+            );
+            const gridItems = categoryItems.filter(
+                (item) => !heroFavoriteIds.has(item.id),
+            );
             return { category, categoryItems, heroFavorites, gridItems };
         })
         // Categories with nothing to show yet (e.g. not fetched/added for this city) are skipped rather than rendering an empty heading.
@@ -247,7 +263,10 @@ export const Recommendations = ({
             {...props}
         >
             <Heading level={2} size="xl" weight="bold">
-                View all {selectedCategory ? selectedCategory.label : recommendationsLabel}
+                View all{" "}
+                {selectedCategory
+                    ? selectedCategory.label
+                    : recommendationsLabel}
             </Heading>
 
             <div className="flex w-full flex-col items-start gap-6 lg:grid lg:grid-cols-[1fr_auto] lg:gap-8">
@@ -258,46 +277,95 @@ export const Recommendations = ({
                             No recommendations in this category yet.
                         </Text>
                     ) : (
-                        categoryGroups.map(({ category, categoryItems, heroFavorites, gridItems }, index) => (
-                            <Fragment key={category.id}>
-                                {/* Divider between category groups (only relevant under "View all", where there's more than one). */}
-                                {index > 0 && <div className="h-px w-full bg-orange/25" aria-hidden="true" />}
-                                <div className="flex w-full flex-col items-start gap-8 lg:gap-16">
-                                    {heroFavorites.length > 0 ? (
-                                        <>
-                                            <div className="flex w-full flex-col items-start gap-10">
-                                                <Heading level={3} size="xl" weight="semibold">
-                                                    My favorite {category.name}
-                                                </Heading>
-                                                <FeaturedGroup items={heroFavorites} cardTitleLevel={cardTitleLevel} />
-                                            </div>
-                                            {/* Non-favorites, plus any favorite past FeaturedGroup's cap of 4. */}
-                                            {gridItems.length > 0 && (
-                                                <div className="flex w-full flex-col items-start gap-10">
-                                                    <Heading level={3} size="xl" weight="semibold">
-                                                        Other {category.name}
-                                                    </Heading>
-                                                    <GridGroup items={gridItems} cardTitleLevel={cardTitleLevel} />
-                                                </div>
-                                            )}
-                                        </>
-                                    ) : (
-                                        <div className="flex w-full flex-col items-start gap-10">
-                                            <Heading level={3} size="xl" weight="semibold">
-                                                {category.label}
-                                            </Heading>
-                                            {/* Figma's "Going out spots": a single item with no favorites
-                                                gets one full-width hero card rather than a lopsided grid. */}
-                                            {categoryItems.length < 2 ? (
-                                                <FeaturedGroup items={categoryItems} cardTitleLevel={cardTitleLevel} />
-                                            ) : (
-                                                <GridGroup items={categoryItems} cardTitleLevel={cardTitleLevel} />
-                                            )}
-                                        </div>
+                        categoryGroups.map(
+                            (
+                                {
+                                    category,
+                                    categoryItems,
+                                    heroFavorites,
+                                    gridItems,
+                                },
+                                index,
+                            ) => (
+                                <Fragment key={category.id}>
+                                    {/* Divider between category groups (only relevant under "View all", where there's more than one). */}
+                                    {index > 0 && (
+                                        <div
+                                            className="h-px w-full bg-blue/25"
+                                            aria-hidden="true"
+                                        />
                                     )}
-                                </div>
-                            </Fragment>
-                        ))
+                                    <div className="flex w-full flex-col items-start gap-8 lg:gap-16">
+                                        {heroFavorites.length > 0 ? (
+                                            <>
+                                                <div className="flex w-full flex-col items-start gap-10">
+                                                    <Heading
+                                                        level={3}
+                                                        size="xl"
+                                                        weight="semibold"
+                                                    >
+                                                        My favorite{" "}
+                                                        {category.name}
+                                                    </Heading>
+                                                    <FeaturedGroup
+                                                        items={heroFavorites}
+                                                        cardTitleLevel={
+                                                            cardTitleLevel
+                                                        }
+                                                    />
+                                                </div>
+                                                {/* Non-favorites, plus any favorite past FeaturedGroup's cap of 4. */}
+                                                {gridItems.length > 0 && (
+                                                    <div className="flex w-full flex-col items-start gap-10">
+                                                        <Heading
+                                                            level={3}
+                                                            size="xl"
+                                                            weight="semibold"
+                                                        >
+                                                            Other{" "}
+                                                            {category.name}
+                                                        </Heading>
+                                                        <GridGroup
+                                                            items={gridItems}
+                                                            cardTitleLevel={
+                                                                cardTitleLevel
+                                                            }
+                                                        />
+                                                    </div>
+                                                )}
+                                            </>
+                                        ) : (
+                                            <div className="flex w-full flex-col items-start gap-10">
+                                                <Heading
+                                                    level={3}
+                                                    size="xl"
+                                                    weight="semibold"
+                                                >
+                                                    {category.label}
+                                                </Heading>
+                                                {/* Figma's "Going out spots": a single item with no favorites
+                                                gets one full-width hero card rather than a lopsided grid. */}
+                                                {categoryItems.length < 2 ? (
+                                                    <FeaturedGroup
+                                                        items={categoryItems}
+                                                        cardTitleLevel={
+                                                            cardTitleLevel
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <GridGroup
+                                                        items={categoryItems}
+                                                        cardTitleLevel={
+                                                            cardTitleLevel
+                                                        }
+                                                    />
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                </Fragment>
+                            ),
+                        )
                     )}
                 </div>
 

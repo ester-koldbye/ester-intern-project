@@ -42,7 +42,7 @@ export const Inactive: Story = {
     args: { isActive: false, children: "Country" },
 };
 
-/** The current-page state — orange text and `aria-current="page"`. */
+/** The current-page state — blue text and `aria-current="page"`. */
 export const Active: Story = {
     args: { isActive: true, children: "Recommendation" },
 };
@@ -60,7 +60,7 @@ export const AsChild: Story = {
     },
 };
 
-/** A two-item trail: "Home / Thailand", the current page shown in orange with no trailing separator. */
+/** A two-item trail: "Home / Thailand", the current page shown in blue with no trailing separator. */
 export const TwoItemTrail: Story = {
     render: () => (
         <nav aria-label="Breadcrumb">
@@ -69,7 +69,11 @@ export const TwoItemTrail: Story = {
                     <BreadcrumbItem href="/">Home</BreadcrumbItem>
                 </li>
                 <li>
-                    <BreadcrumbItem href="/thailand" isActive showSeparator={false}>
+                    <BreadcrumbItem
+                        href="/thailand"
+                        isActive
+                        showSeparator={false}
+                    >
                         Thailand
                     </BreadcrumbItem>
                 </li>
@@ -93,7 +97,11 @@ export const BreadcrumbTrail: Story = {
                     <BreadcrumbItem href="/country/city">City</BreadcrumbItem>
                 </li>
                 <li>
-                    <BreadcrumbItem href="/country/city/recommendation" isActive showSeparator={false}>
+                    <BreadcrumbItem
+                        href="/country/city/recommendation"
+                        isActive
+                        showSeparator={false}
+                    >
                         Recommendation
                     </BreadcrumbItem>
                 </li>

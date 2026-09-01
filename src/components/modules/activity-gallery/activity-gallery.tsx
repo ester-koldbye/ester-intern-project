@@ -4,7 +4,10 @@ import { useState } from "react";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import Image from "next/image";
 import { cn } from "@/styles/utils";
-import { Heading, type HeadingLevel } from "@/components/ui/atoms/heading/heading";
+import {
+    Heading,
+    type HeadingLevel,
+} from "@/components/ui/atoms/heading/heading";
 import {
     InfoItem,
     type InfoItemProps,
@@ -200,7 +203,7 @@ export const ActivityGallery = ({
                                     className={cn(
                                         "relative h-25 w-full flex-1 shrink-0 overflow-hidden rounded-[15px] border-4 transition-colors",
                                         index === activeIndex
-                                            ? "border-orange"
+                                            ? "border-blue"
                                             : "border-transparent",
                                     )}
                                 >

@@ -28,7 +28,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** A full breadcrumb trail; the current page ("Recommendation") is shown in orange with no trailing separator. */
+/** A full breadcrumb trail; the current page ("Recommendation") is shown in blue with no trailing separator. */
 export const Default: Story = {};
 
 /** A short, two-crumb trail. */

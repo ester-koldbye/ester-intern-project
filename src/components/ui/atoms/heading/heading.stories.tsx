@@ -16,12 +16,14 @@ const meta = {
         level: {
             control: "radio",
             options: [1, 2, 3, 4],
-            description: "Picks the element. Chosen from the surrounding outline, never from how big it should look.",
+            description:
+                "Picks the element. Chosen from the surrounding outline, never from how big it should look.",
         },
         size: {
             control: "radio",
             options: ["2xl", "xl", "lg", "md"],
-            description: "Picks the appearance. Defaults from level; passing it always wins.",
+            description:
+                "Picks the appearance. Defaults from level; passing it always wins.",
         },
         variant: {
             control: "radio",
@@ -30,7 +32,8 @@ const meta = {
         weight: {
             control: "radio",
             options: ["regular", "semibold", "bold"],
-            description: "Defaults to bold. Split from size the same way Text's weight is, e.g. a semibold xl title.",
+            description:
+                "Defaults to bold. Split from size the same way Text's weight is, e.g. a semibold xl title.",
         },
         asChild: {
             control: "boolean",
@@ -115,11 +118,15 @@ export const Variants: Story = {
             <Heading level={2} variant="quaternary">
                 quaternary — de-emphasised heading
             </Heading>
-            <Heading level={2} variant="secondary" className="bg-dark-brown p-2">
+            <Heading
+                level={2}
+                variant="secondary"
+                className="bg-dark-brown p-2"
+            >
                 secondary — white, for dark backgrounds
             </Heading>
             <Heading level={2} variant="tertiary">
-                tertiary — orange, for accents
+                tertiary — blue, for accents
             </Heading>
         </div>
     ),

@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Text } from "./text";
 
-const SAMPLE = "One shot. One moment. The final period ran to a shootout before the title was settled.";
+const SAMPLE =
+    "One shot. One moment. The final period ran to a shootout before the title was settled.";
 
 const meta = {
     title: "Typography/Text",
@@ -17,11 +18,12 @@ const meta = {
         as: {
             control: "radio",
             options: ["p", "span", "div", "figcaption"],
-            description: "Restricted on purpose — every option is a plain text container with the same prop surface. Use asChild for anything outside this set.",
+            description:
+                "Restricted on purpose — every option is a plain text container with the same prop surface. Use asChild for anything outside this set.",
         },
         textColor: {
             control: "radio",
-            options: ["dark", "light", "orange", "grey"],
+            options: ["dark", "light", "blue", "grey"],
         },
         size: {
             control: "radio",
@@ -54,7 +56,9 @@ export const Sizes: Story = {
     render: () => (
         <div className="flex flex-col gap-4">
             <Text size="md">md — 20px / 24px, e.g. lead paragraphs</Text>
-            <Text size="base">base — 16px / 16px, the only size with letter-spacing</Text>
+            <Text size="base">
+                base — 16px / 16px, the only size with letter-spacing
+            </Text>
             <Text size="sm">sm — 14px / 18px, the default body copy</Text>
         </div>
     ),
@@ -65,7 +69,9 @@ export const Weights: Story = {
     render: () => (
         <div className="flex flex-col gap-4">
             <Text weight="regular">regular — default body copy</Text>
-            <Text weight="semibold">semibold — emphasis within a paragraph</Text>
+            <Text weight="semibold">
+                semibold — emphasis within a paragraph
+            </Text>
             <Text weight="bold">bold — strong emphasis</Text>
         </div>
     ),
@@ -80,7 +86,7 @@ export const Variants: Story = {
             <Text textColor="light" className="bg-dark-brown p-2">
                 light — white, for dark backgrounds
             </Text>
-            <Text textColor="orange">orange — for accents/links</Text>
+            <Text textColor="blue">blue — for accents/links</Text>
         </div>
     ),
 };

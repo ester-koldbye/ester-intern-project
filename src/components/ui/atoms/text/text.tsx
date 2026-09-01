@@ -19,65 +19,65 @@ import { cn } from "@/styles/utils";
  */
 
 const textVariants = cva("font-poppins", {
-  variants: {
-    textColor: {
-      dark: "text-text-primary",
-      light: "text-text-secondary",
-      orange: "text-text-tertiary",
-      grey: "text-text-quaternary",
+    variants: {
+        textColor: {
+            dark: "text-text-primary",
+            light: "text-text-secondary",
+            blue: "text-text-tertiary",
+            grey: "text-text-quaternary",
+        },
+        // sm: 14px/18px. base: 16px/16px, the only size with letter-spacing in
+        // Figma. md: 20px/24px. (No lg/xl — those are Heading's sizes.)
+        size: {
+            sm: "text-sm leading-sm",
+            base: "text-base",
+            md: "text-md leading-lg",
+        },
+        weight: {
+            regular: "font-regular",
+            semibold: "font-semibold",
+            bold: "font-bold",
+        },
     },
-    // sm: 14px/18px. base: 16px/16px, the only size with letter-spacing in
-    // Figma. md: 20px/24px. (No lg/xl — those are Heading's sizes.)
-    size: {
-      sm: "text-sm leading-sm",
-      base: "text-base",
-      md: "text-md leading-lg",
+    defaultVariants: {
+        textColor: "dark",
+        size: "base",
+        weight: "regular",
     },
-    weight: {
-      regular: "font-regular",
-      semibold: "font-semibold",
-      bold: "font-bold",
-    },
-  },
-  defaultVariants: {
-    textColor: "dark",
-    size: "base",
-    weight: "regular",
-  },
 });
 
 /** Elements that are purely text containers and share the same prop surface. */
 type TextElement = "p" | "span" | "div" | "figcaption";
 
 export type TextProps = ComponentPropsWithRef<"p"> &
-  VariantProps<typeof textVariants> & {
-    as?: TextElement;
-    asChild?: boolean;
-  };
+    VariantProps<typeof textVariants> & {
+        as?: TextElement;
+        asChild?: boolean;
+    };
 
 export const Text = ({
-  as = "p",
-  textColor,
-  size,
-  weight,
-  asChild = false,
-  className,
-  children,
-  ref,
-  ...props
+    as = "p",
+    textColor,
+    size,
+    weight,
+    asChild = false,
+    className,
+    children,
+    ref,
+    ...props
 }: TextProps) => {
-  const Comp = asChild ? Slot : as;
+    const Comp = asChild ? Slot : as;
 
-  return (
-    <Comp
-      data-slot="text"
-      className={cn(textVariants({ textColor, size, weight, className }))}
-      ref={ref}
-      {...props}
-    >
-      {children}
-    </Comp>
-  );
+    return (
+        <Comp
+            data-slot="text"
+            className={cn(textVariants({ textColor, size, weight, className }))}
+            ref={ref}
+            {...props}
+        >
+            {children}
+        </Comp>
+    );
 };
 
 Text.displayName = "Text";

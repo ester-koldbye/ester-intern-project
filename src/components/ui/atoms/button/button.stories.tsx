@@ -42,11 +42,11 @@ export const Default: Story = {
 };
 
 export const Primary: Story = {
-    args: { variant: "primary", textColor: "dark", children: "Primary" }, 
+    args: { variant: "primary", textColor: "dark", children: "Primary" },
 };
 
 export const Secondary: Story = {
-    args: { variant: "secondary", textColor: "dark", children: "Secondary" }, 
+    args: { variant: "secondary", textColor: "dark", children: "Secondary" },
 };
 
 export const Outline: Story = {
@@ -66,10 +66,20 @@ export const AllVariants: Story = {
     args: { children: "Button" },
     render: () => (
         <div className="flex flex-wrap gap-3">
-            <Button variant="primary">Default</Button> {/* orange, hover bliver outline med sort tekst */}
-            <Button variant="secondary" textColor="dark">Secondary</Button> {/* hvid med sort tekst */}
-            <Button variant="outline" textColor="dark">Outline (Dark)</Button> {/* outline, sort tekst */}
-            <Button variant="outline" textColor="light">Outline (Light)</Button> {/* outline, hvid tekst */}
+            <Button variant="primary">Default</Button>{" "}
+            {/* blue, hover bliver outline med sort tekst */}
+            <Button variant="secondary" textColor="dark">
+                Secondary
+            </Button>{" "}
+            {/* hvid med sort tekst */}
+            <Button variant="outline" textColor="dark">
+                Outline (Dark)
+            </Button>{" "}
+            {/* outline, sort tekst */}
+            <Button variant="outline" textColor="light">
+                Outline (Light)
+            </Button>{" "}
+            {/* outline, hvid tekst */}
         </div>
     ),
 };

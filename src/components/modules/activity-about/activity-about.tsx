@@ -1,6 +1,9 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { cn } from "@/styles/utils";
-import { Heading, type HeadingLevel } from "@/components/ui/atoms/heading/heading";
+import {
+    Heading,
+    type HeadingLevel,
+} from "@/components/ui/atoms/heading/heading";
 import { Text } from "@/components/ui/atoms/text/text";
 
 /**
@@ -58,7 +61,8 @@ export const ActivityAbout = ({
     ref,
     ...props
 }: ActivityAboutProps) => {
-    const hasProsOrCons = (pros && pros.length > 0) || (cons && cons.length > 0);
+    const hasProsOrCons =
+        (pros && pros.length > 0) || (cons && cons.length > 0);
     const subHeadingLevel = nextLevel(headingLevel);
 
     return (
@@ -88,12 +92,16 @@ export const ActivityAbout = ({
                         <>
                             <div
                                 aria-hidden
-                                className="border-orange/25 bg-orange/25 h-px w-full border"
+                                className="border-blue/25 bg-blue/25 h-px w-full border"
                             />
                             <div className="flex w-full items-start gap-19.5">
                                 {pros && pros.length > 0 && (
                                     <div className="flex flex-col items-start gap-2.5">
-                                        <Heading level={subHeadingLevel} size="lg" weight="bold">
+                                        <Heading
+                                            level={subHeadingLevel}
+                                            size="lg"
+                                            weight="bold"
+                                        >
                                             {prosHeading}
                                         </Heading>
                                         <ul className="text-text-primary leading-sm flex list-disc flex-col gap-1 ps-5 text-sm font-semibold whitespace-nowrap">
@@ -105,7 +113,11 @@ export const ActivityAbout = ({
                                 )}
                                 {cons && cons.length > 0 && (
                                     <div className="flex flex-col items-start gap-2.5">
-                                        <Heading level={subHeadingLevel} size="lg" weight="bold">
+                                        <Heading
+                                            level={subHeadingLevel}
+                                            size="lg"
+                                            weight="bold"
+                                        >
                                             {consHeading}
                                         </Heading>
                                         <ul className="text-text-primary leading-sm flex list-disc flex-col gap-1 ps-5 text-sm font-semibold whitespace-nowrap">
@@ -124,7 +136,7 @@ export const ActivityAbout = ({
                     asChild
                     size="sm"
                     weight="semibold"
-                    textColor="orange"
+                    textColor="blue"
                     className="w-full"
                 >
                     <a
