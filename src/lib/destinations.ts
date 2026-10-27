@@ -63,7 +63,7 @@ const COUNTRIES: Country[] = [
     {
         slug: "thailand",
         name: "Thailand",
-        imageSrc: "/destinations/thailand.JPG",
+        imageSrc: "/destinations/thailand/thailand.JPG",
         imageAlt: "A scenic view of Thailand",
         size: "L",
         content: {
@@ -128,7 +128,7 @@ const COUNTRIES: Country[] = [
         name: "Vietnam",
         imageSrc: "/destinations/vietnam/vietnam.JPG",
         imageAlt: "A scenic view of Vietnam",
-        size: "M",
+        size: "L",
         content: {
             tips: [
                 {
@@ -173,7 +173,7 @@ const COUNTRIES: Country[] = [
         name: "Indonesia",
         imageSrc: "/destinations/indonesia/indonesia.JPG",
         imageAlt: "A scenic view of Indonesia",
-        size: "M",
+        size: "L",
         content: {
             tips: [
                 {
@@ -260,7 +260,7 @@ const COUNTRIES: Country[] = [
         name: "Italy",
         imageSrc: "/destinations/italy/italy.JPG",
         imageAlt: "A scenic view of Italy",
-        size: "M",
+        size: "L",
     },
 ];
 

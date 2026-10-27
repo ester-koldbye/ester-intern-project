@@ -25,7 +25,7 @@ import { cn } from "@/styles/utils";
  * the prop value tells you exactly which token is in play.
  */
 
-const headingVariants = cva("font-poppins tracking-[0.32px]", {
+const headingVariants = cva("font-poppins", {
     variants: {
         variant: {
             primary: "text-text-primary",
@@ -37,7 +37,7 @@ const headingVariants = cva("font-poppins tracking-[0.32px]", {
             "2xl": "h-xxl leading-2xl",
             xl: "h-xl leading-xl lg:leading-2xl",
             lg: "h-lg leading-lg lg:leading-xl",
-            md: "h-md leading-md lg:leading-lg",
+            md: "h-md lg:leading-lg",
         },
         weight: {
             regular: "font-regular",

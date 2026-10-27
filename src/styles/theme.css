@@ -55,12 +55,9 @@
     --leading-2xs: 0.875rem; /* 14px */
     --leading-xs: 1rem; /* 16px */
     --leading-sm: 1.125rem; /* 18px */
-    --leading-lg: 1.5rem; /* 24px */
+    --leading-lg: 120%; /* 67.2px
     --leading-xl: 2.5rem; /* 40px */
     --leading-2xl: 3.5rem; /* 56px */
-    --leading-3xl: 4rem; /* 64px */
-    --leading-4xl: 4.5rem; /* 72px */
-    --leading-5xl: 6rem; /* 96px */
 
     /* Font Sizes (Figma: "Font size" group) */
     --text-*: initial;
@@ -71,8 +68,6 @@
     --text-lg: 1.5rem; /* 24px */
     --text-xl: 1.8rem; /* 28.8px */
     --text-2xl: 3.5rem; /* 56px */
-    --text-3xl: 4rem; /* 64px */
-    --text-4xl: 4.5rem; /* 72px */
     --text-5xl: 6rem; /* 96px */
 
     /* Letter Spacing (Inspired by Tailwind CSS) */

@@ -49,13 +49,17 @@ const destinationCardVariants = cva("block overflow-hidden rounded-card", {
 });
 
 const destinationCardContentVariants = cva(
-    "flex h-full w-full flex-col justify-end bg-cover bg-center",
+    "relative h-full w-full bg-cover bg-center",
     {
         variants: {
             size: {
-                L: "items-center gap-6 p-6 text-center lg:gap-10 lg:p-10",
-                M: "items-center gap-6 p-6 text-center lg:gap-10 lg:p-10",
-                S: "items-start gap-1 p-2.5",
+                // `L` positions its heading and button absolutely (see the
+                // classes applied to each below) so the heading always sits
+                // dead center regardless of the button's presence, instead
+                // of the pair being centered together as a flex group.
+                L: "p-4 text-center lg:p-10",
+                M: "p-4 text-center lg:p-10",
+                S: "flex flex-col items-start justify-end gap-1 p-2.5",
             },
         },
         defaultVariants: {
@@ -74,22 +78,10 @@ const LABEL_SIZES: Record<
     DestinationCardSize,
     NonNullable<HeadingProps["size"]>
 > = {
-    L: "xl",
-    M: "xl",
+    L: "lg",
+    M: "lg",
     S: "md",
 };
-
-/**
- * Approximate rendered width per `size`, used to size the photo request.
- * Below `lg` every size is the fixed 130px thumbnail. From `lg` up, `L`/`M`
- * are fluid — sized as a fraction of the viewport matching their grid
- * (2-up/3-up), capped at their share of the 1440px desktop max-width.
- */
-// const IMAGE_SIZES: Record<DestinationCardSize, string> = {
-//     L: "(max-width: 1023px) 130px, (max-width: 1439px) 50vw, 720px",
-//     M: "(max-width: 1023px) 130px, (max-width: 1439px) 33vw, 480px",
-//     S: "130px",
-// };
 
 export type DestinationCardProps = Omit<
     ComponentPropsWithRef<"div">,
@@ -132,7 +124,11 @@ export const DestinationCard = ({
                     level={3}
                     size={LABEL_SIZES[size ?? "M"]}
                     variant="secondary"
-                    className="w-full"
+                    className={cn(
+                        "w-full",
+                        size !== "M" &&
+                            "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+                    )}
                 >
                     {label}
                 </Heading>
@@ -140,8 +136,15 @@ export const DestinationCard = ({
                 {href && size !== "S" && (
                     // A visual button, not a real link/button element — the
                     // whole card below is already the `<a>`, and an anchor
-                    // can't contain another interactive element.
-                    <Button asChild variant="overlay">
+                    // can't contain another interactive element. Anchored to
+                    // the same center point as the heading above, then
+                    // pushed down a fixed 70px, so it tracks the heading's
+                    // position without depending on its (variable) height.
+                    <Button
+                        asChild
+                        variant="overlay"
+                        className="absolute top-1/2 left-1/2 mt-[40px] -translate-x-1/2 -translate-y-1/4"
+                    >
                         <span>{buttonLabel}</span>
                     </Button>
                 )}
